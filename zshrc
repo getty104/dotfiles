@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/kiyonotoshifumi/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -60,19 +60,16 @@ export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-darwin"
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 #Postgres用のPath
-export PGDATA=/usr/local/var/postgres
+#export PGDATA=/usr/local/var/postgres
 
 #Ruby用のPATH
 eval "$(rbenv init -)"
 
 #Node用のPATH
-eval "$(nodenv init -)"
+eval "$(ndenv init -)"
 
 #Python用のPATH
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
-alias brew="env PATH=${PATH/\/Users\/kiyonotoshifumi\/\.pyenv\/shims:/} brew"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -147,13 +144,13 @@ bindkey -e
 # コマンド自動補正
 setopt correct
 
-if [ -f ~/.zsh/auto-fu.zsh ]; then
-    source ~/.zsh/auto-fu.zsh
-    function zle-line-init () {
-        auto-fu-init
-    }
-    zle -N zle-line-init
-    zstyle ':completion:*' completer _oldlist _complete
-fi
+source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
+function zle-line-init(){
+    auto-fu-init
+}
+zle -N zle-line-init
+# 「-azfu-」を表示させないための記述
+zstyle ':auto-fu:var' postdisplay $''
+
 
 
