@@ -6,7 +6,7 @@ brew install git
 brew install zsh
 brew install rbenv
 brew install pyenv
-brew install ndenv
+brew install nodenv
 brew install mysql
 brew install postgresql
 brew install redis

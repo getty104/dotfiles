@@ -66,7 +66,7 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 eval "$(rbenv init -)"
 
 #Node用のPATH
-eval "$(ndenv init -)"
+eval "$(nodenv init -)"
 
 #Python用のPATH
 eval "$(pyenv init -)"
