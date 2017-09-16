@@ -1,3 +1,4 @@
+#!/bin/bash -eu
 
 if ! type brew >/dev/null 2>&1; then
 echo "installing brew..."
@@ -6,6 +7,7 @@ fi
 
 formulas=(
           git
+          git-secrets
           zsh
           rbenv
           pyenv
@@ -14,6 +16,8 @@ formulas=(
           postgresql
           redis
           gcc
+          heroku
+          ghostscript
 )
 
 echo "installing brew formula..."
@@ -32,6 +36,7 @@ git clone git://github.com/hchbaw/auto-fu.zsh.git
 cd auto-fu.zsh
 git checkout -b pu origin/pu
 source ~/.zshrc
+git secrets --register-aws --global
 cd ~
 
 echo "set up rbenv..."
@@ -54,13 +59,32 @@ apps=(
       sublime-text
       skype
       box-sync
+      basictex
+      skim
 )
 
 echo "installing apps..."
 brew cask install ${apps[@]}
+
 echo "cleanup brew cask..."
 brew cask cleanup
+
+echo "set up latex"
+sudo tlmgr update --self --all
+sudo tlmgr install collection-langjapanese
+sudo tlmgr install newtx txfonts helvetic fontaxes boondox
+sudo tlmgr install kastrup tex-gyre
+cd /usr/local/texlive/2016basic/texmf-dist/scripts/cjk-gs-integrate
+sudo perl cjk-gs-integrate.pl --link-texmf --force
+sudo mktexlsr
+kanji-config-updmap hiragino-elcapitan-pron
+kanji-config-updmap status
+sudo mv ~/Downloads/setting-files/jlisting.sty /usr/local/texlive/2016basic/texmf-dist/tex/latex/listings/
+sudo chmod +r /usr/local/texlive/2016basic/texmf-dist/tex/latex/listings/jlisting.sty
+sudo mktexlsr
 
 echo "please install Line.app Slack.app "
 echo "please download sophos from https://waseda.app.box.com/v/sophos/file/207152874157"
 echo "read pdf and set up sophos"
+echo "please set up iTerm2"
+echo "please set up sublime text and lisence key"
