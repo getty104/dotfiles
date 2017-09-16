@@ -29,9 +29,8 @@ brew services start redis
 echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 cp zshrc ~/.zshrc
-cd ~
-mkdir .zsh
-cd .zsh
+mkdir ~/.zsh
+cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
 cd auto-fu.zsh
 git checkout -b pu origin/pu
@@ -68,6 +67,9 @@ brew cask install ${apps[@]}
 
 echo "cleanup brew cask..."
 brew cask cleanup
+
+echo "symbolic link of sublime text..."
+ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 
 echo "set up latex"
 sudo tlmgr update --self --all
