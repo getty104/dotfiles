@@ -5,6 +5,7 @@ ZSH_THEME="mh"
 #プラグインの設定
 plugins=(brew brew-cask cdd gem git rbenv vagrant bundler ruby rails)
 
+
 # User configuration
 #PATH
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
