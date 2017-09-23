@@ -1,8 +1,8 @@
 #!/bin/bash -eu
 
 if ! type brew >/dev/null 2>&1; then
-echo "installing brew..."
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  echo "installing brew..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 formulas=(
@@ -18,7 +18,7 @@ formulas=(
           gcc
           heroku
           ghostscript
-)
+          )
 
 echo "installing brew formula..."
 brew install ${formulas[@]}
@@ -60,7 +60,7 @@ apps=(
       box-sync
       basictex
       skim
-)
+      )
 
 echo "installing apps..."
 brew cask install ${apps[@]}
