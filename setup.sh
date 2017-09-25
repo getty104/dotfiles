@@ -59,7 +59,6 @@ apps=(
       skype
       box-sync
       basictex
-      skim
       )
 
 echo "installing apps..."
@@ -71,7 +70,7 @@ brew cask cleanup
 echo "symbolic link of sublime text..."
 ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
 
-echo "please install Line.app Slack.app "
+echo "please install Line.app Slack.app"
 echo "please download sophos from https://waseda.app.box.com/v/sophos/file/207152874157"
 echo "read pdf and set up sophos"
 echo "please set up iTerm2"
