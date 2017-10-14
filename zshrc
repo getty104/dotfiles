@@ -5,13 +5,7 @@ ZSH_THEME="mh"
 #プラグインの設定
 plugins=(brew brew-cask cdd gem git rbenv vagrant bundler ruby rails)
 
-
 # User configuration
-#PATH
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:/usr/local/texlive/2016/bin/x86_64-darwin"
-fpath=(/usr/local/share/zsh-completions $fpath)
 
 #Ruby用のPATH
 eval "$(rbenv init -)"
@@ -30,8 +24,6 @@ source $ZSH/oh-my-zsh.sh
 ## 重複パスを登録しない
 typeset -U path cdpath fpath manpath
 
-autoload -U compinit
-compinit -u
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
 
@@ -74,7 +66,7 @@ bindkey -e
 # コマンド自動補正
 setopt correct
 
-#auto-fu-zshの設定
+#auto-fu.zshの設定
 source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
 function zle-line-init(){
     auto-fu-init
@@ -83,5 +75,10 @@ zle -N zle-line-init
 # 「-azfu-」を表示させないための記述
 zstyle ':auto-fu:var' postdisplay $''
 
-
-
+#alias
+alias dc="docker-compose"
+alias dw="docker-compose run web"
+alias oa="open -a"
+alias rm="rmtrash"
+alias gcc="gcc-7"
+alias g++="g++-7"

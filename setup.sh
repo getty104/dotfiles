@@ -16,8 +16,7 @@ formulas=(
           postgresql
           redis
           gcc
-          heroku
-          ghostscript
+          rmtrash
           )
 
 echo "installing brew formula..."
@@ -58,7 +57,6 @@ apps=(
       sublime-text
       skype
       box-sync
-      basictex
       )
 
 echo "installing apps..."
