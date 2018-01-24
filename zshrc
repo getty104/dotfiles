@@ -3,9 +3,18 @@ export ZSH=~/.oh-my-zsh
 #oh-my-zshのテーマ設定
 ZSH_THEME="mh"
 #プラグインの設定
-plugins=(brew brew-cask cdd gem git rbenv vagrant bundler ruby rails)
+plugins=(brew brew-cask cdd gem git vagrant bundler ruby rails)
 
 # User configuration
+
+#local用のPATH
+export PATH="/usr/local/bin:$PATH"
+
+#TexLive用のPATH
+export PATH="$PATH:/usr/local/texlive/2017/bin/x86_64-darwin"
+
+#openssl用のPATH
+export PATH=/usr/local/opt/openssl/bin:$PATH
 
 #Ruby用のPATH
 eval "$(rbenv init -)"
