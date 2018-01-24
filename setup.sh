@@ -57,6 +57,7 @@ apps=(
       sublime-text
       skype
       box-sync
+      amazon-music
       )
 
 echo "installing apps..."
