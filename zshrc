@@ -25,6 +25,9 @@ eval "$(nodenv init -)"
 #Python用のPATH
 eval "$(pyenv init -)"
 
+#Elixir用のPATH
+eval "$(exenv init -)"
+
 #URLをちゃんと認識させる
 setopt nonomatch
 
