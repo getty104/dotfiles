@@ -17,6 +17,10 @@ formulas=(
           redis
           gcc
           rmtrash
+          openssl
+          erlang
+          elixir-build
+          exenv
           )
 
 echo "installing brew formula..."

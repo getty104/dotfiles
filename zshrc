@@ -3,7 +3,7 @@ export ZSH=~/.oh-my-zsh
 #oh-my-zshのテーマ設定
 ZSH_THEME="mh"
 #プラグインの設定
-plugins=(brew brew-cask cdd gem git vagrant bundler ruby rails)
+plugins=(brew brew-cask git bundler ruby rails)
 
 # User configuration
 
