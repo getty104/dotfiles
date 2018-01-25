@@ -48,6 +48,7 @@ rbenv plug rbenv-update
 rbenv plug rbenv-gem-rehash
 rbenv plug rbenv-communal-gems
 rbenv communize --all
+rbenv rehash
 
 apps=(
       google-chrome
