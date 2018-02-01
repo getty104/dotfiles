@@ -29,9 +29,7 @@ eval "$(pyenv init -)"
 eval "$(exenv init -)"
 
 #Go用のPATH
-export GOPATH=$HOME/go
-export GOENV_ROOT=$HOME/.goenv
-export PATH=bin:$GOENV_ROOT/bin:$GOPATH/bin:$PATH
+export GOPATH=$HOME/.goenv/gohome
 eval "$(goenv init -)"
 
 
