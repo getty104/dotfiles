@@ -30,6 +30,8 @@ eval "$(exenv init -)"
 
 #Go用のPATH
 export GOPATH=$HOME/.goenv/gohome
+export GOENV_ROOT=$HOME/.goenv
+export PATH=bin:$GOENV_ROOT/bin:$GOPATH/bin:$PATH
 eval "$(goenv init -)"
 
 
