@@ -16,6 +16,7 @@ formulas=(
           erlang
           elixir-build
           exenv
+          goenv
           mas
           )
 
@@ -66,7 +67,7 @@ brew services start redis
 echo "----------------------------------------------------------------------------"
 echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-cp zshrc ~/.zshrc
+ln -s zshrc ~/.zshrc
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
