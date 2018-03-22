@@ -67,7 +67,7 @@ brew services start redis
 echo "----------------------------------------------------------------------------"
 echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-cp zshrc ~/.zshrc
+cp -f zshrc ~/.zshrc
 rm ~/.zshrc
 ln -s zshrc ~/.zshrc
 mkdir ~/.zsh
