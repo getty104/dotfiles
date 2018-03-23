@@ -45,6 +45,9 @@ appleapps=(
            497799835 #XCode
            )
 
+read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
+case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
+
 read -p "ICloudにはログインしていますか？ (y/N): " yn1
 case "$yn1" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 
@@ -67,9 +70,7 @@ brew services start redis
 echo "----------------------------------------------------------------------------"
 echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-cp -f zshrc ~/.zshrc
-rm ~/.zshrc
-ln -s zshrc ~/.zshrc
+ln -sf ~/dotfiles/zshrc ~/.zshrc
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
