@@ -70,8 +70,8 @@ brew services start redis
 echo "----------------------------------------------------------------------------"
 echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-ln -sf ~/dotfiles/zshrc ~/.zshrc
-ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
+ln -sf ~/dotfiles/mac/vimrc ~/.vimrc
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
