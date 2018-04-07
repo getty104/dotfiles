@@ -18,6 +18,7 @@ formulas=(
           exenv
           goenv
           mas
+          ctags
           )
 
 apps=(

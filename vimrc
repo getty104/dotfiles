@@ -38,6 +38,9 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
 
+" Unite系
+  call dein#add('Shougo/unite.vim')
+
 " 設定終了
   call dein#end()
   call dein#save_state()
@@ -111,11 +114,22 @@ function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 endfunction
 
+function! s:remove_dust()
+    let cursor = getpos(".")
+    " 保存時に行末の空白を除去する
+    %s/\s\+$//ge
+    " 保存時にtabを2スペースに変換する
+    %s/\t/  /ge
+    call setpos(".", cursor)
+    unlet cursor
+endfunction
+
 if has('syntax')
   augroup ZenkakuSpace
   autocmd!
   autocmd ColorScheme * call ZenkakuSpace()
   autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+  autocmd BufWritePre * call <SID>remove_dust()
   augroup END
   call ZenkakuSpace()
 endif
@@ -164,6 +178,7 @@ set showmatch
 set autoindent
 
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+set autoindent
 set smartindent
 
 " タブをスペースに変換
@@ -179,6 +194,12 @@ set smarttab
 
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
+
+" 不可視文字を表示する
+set list
+
+" タブを >--- 半スペを . で表示する
+set listchars=tab:>-,trail:.
 
 " 構文毎に文字色を変化させる
 syntax on
