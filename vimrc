@@ -41,13 +41,9 @@ if dein#load_state(s:dein_dir)
 
 " Unite系
   call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/vimproc')
 
 " Tag系
-  call dein#add('alpaca-tc/alpaca_tags', {
-      \ 'depends': 'Shougo/vimproc',
-      \ 'autoload' : {
-      \   'commands': ['TagsUpdate', 'TagsSet', 'TagsBundle']
-      \ }})
   call dein#add('tsukkee/unite-tag', {
       \ 'depends' : ['Shougo/unite.vim'],
       \ 'autoload' : {
@@ -59,8 +55,9 @@ if dein#load_state(s:dein_dir)
       \ 'autoload' : {
       \   'insert' : 1,
       \ }})
-  call dein#add('tpope/vim-rails', { 'autoload' : {
-      \ 'filetypes' : ['haml', 'ruby', 'eruby'] }})
+
+  call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby'] }})
+
   call dein#add('basyura/unite-rails', {
       \ 'depends' : 'Shougo/unite.vim',
       \ 'autoload' : {
@@ -73,11 +70,7 @@ if dein#load_state(s:dein_dir)
       \     'rails/stylesheet', 'rails/view'
       \   ]
       \ }})
-  call dein#add('alpaca-tc/neorspec.vim', {
-      \ 'depends' : ['alpaca-tc/vim-rails', 'tpope/vim-dispatch'],
-      \ 'autoload' : {
-      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
-      \ }})
+
 
 " 設定終了
   call dein#end()
@@ -144,14 +137,17 @@ function! s:remove_dust()
 endfunction
 
 if has('syntax')
-  augroup ZenkakuSpace
   augroup InsertHook
-  autocmd!
-  autocmd InsertEnter * call s:StatusLine('Enter')
-  autocmd InsertLeave * call s:StatusLine('Leave')
-  autocmd ColorScheme * call ZenkakuSpace()
-  autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
-  autocmd BufWritePre * call <SID>remove_dust()
+    autocmd!
+    autocmd InsertEnter * call s:StatusLine('Enter')
+    autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
+
+  augroup ZenkakuSpace
+    autocmd!
+    autocmd ColorScheme * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+    autocmd BufWritePre * call <SID>remove_dust()
   augroup END
   call ZenkakuSpace()
 endif
