@@ -1,57 +1,70 @@
-
-"let s:dein_dir = expand('~/.vim/dein')
+let s:dein_dir = expand('~/.vim/dein')
 " dein.vim 本体
-"let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 " dein.vim がなければ github から落としてくる
-"if &runtimepath !~# '/dein.vim'
-"if !isdirectory(s:dein_repo_dir)
-"execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-"endif
-"execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-"endif
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
 
-"if dein#load_state(s:dein_dir)
-"call dein#begin(s:dein_dir)
-"call dein#add('Shougo/dein.vim')
-"call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+
 " 自動補完機能
-"call dein#add('Shougo/neocomplete.vim')
-"call dein#add('Shougo/neocomplcache')
+  if ((has('nvim')  || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
+    call dein#add('Shougo/deoplete.nvim')
+    if !has('nvim')
+      call dein#add('roxma/nvim-yarp')
+      call dein#add('roxma/vim-hug-neovim-rpc')
+    elseif has('lua')
+      call dein#add('Shougo/neocomplete.vim')
+    endif
+  endif
+
+  call dein#add('Shougo/neco-vim')
+  call dein#add('Shougo/neco-syntax')
+  call dein#add('ujihisa/neco-look')
+
+" Git系
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('airblade/vim-gitgutter')
+
 " スニペット
-"call dein#add('Shougo/neosnippet')
-"call dein#add('Shougo/neosnippet-snippets')
-" エラー出力
-"call dein#add('scrooloose/syntastic')
-"call dein#add('Shougo/unite.vim')
-"call dein#add('Shougo/neomru.vim')
-"call dein#add('scrooloose/nerdtree')
-"call dein#add('tpope/vim-rails')
-"call dein#add('tpope/vim-endwise')
-"call dein#add('tpope/vim-fugitive')
-"call dein#add('nathanaelkane/vim-indent-guides')
-"call dein#add('vim-scripts/AnsiEsc.vim')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+
 " 設定終了
-"call dein#end()
-"call dein#save_state()
-"endif
+  call dein#end()
+  call dein#save_state()
+endif
+
+if dein#tap('deoplete.nvim')
+  let g:deoplete#enable_at_startup = 1
+elseif dein#tap('neocomplete.vim')
+  let g:neocomplete#enable_at_startup = 1
+endif
 
 " grep検索の実行後にQuickFix Listを表示する
-"autocmd QuickFixCmdPost *grep* cwindow
+autocmd QuickFixCmdPost *grep* cwindow
 
 " もし、未インストールものものがあったらインストール
-"if dein#check_install()
-"call dein#install()
-"endif
+if dein#check_install()
+  call dein#install()
+endif
 
 """"""""""""""""""""""""""""""
 " 最後のカーソル位置を復元する
 """"""""""""""""""""""""""""""
 if has("autocmd")
-autocmd BufReadPost *
-\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-\   exe "normal! g'\"" |
-\ endif
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
 endif
 """"""""""""""""""""""""""""""
 
@@ -62,31 +75,31 @@ endif
 let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
 
 if has('syntax')
-augroup InsertHook
-autocmd!
-autocmd InsertEnter * call s:StatusLine('Enter')
-autocmd InsertLeave * call s:StatusLine('Leave')
-augroup END
+  augroup InsertHook
+  autocmd!
+  autocmd InsertEnter * call s:StatusLine('Enter')
+  autocmd InsertLeave * call s:StatusLine('Leave')
+  augroup END
 endif
 
 let s:slhlcmd = ''
 function! s:StatusLine(mode)
-if a:mode == 'Enter'
-silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-silent exec g:hi_insert
-else
-highlight clear StatusLine
-silent exec s:slhlcmd
-endif
+  if a:mode == 'Enter'
+    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
+    silent exec g:hi_insert
+  else
+    highlight clear StatusLine
+    silent exec s:slhlcmd
+  endif
 endfunction
 
 function! s:GetHighlight(hi)
-redir => hl
-exec 'highlight '.a:hi
-redir END
-let hl = substitute(hl, '[\r\n]', '', 'g')
-let hl = substitute(hl, 'xxx', '', '')
-return hl
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
 endfunction
 """"""""""""""""""""""""""""""
 
@@ -95,21 +108,18 @@ endfunction
 " 全角スペースの表示
 """"""""""""""""""""""""""""""
 function! ZenkakuSpace()
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
+  highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 endfunction
 
 if has('syntax')
-augroup ZenkakuSpace
-autocmd!
-autocmd ColorScheme * call ZenkakuSpace()
-autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
-augroup END
-call ZenkakuSpace()
+  augroup ZenkakuSpace
+  autocmd!
+  autocmd ColorScheme * call ZenkakuSpace()
+  autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
+  augroup END
+  call ZenkakuSpace()
 endif
 """"""""""""""""""""""""""""""
-
-" ステータス行に現在のgitブランチを表示する
-set statusline+=%{fugitive#statusline()}
 
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
@@ -122,9 +132,6 @@ set cmdheight=2
 
 " エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
 set laststatus=2
-
-" ステータス行に現在のgitブランチを表示する
-set statusline+=%{fugitive#statusline()}
 
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
@@ -159,6 +166,8 @@ set autoindent
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smartindent
 
+" タブをスペースに変換
+set expandtab
 " タブ文字の表示幅
 set tabstop=2
 
