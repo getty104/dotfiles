@@ -1,4 +1,5 @@
 let s:dein_dir = expand('~/.vim/dein')
+
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -60,32 +61,27 @@ if dein#check_install()
   call dein#install()
 endif
 
-""""""""""""""""""""""""""""""
 " 最後のカーソル位置を復元する
-""""""""""""""""""""""""""""""
 if has("autocmd")
   autocmd BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
 endif
-""""""""""""""""""""""""""""""
 
-" https://sites.google.com/site/fudist/Home/vim-nihongo-ban/-vimrc-sample
-""""""""""""""""""""""""""""""
 " 挿入モード時、ステータスラインの色を変更
-""""""""""""""""""""""""""""""
 let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
 
-if has('syntax')
-  augroup InsertHook
-  autocmd!
-  autocmd InsertEnter * call s:StatusLine('Enter')
-  autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-endif
-
 let s:slhlcmd = ''
+function! s:GetHighlight(hi)
+  redir => hl
+  exec 'highlight '.a:hi
+  redir END
+  let hl = substitute(hl, '[\r\n]', '', 'g')
+  let hl = substitute(hl, 'xxx', '', '')
+  return hl
+endfunction
+
 function! s:StatusLine(mode)
   if a:mode == 'Enter'
     silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
@@ -96,20 +92,6 @@ function! s:StatusLine(mode)
   endif
 endfunction
 
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
-""""""""""""""""""""""""""""""
-
-" http://inari.hatenablog.com/entry/2014/05/05/231307
-""""""""""""""""""""""""""""""
-" 全角スペースの表示
-""""""""""""""""""""""""""""""
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 endfunction
@@ -126,14 +108,16 @@ endfunction
 
 if has('syntax')
   augroup ZenkakuSpace
+  augroup InsertHook
   autocmd!
+  autocmd InsertEnter * call s:StatusLine('Enter')
+  autocmd InsertLeave * call s:StatusLine('Leave')
   autocmd ColorScheme * call ZenkakuSpace()
   autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
   autocmd BufWritePre * call <SID>remove_dust()
   augroup END
   call ZenkakuSpace()
 endif
-""""""""""""""""""""""""""""""
 
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
