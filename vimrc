@@ -29,7 +29,6 @@ if dein#load_state(s:dein_dir)
 
   call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neco-syntax')
-  call dein#add('ujihisa/neco-look')
 
 " Git系
   call dein#add('tpope/vim-fugitive')
@@ -49,6 +48,8 @@ if dein#load_state(s:dein_dir)
       \ 'autoload' : {
       \   'unite_sources' : ['tag', 'tag/file', 'tag/include']
       \ }})
+
+  call dein#add('soramugi/auto-ctags.vim')
 
 " Ruby, Rails系
   call dein#add('alpaca-tc/vim-endwise.git', {
@@ -152,6 +153,11 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
+" auto-ctag用の設定
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags_tags_name = '.tags'
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 

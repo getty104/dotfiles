@@ -19,6 +19,7 @@ formulas=(
           goenv
           mas
           ctags
+          vim
           )
 
 apps=(
