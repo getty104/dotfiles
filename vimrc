@@ -160,6 +160,7 @@ let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:auto_ctags_tags_name = '.tags'
+
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 
@@ -226,10 +227,13 @@ set list
 " タブを >--- 半スペを . で表示する
 set listchars=tab:>-,trail:.
 
-" 構文毎に文字色を変化させる
+" クリップボードを使わせる
+set clipboard=unnamed,autoselect
+
+" カラースキーム
 colorscheme molokai
 syntax on
 set t_Co=256
 set termguicolors
-set background=dark
-
+hi SpecialKey guibg=White guifg=Gray60
+hi LineNr guifg=Gray70
