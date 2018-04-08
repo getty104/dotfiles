@@ -225,15 +225,18 @@ set whichwrap=b,s,h,l,<,>,[,]
 set list
 
 " タブを >--- 半スペを . で表示する
-set listchars=tab:>-,trail:.
+set listchars=tab:>-,trail:･
 
 " クリップボードを使わせる
 set clipboard=unnamed,autoselect
+
+" 削除キーの削除
+set backspace=indent,eol,start
 
 " カラースキーム
 colorscheme molokai
 syntax on
 set t_Co=256
 set termguicolors
-hi SpecialKey guibg=White guifg=Gray60
+hi SpecialKey guibg=NONE guifg=Gray40
 hi LineNr guifg=Gray70
