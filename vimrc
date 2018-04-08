@@ -1,5 +1,4 @@
 let s:dein_dir = expand('~/.vim/dein')
-
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -29,6 +28,9 @@ if dein#load_state(s:dein_dir)
 
   call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neco-syntax')
+
+" カラーテーマ
+  call dein#add('tomasr/molokai')
 
 " Git系
   call dein#add('tpope/vim-fugitive')
@@ -225,4 +227,9 @@ set list
 set listchars=tab:>-,trail:.
 
 " 構文毎に文字色を変化させる
+colorscheme molokai
 syntax on
+set t_Co=256
+set termguicolors
+set background=dark
+
