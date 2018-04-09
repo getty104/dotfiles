@@ -1,4 +1,8 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 let s:dein_dir = expand('~/.vim/dein')
+
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
@@ -31,6 +35,12 @@ if dein#load_state(s:dein_dir)
 
 " 括弧補完
   call dein#add('cohama/lexima.vim')
+
+" ステータスラインの表示内容強化
+  call dein#add('itchyny/lightline.vim')
+
+" インデント可視化
+  call dein#add('Yggdroot/indentLine')
 
 " カラーテーマ
   call dein#add('tomasr/molokai')
@@ -97,37 +107,6 @@ if dein#check_install()
   call dein#install()
 endif
 
-" 最後のカーソル位置を復元する
-if has("autocmd")
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
-endif
-
-" 挿入モード時、ステータスラインの色を変更
-let g:hi_insert = 'highlight StatusLine guifg=darkblue guibg=darkyellow gui=none ctermfg=blue ctermbg=yellow cterm=none'
-
-let s:slhlcmd = ''
-function! s:GetHighlight(hi)
-  redir => hl
-  exec 'highlight '.a:hi
-  redir END
-  let hl = substitute(hl, '[\r\n]', '', 'g')
-  let hl = substitute(hl, 'xxx', '', '')
-  return hl
-endfunction
-
-function! s:StatusLine(mode)
-  if a:mode == 'Enter'
-    silent! let s:slhlcmd = 'highlight ' . s:GetHighlight('StatusLine')
-    silent exec g:hi_insert
-  else
-    highlight clear StatusLine
-    silent exec s:slhlcmd
-  endif
-endfunction
-
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 endfunction
@@ -143,12 +122,6 @@ function! s:remove_dust()
 endfunction
 
 if has('syntax')
-  augroup InsertHook
-    autocmd!
-    autocmd InsertEnter * call s:StatusLine('Enter')
-    autocmd InsertLeave * call s:StatusLine('Leave')
-  augroup END
-
   augroup ZenkakuSpace
     autocmd!
     autocmd ColorScheme * call ZenkakuSpace()
@@ -158,23 +131,55 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
+" 最後のカーソル位置を復元する
+if has("autocmd")
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+endif
+
+" lightline用の設定
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'fugitive#head',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
+
+function! LightlineFilename()
+  let filename = expand('%:p') !=# '' ? expand('%:p') : '[No Name]'
+  return filename
+endfunction
+
 " auto-ctag用の設定
 let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:auto_ctags_tags_name = '.tags'
 
+" indentLine用の設定
+let g:indentLine_color_term = 111
+let g:indentLine_color_gui = '#708090'
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
-
-" カーソルが何行目の何列目に置かれているかを表示する
-set ruler
 
 " コマンドラインに使われる画面上の行数
 set cmdheight=2
 
 " エディタウィンドウの末尾から2行目にステータスラインを常時表示させる
 set laststatus=2
+
+" 現在のモードを表示
+set showmode
+
+" カーソルが何行目の何列目に置かれているかを表示する
+set ruler
 
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
@@ -194,6 +199,9 @@ set hidden
 " 不可視文字を表示する
 set list
 
+" □や○文字が崩れる問題を解決
+set ambiwidth=double
+
 " タブと行の続きを可視化する
 set listchars=tab:>\ ,extends:<
 
@@ -207,11 +215,11 @@ set showmatch
 set autoindent
 
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
-set autoindent
 set smartindent
 
 " タブをスペースに変換
 set expandtab
+
 " タブ文字の表示幅
 set tabstop=2
 
@@ -220,6 +228,12 @@ set shiftwidth=2
 
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
+
+" コマンドモードの補完
+set wildmenu
+
+" 保存するコマンド履歴の数
+set history=5000
 
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
@@ -233,7 +247,7 @@ set listchars=tab:>-,trail:･
 " クリップボードを使わせる
 set clipboard=unnamed,autoselect
 
-" 削除キーの削除
+" 削除キーの有効化
 set backspace=indent,eol,start
 
 " カラースキーム
