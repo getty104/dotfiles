@@ -29,6 +29,9 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neco-syntax')
 
+" 括弧補完
+  call dein#add('cohama/lexima.vim')
+
 " カラーテーマ
   call dein#add('tomasr/molokai')
 
