@@ -11,7 +11,7 @@ if &runtimepath !~# '/dein.vim'
   if !isdirectory(s:dein_repo_dir)
     execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
   endif
-    execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
 endif
 
 if dein#load_state(s:dein_dir)
@@ -19,7 +19,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
-" 自動補完機能
+  " 自動補完機能
   if ((has('nvim')  || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
     call dein#add('Shougo/deoplete.nvim')
     if !has('nvim')
@@ -33,66 +33,71 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/neco-vim')
   call dein#add('Shougo/neco-syntax')
 
-" 括弧補完
+  " 括弧補完
   call dein#add('cohama/lexima.vim')
 
-" ステータスラインの表示内容強化
+  " ステータスラインの表示内容強化
   call dein#add('itchyny/lightline.vim')
 
-" インデント可視化
+  " インデント可視化
   call dein#add('Yggdroot/indentLine')
 
-" カラーテーマ
+  " カラーテーマ
   call dein#add('tomasr/molokai')
 
-" Git系
+  " Git系
   call dein#add('tpope/vim-fugitive')
   call dein#add('airblade/vim-gitgutter')
 
-" スニペット
+  " スニペット
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
 
-" Unite系
+  " Unite系
   call dein#add('Shougo/unite.vim')
   call dein#add('Shougo/vimproc')
 
-" Tag系
+  " Tag系
   call dein#add('tsukkee/unite-tag', {
-      \ 'depends' : ['Shougo/unite.vim'],
-      \ 'autoload' : {
-      \   'unite_sources' : ['tag', 'tag/file', 'tag/include']
-      \ }})
+        \ 'depends' : ['Shougo/unite.vim'],
+        \ 'autoload' : {
+        \   'unite_sources' : ['tag', 'tag/file', 'tag/include']
+        \ }})
 
   call dein#add('soramugi/auto-ctags.vim')
 
-" Ruby, Rails系
+  " Ruby, Rails系
   call dein#add('alpaca-tc/vim-endwise.git', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }})
-
+        \ 'autoload' : {
+        \   'insert' : 1,
+        \ }})
   call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby'] }})
 
   call dein#add('basyura/unite-rails', {
-      \ 'depends' : 'Shougo/unite.vim',
-      \ 'autoload' : {
-      \   'unite_sources' : [
-      \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
-      \     'rails/controller', 'rails/db', 'rails/destroy', 'rails/features',
-      \     'rails/gem', 'rails/gemfile', 'rails/generate', 'rails/git', 'rails/helper',
-      \     'rails/heroku', 'rails/initializer', 'rails/javascript', 'rails/lib', 'rails/log',
-      \     'rails/mailer', 'rails/model', 'rails/rake', 'rails/route', 'rails/schema', 'rails/spec',
-      \     'rails/stylesheet', 'rails/view'
-      \   ]
-      \ }})
+        \ 'depends' : 'Shougo/unite.vim',
+        \ 'autoload' : {
+        \   'unite_sources' : [
+        \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
+        \     'rails/controller', 'rails/db', 'rails/destroy', 'rails/features',
+        \     'rails/gem', 'rails/gemfile', 'rails/generate', 'rails/git', 'rails/helper',
+        \     'rails/heroku', 'rails/initializer', 'rails/javascript', 'rails/lib', 'rails/log',
+        \     'rails/mailer', 'rails/model', 'rails/rake', 'rails/route', 'rails/schema', 'rails/spec',
+        \     'rails/stylesheet', 'rails/view'
+        \   ]
+        \ }})
 
 
-" 設定終了
+  " 設定終了
   call dein#end()
   call dein#save_state()
 endif
 
+" もし、未インストールものものがあったらインストール
+if dein#check_install()
+  call dein#install()
+endif
+
+" 補完系の設定
 if dein#tap('deoplete.nvim')
   let g:deoplete#enable_at_startup = 1
 elseif dein#tap('neocomplete.vim')
@@ -102,20 +107,15 @@ endif
 " grep検索の実行後にQuickFix Listを表示する
 autocmd QuickFixCmdPost *grep* cwindow
 
-" もし、未インストールものものがあったらインストール
-if dein#check_install()
-  call dein#install()
-endif
-
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 endfunction
 
 function! s:remove_dust()
   let cursor = getpos(".")
-" 保存時に行末の空白を除去する
+  " 保存時に行末の空白を除去する
   %s/\s\+$//ge
-" 保存時にtabを2スペースに変換する
+  " 保存時にtabを2スペースに変換する
   %s/\t/  /ge
   call setpos(".", cursor)
   unlet cursor
@@ -134,9 +134,9 @@ endif
 " 最後のカーソル位置を復元する
 if has("autocmd")
   autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
+        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+        \   exe "normal! g'\"" |
+        \ endif
 endif
 
 " lightline用の設定
@@ -258,3 +258,6 @@ set t_Co=256
 set termguicolors
 hi SpecialKey guibg=NONE guifg=Gray40
 hi LineNr guifg=Gray70
+
+" インデント設定
+filetype plugin indent on
