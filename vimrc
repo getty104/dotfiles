@@ -112,13 +112,13 @@ function! ZenkakuSpace()
 endfunction
 
 function! s:remove_dust()
-    let cursor = getpos(".")
-    " 保存時に行末の空白を除去する
-    %s/\s\+$//ge
-    " 保存時にtabを2スペースに変換する
-    %s/\t/  /ge
-    call setpos(".", cursor)
-    unlet cursor
+  let cursor = getpos(".")
+" 保存時に行末の空白を除去する
+  %s/\s\+$//ge
+" 保存時にtabを2スペースに変換する
+  %s/\t/  /ge
+  call setpos(".", cursor)
+  unlet cursor
 endfunction
 
 if has('syntax')
@@ -166,6 +166,7 @@ let g:auto_ctags_tags_name = '.tags'
 " indentLine用の設定
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#708090'
+
 " vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
 let g:indent_guides_enable_on_vim_startup = 1
 
