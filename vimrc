@@ -261,3 +261,20 @@ hi LineNr guifg=Gray70
 
 " インデント設定
 filetype plugin indent on
+
+
+" エイリアス
+command Uf Unite file
+command Um Unite rails/model
+command Uc Unite rails/controller
+command Uv Unite rails/view
+command Ur Unite rails/route
+command Uh Unite rails/helper
+command Ud Unite rails/db
+command Em Emodel
+command Ec Econtroller
+command Ev Eview
+command Eg Emigration
+command Es Eschema
+command Er Einitializer
+
