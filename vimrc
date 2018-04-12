@@ -279,6 +279,7 @@ filetype plugin indent on
 
 
 " エイリアス
+command T  tabnew
 command Uf Unite file
 command Um Unite rails/model
 command Uc Unite rails/controller
@@ -292,4 +293,3 @@ command Ev Eview
 command Eg Emigration
 command Es Eschema
 command Er Einitializer
-
