@@ -173,10 +173,10 @@ function! LightlineFilename()
 endfunction
 
 " auto-ctag用の設定
+set tags+=.git/tags
 let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:auto_ctags_directory_list = ['.git']
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
-let g:auto_ctags_tags_name = '.tags'
 
 " indentLine用の設定
 let g:indentLine_color_term = 111
