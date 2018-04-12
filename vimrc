@@ -111,6 +111,10 @@ if dein#tap('deoplete.nvim')
   inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
         \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+  imap <C-f>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-f>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-f>     <Plug>(neosnippet_expand_target)
+  imap <C-f>     <Plug>(neosnippet_expand_or_jump)
 elseif dein#tap('neocomplete.vim')
   let g:neocomplete#enable_at_startup = 1
 endif
