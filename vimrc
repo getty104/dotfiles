@@ -17,7 +17,15 @@ endif
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
   call dein#add('Shougo/dein.vim')
-  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+  call dein#add('Shougo/vimproc.vim', {
+        \ 'build': {
+        \     'windows' : 'tools\\update-dll-mingw',
+        \     'cygwin'  : 'make -f make_cygwin.mak',
+        \     'mac'     : 'make -f make_mac.mak',
+        \     'linux'   : 'make',
+        \     'unix'    : 'gmake',
+        \    },
+        \ })
 
   " 自動補完機能
   if ((has('nvim')  || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
@@ -25,8 +33,6 @@ if dein#load_state(s:dein_dir)
     if !has('nvim')
       call dein#add('roxma/nvim-yarp')
       call dein#add('roxma/vim-hug-neovim-rpc')
-    elseif has('lua')
-      call dein#add('Shougo/neocomplete.vim')
     endif
   endif
 
@@ -55,7 +61,6 @@ if dein#load_state(s:dein_dir)
 
   " Unite系
   call dein#add('Shougo/unite.vim')
-  call dein#add('Shougo/vimproc')
 
   " Tag系
   call dein#add('tsukkee/unite-tag', {
@@ -71,6 +76,7 @@ if dein#load_state(s:dein_dir)
         \ 'autoload' : {
         \   'insert' : 1,
         \ }})
+
   call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby'] }})
 
   call dein#add('basyura/unite-rails', {
@@ -115,12 +121,7 @@ if dein#tap('deoplete.nvim')
   smap <C-f>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-f>     <Plug>(neosnippet_expand_target)
   imap <C-f>     <Plug>(neosnippet_expand_or_jump)
-elseif dein#tap('neocomplete.vim')
-  let g:neocomplete#enable_at_startup = 1
 endif
-
-" grep検索の実行後にQuickFix Listを表示する
-autocmd QuickFixCmdPost *grep* cwindow
 
 function! ZenkakuSpace()
   highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
@@ -141,17 +142,18 @@ if has('syntax')
     autocmd!
     autocmd ColorScheme * call ZenkakuSpace()
     autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
-    autocmd BufWritePre * call <SID>remove_dust()
   augroup END
   call ZenkakuSpace()
 endif
 
-" 最後のカーソル位置を復元する
 if has("autocmd")
+  " 最後のカーソル位置を復元する
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line ("'\"") <= line("$") |
         \   exe "normal! g'\"" |
         \ endif
+  " ダスト除去
+  autocmd BufWritePre * call <SID>remove_dust()
 endif
 
 " lightline用の設定
@@ -182,9 +184,6 @@ let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#708090'
 
-" vimを立ち上げたときに、自動的にvim-indent-guidesをオンにする
-let g:indent_guides_enable_on_vim_startup = 1
-
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
 
@@ -202,6 +201,9 @@ set title
 
 " コマンドラインモードで<Tab>キーによるファイル名補完を有効にする
 set wildmenu
+
+" 保存するコマンド履歴の数
+set history=5000
 
 " 検索結果をハイライト表示する
 set hlsearch
@@ -245,12 +247,6 @@ set shiftwidth=2
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
 
-" コマンドモードの補完
-set wildmenu
-
-" 保存するコマンド履歴の数
-set history=5000
-
 " カーソルを行頭、行末で止まらないようにする
 set whichwrap=b,s,h,l,<,>,[,]
 
@@ -277,10 +273,10 @@ hi LineNr guifg=Gray70
 " インデント設定
 filetype plugin indent on
 
-
 " エイリアス
 command T  tabnew
 command Uf Unite file
+command Ut Unite tag
 command Um Unite rails/model
 command Uc Unite rails/controller
 command Uv Unite rails/view
