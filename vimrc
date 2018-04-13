@@ -289,3 +289,8 @@ command Ev Eview
 command Eg Emigration
 command Es Eschema
 command Er Einitializer
+command Ga Gwrite
+command Gc Gcommit
+command Gp Gpush
+command Gd Gdiff
+command Gs Gstatus
