@@ -62,6 +62,10 @@ if dein#load_state(s:dein_dir)
   " Unite系
   call dein#add('Shougo/unite.vim')
 
+  " Codic系
+  call dein#add('koron/codic-vim')
+  call dein#add('rhysd/unite-codic.vim')
+
   " Tag系
   call dein#add('tsukkee/unite-tag', {
         \ 'depends' : ['Shougo/unite.vim'],
@@ -283,6 +287,7 @@ command Uv Unite rails/view
 command Ur Unite rails/route
 command Uh Unite rails/helper
 command Ud Unite rails/db
+command Ucd Unite codic
 command Em Emodel
 command Ec Econtroller
 command Ev Eview
