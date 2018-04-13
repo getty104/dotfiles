@@ -48,6 +48,9 @@ if dein#load_state(s:dein_dir)
   " インデント可視化
   call dein#add('Yggdroot/indentLine')
 
+  " 全角スペースの可視化
+  call dein#add('thinca/vim-zenspace')
+
   " カラーテーマ
   call dein#add('tomasr/molokai')
 
@@ -110,7 +113,7 @@ endif
 " 補完系の設定
 if dein#tap('deoplete.nvim')
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 100
+  let g:deoplete#auto_complete_delay = 200
   let g:deoplete#auto_complete_start_length = 1
   let g:deoplete#enable_camel_case = 0
   let g:deoplete#enable_ignore_case = 0
@@ -125,39 +128,6 @@ if dein#tap('deoplete.nvim')
   smap <C-f>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-f>     <Plug>(neosnippet_expand_target)
   imap <C-f>     <Plug>(neosnippet_expand_or_jump)
-endif
-
-function! ZenkakuSpace()
-  highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-endfunction
-
-function! s:remove_dust()
-  let cursor = getpos(".")
-  " 保存時に行末の空白を除去する
-  %s/\s\+$//ge
-  " 保存時にtabを2スペースに変換する
-  %s/\t/  /ge
-  call setpos(".", cursor)
-  unlet cursor
-endfunction
-
-if has('syntax')
-  augroup ZenkakuSpace
-    autocmd!
-    autocmd ColorScheme * call ZenkakuSpace()
-    autocmd VimEnter,WinEnter,BufRead * let w:m1=matchadd('ZenkakuSpace', '　')
-  augroup END
-  call ZenkakuSpace()
-endif
-
-if has("autocmd")
-  " 最後のカーソル位置を復元する
-  autocmd BufReadPost *
-        \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-        \   exe "normal! g'\"" |
-        \ endif
-  " ダスト除去
-  autocmd BufWritePre * call <SID>remove_dust()
 endif
 
 " lightline用の設定
@@ -187,6 +157,28 @@ let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 " indentLine用の設定
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#708090'
+
+function! s:remove_dust()
+  let cursor = getpos(".")
+  " 保存時に行末の空白を除去する
+  %s/\s\+$//ge
+  " 保存時にtabを2スペースに変換する
+  %s/\t/  /ge
+  call setpos(".", cursor)
+  unlet cursor
+endfunction
+
+" 最後のカーソル位置を復元する
+function! s:recovery_position()
+  if line("'\"") > 0 && line ("'\"") <= line("$") |
+    exe "normal! g'\"" |
+  endif
+endfunction
+
+if has("autocmd")
+  autocmd BufReadPost * call <SID>recovery_position()
+  autocmd BufWritePre * call <SID>remove_dust()
+endif
 
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
@@ -218,15 +210,6 @@ set incsearch
 " 保存されていないファイルがあるときでも別のファイルを開けるようにする
 set hidden
 
-" 不可視文字を表示する
-set list
-
-" □や○文字が崩れる問題を解決
-set ambiwidth=double
-
-" タブと行の続きを可視化する
-set listchars=tab:>\ ,extends:<
-
 " 行番号を表示する
 set number
 
@@ -256,6 +239,12 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 " 不可視文字を表示する
 set list
+
+" □や○文字が崩れる問題を解決
+set ambiwidth=double
+
+" タブと行の続きを可視化する
+set listchars=tab:>\ ,extends:<
 
 " タブを >--- 半スペを . で表示する
 set listchars=tab:>-,trail:･
