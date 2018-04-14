@@ -126,6 +126,9 @@ if dein#tap('deoplete.nvim')
   smap <C-c>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-c>     <Plug>(neosnippet_expand_target)
   imap <C-c>     <Plug>(neosnippet_expand_or_jump)
+
+  " 自分用 snippet ファイルの場所
+  let g:neosnippet#snippets_directory = '~/.vim/snippets/'
 endif
 
 " lightline用の設定
@@ -263,7 +266,7 @@ set listchars=tab:>\ ,extends:<
 set listchars=tab:>-,trail:･
 
 " クリップボードを使わせる
-set clipboard=unnamed,autoselect
+set clipboard=unnamed
 
 " 削除キーの有効化
 set backspace=indent,eol,start
@@ -297,9 +300,6 @@ command Eg Emigration
 command Es Eschema
 command Er Einitializer
 command Gadd Gwrite
-
-" insertキーマッピング
-inoremap <C-i> <Esc>
 
 " normalキーマッピング
 noremap <C-f> gg=G
