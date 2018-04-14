@@ -27,6 +27,9 @@ if dein#load_state(s:dein_dir)
         \    },
         \ })
 
+  " vimのpython環境をanacondaのものにする
+  call dein#add('cjrh/vim-conda')
+
   " 自動補完機能
   if ((has('nvim')  || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
     call dein#add('Shougo/deoplete.nvim')

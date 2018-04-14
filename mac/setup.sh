@@ -1,52 +1,52 @@
 #!/bin/bash -eu
 
 formulas=(
-          python
-          ruby
-          git
-          git-secrets
-          zsh
-          rbenv
-          pyenv
-          nodenv
-          mysql
-          postgresql
-          redis
-          gcc
-          rmtrash
-          openssl
-          erlang
-          elixir-build
-          exenv
-          goenv
-          mas
-          ctags
-          )
+python
+ruby
+git
+git-secrets
+zsh
+rbenv
+pyenv
+nodenv
+mysql
+postgresql
+redis
+gcc
+rmtrash
+openssl
+erlang
+elixir-build
+exenv
+goenv
+mas
+ctags
+)
 
 apps=(
-      google-chrome
-      iterm2
-      sequel-pro
-      psequel
-      gitify
-      appcleaner
-      java
-      xquartz
-      karabiner-elements
-      sqlitebrowser
-      docker
-      vagrant
-      virtualbox
-      sublime-text
-      skype
-      amazon-music
-      )
+google-chrome
+iterm2
+sequel-pro
+psequel
+gitify
+appcleaner
+java
+xquartz
+karabiner-elements
+sqlitebrowser
+docker
+vagrant
+virtualbox
+sublime-text
+skype
+amazon-music
+)
 
 appleapps=(
-           803453959 #Slack
-           539883307 #Line
-           497799835 #XCode
-           )
+803453959 #Slack
+539883307 #Line
+497799835 #XCode
+)
 
 read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
 case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
@@ -75,6 +75,7 @@ echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/snippets ~/.vim/snippets
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git

@@ -1,16 +1,16 @@
 #!/bin/bash -eu
 
 formulas=(
-          zsh
-          rbenv
-          pyenv
-          mysql
-          postgresql
-          python
-          )
+zsh
+rbenv
+pyenv
+mysql
+postgresql
+python
+)
 
 apps=(
-      )
+)
 
 read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
 case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
@@ -28,6 +28,7 @@ echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 ln -sf ~/dotfiles/ubuntu/zshrc ~/.zshrc
 ln -sf ~/dotfiles/ubuntu/vimrc ~/.vimrc
+ln -sf ~/dotfiles/snippets ~/.vim/snippets
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
