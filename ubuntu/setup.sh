@@ -6,7 +6,7 @@ rbenv
 pyenv
 mysql
 postgresql
-python
+vim
 )
 
 apps=(
@@ -59,6 +59,13 @@ rbenv plug rbenv-gem-rehash
 rbenv plug rbenv-communal-gems
 rbenv communize --all
 rbenv rehash
+
+echo "----------------------------------------------------------------------------"
+echo "set up pyenv"
+pyenv install anaconda3-5.1.0
+pyenv global anaconda3-5.1.0
+pyenv rehash
+pip install neovim
 
 echo "----------------------------------------------------------------------------"
 echo "please set up iTerm2"

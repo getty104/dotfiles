@@ -1,8 +1,6 @@
 #!/bin/bash -eu
 
 formulas=(
-python
-ruby
 git
 git-secrets
 zsh
@@ -21,6 +19,7 @@ exenv
 goenv
 mas
 ctags
+vim
 )
 
 apps=(
@@ -104,9 +103,10 @@ pip install neovim
 
 echo "----------------------------------------------------------------------------"
 echo "set up vim"
-pyenv global system
+pyenv install anaconda3-5.1.0
+pyenv global anaconda3-5.1.0
 pyenv rehash
-brew install vim --with-lua
+pip3 install neovim
 
 echo "----------------------------------------------------------------------------"
 echo "installing apps..."
