@@ -7,6 +7,8 @@ pyenv
 mysql
 postgresql
 vim
+openssl
+gcc
 )
 
 apps=(

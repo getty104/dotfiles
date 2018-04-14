@@ -1,7 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+
 #oh-my-zshのテーマ設定
 ZSH_THEME="mh"
+
 #プラグインの設定
 plugins=(rails)
 
@@ -74,7 +76,7 @@ setopt correct
 #auto-fu.zshの設定
 source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
 function zle-line-init(){
-    auto-fu-init
+  auto-fu-init
 }
 zle -N zle-line-init
 # 「-azfu-」を表示させないための記述
@@ -83,9 +85,6 @@ zstyle ':auto-fu:var' postdisplay $''
 #alias
 alias dc="docker-compose"
 alias dw="docker-compose run web"
-alias oa="open -a"
-alias og="oa Google\ Chrome"
-alias oh="open https://github.com"
 alias rm="rmtrash"
 alias gcc="gcc-7"
 alias g++="g++-7 -std=c++14"
