@@ -124,10 +124,10 @@ if dein#tap('deoplete.nvim')
   inoremap <expr><tab> pumvisible() ? "\<C-n>" :
         \ neosnippet#expandable_or_jumpable() ?
         \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-  imap <C-f>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-f>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-f>     <Plug>(neosnippet_expand_target)
-  imap <C-f>     <Plug>(neosnippet_expand_or_jump)
+  imap <C-c>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-c>     <Plug>(neosnippet_expand_or_jump)
+  xmap <C-c>     <Plug>(neosnippet_expand_target)
+  imap <C-c>     <Plug>(neosnippet_expand_or_jump)
 endif
 
 " lightline用の設定
@@ -158,6 +158,10 @@ let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#708090'
 
+
+" *******************ライブラリに依存しない設定*******************
+
+
 function! s:remove_dust()
   let cursor = getpos(".")
   " 保存時に行末の空白を除去する
@@ -175,9 +179,18 @@ function! s:recovery_position()
   endif
 endfunction
 
+" 自動コード整形
+function! s:code_format()
+  let cursor = getpos(".")
+  exe "normal! gg=G" |
+  call setpos(".", cursor)
+  unlet cursor
+endfunction
+
 if has("autocmd")
   autocmd BufReadPost * call <SID>recovery_position()
   autocmd BufWritePre * call <SID>remove_dust()
+  autocmd BufWritePre * call <SID>code_format()
 endif
 
 " コマンドラインに使われる画面上の行数
@@ -283,3 +296,11 @@ command Ev Eview
 command Eg Emigration
 command Es Eschema
 command Er Einitializer
+
+" insertキーマッピング
+inoremap <C-i> <Esc>
+
+" normalキーマッピング
+noremap <C-f> gg=G
+noremap <C-y> :%y<CR>
+noremap <ESC><ESC> :noh<CR>
