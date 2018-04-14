@@ -121,9 +121,7 @@ if dein#tap('deoplete.nvim')
   let g:deoplete#enable_smart_case = 1
   let g:deoplete#file#enable_buffer_path = 1
   let g:deoplete#max_list = 10000
-  inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-        \ neosnippet#expandable_or_jumpable() ?
-        \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+  inoremap <expr><tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
   imap <C-c>     <Plug>(neosnippet_expand_or_jump)
   smap <C-c>     <Plug>(neosnippet_expand_or_jump)
   xmap <C-c>     <Plug>(neosnippet_expand_target)
@@ -162,12 +160,23 @@ let g:indentLine_color_gui = '#708090'
 " *******************ライブラリに依存しない設定*******************
 
 
-function! s:remove_dust()
-  let cursor = getpos(".")
+function! RemoveDust()
   " 保存時に行末の空白を除去する
   %s/\s\+$//ge
   " 保存時にtabを2スペースに変換する
   %s/\t/  /ge
+endfunction
+
+" 自動コード整形
+function! CodeFormat()
+  exe "normal! gg=G"
+endfunction
+
+" 現在位置を変更せずに関数を実行する
+function! s:fix_position()
+  let cursor = getpos(".")
+  call RemoveDust()
+  call CodeFormat()
   call setpos(".", cursor)
   unlet cursor
 endfunction
@@ -175,22 +184,13 @@ endfunction
 " 最後のカーソル位置を復元する
 function! s:recovery_position()
   if line("'\"") > 0 && line ("'\"") <= line("$") |
-    exe "normal! g'\"" |
+    exe "normal! g'\""
   endif
-endfunction
-
-" 自動コード整形
-function! s:code_format()
-  let cursor = getpos(".")
-  exe "normal! gg=G" |
-  call setpos(".", cursor)
-  unlet cursor
 endfunction
 
 if has("autocmd")
   autocmd BufReadPost * call <SID>recovery_position()
-  autocmd BufWritePre * call <SID>remove_dust()
-  autocmd BufWritePre * call <SID>code_format()
+  autocmd BufWritePre * call <SID>fix_position()
 endif
 
 " コマンドラインに使われる画面上の行数
@@ -296,6 +296,7 @@ command Ev Eview
 command Eg Emigration
 command Es Eschema
 command Er Einitializer
+command Gadd Gwrite
 
 " insertキーマッピング
 inoremap <C-i> <Esc>
