@@ -17,6 +17,11 @@ apps=(
 read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
 case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 
+echo "----------------------------------------------------------------------------"
+echo "build essential..."
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y git build-essential
+
 if ! type brew >/dev/null 2>&1; then
   echo "----------------------------------------------------------------------------"
   echo "installing brew..."
