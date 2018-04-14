@@ -17,14 +17,10 @@ apps=(
 read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
 case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 
-echo "----------------------------------------------------------------------------"
-echo "build essential..."
-sudo apt update && sudo apt upgrade -y
-sudo apt install -y git build-essential
-
 if ! type brew >/dev/null 2>&1; then
   echo "----------------------------------------------------------------------------"
   echo "installing brew..."
+  sudo apt update && sudo apt upgrade -y
   sudo apt-get -y install build-essential curl git python-setuptools ruby
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/linuxbrew/go/install)"
   brew tap athrunsun/binaries
