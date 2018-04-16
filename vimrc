@@ -173,16 +173,18 @@ function! RemoveDust()
   %s/\t/  /ge
 endfunction
 
-" 自動コード整形
+" 定位置でのコード整形
 function! CodeFormat()
+  let cursor = getpos(".")
   exe "normal! gg=G"
+  call setpos(".", cursor)
+  unlet cursor
 endfunction
 
 " 現在位置を変更せずに関数を実行する
-function! s:fix_position()
+function! s:save_handler()
   let cursor = getpos(".")
   call RemoveDust()
-  call CodeFormat()
   call setpos(".", cursor)
   unlet cursor
 endfunction
@@ -196,7 +198,7 @@ endfunction
 
 if has("autocmd")
   autocmd BufReadPost * call <SID>recovery_position()
-  autocmd BufWritePre * call <SID>fix_position()
+  autocmd BufWritePre * call <SID>save_handler()
 endif
 
 " コマンドラインに使われる画面上の行数
@@ -253,9 +255,6 @@ set shiftwidth=2
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
 
-" カーソルを行頭、行末で止まらないようにする
-set whichwrap=b,s,h,l,<,>,[,]
-
 " 不可視文字を表示する
 set list
 
@@ -265,7 +264,7 @@ set ambiwidth=double
 " タブと行の続きを可視化する
 set listchars=tab:>\ ,extends:<
 
-" タブを >--- 半スペを . で表示する
+" タブを >- 半スペを . で表示する
 set listchars=tab:>-,trail:･
 
 " クリップボードを使わせる
@@ -305,6 +304,6 @@ command Er Einitializer
 command Gadd Gwrite
 
 " normalキーマッピング
-noremap <C-f> gg=G
+noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
