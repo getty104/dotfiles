@@ -67,9 +67,9 @@ if dein#load_state(s:dein_dir)
 
   " Codic系
   call dein#add('koron/codic-vim')
-  call dein#add('rhysd/unite-codic.vim',{
+  call dein#add('rhysd/unite-codic.vim', {
         \ 'depends' : ['Shougo/unite.vim']
-  })
+        \ })
 
   " Tag系
   call dein#add('tsukkee/unite-tag', {
