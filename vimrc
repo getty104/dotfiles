@@ -16,16 +16,10 @@ endif
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
+
+  " 本体の設定
   call dein#add('Shougo/dein.vim')
-  call dein#add('Shougo/vimproc.vim', {
-        \ 'build': {
-        \     'windows' : 'tools\\update-dll-mingw',
-        \     'cygwin'  : 'make -f make_cygwin.mak',
-        \     'mac'     : 'make -f make_mac.mak',
-        \     'linux'   : 'make',
-        \     'unix'    : 'gmake',
-        \    },
-        \ })
+  call dein#add('Shougo/vimproc', { 'build': 'make' })
 
   " vimのpython環境をanacondaのものにする
   call dein#add('cjrh/vim-conda')
@@ -95,7 +89,6 @@ if dein#load_state(s:dein_dir)
         \     'rails/stylesheet', 'rails/view'
         \   ]
         \ }})
-
 
   " 設定終了
   call dein#end()
