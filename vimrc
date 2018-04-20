@@ -78,7 +78,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby'] }})
 
   call dein#add('basyura/unite-rails', {
-        \ 'depends' : 'Shougo/unite.vim',
+        \ 'depends' : ['Shougo/unite.vim'],
         \ 'autoload' : {
         \   'unite_sources' : [
         \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
@@ -92,6 +92,13 @@ if dein#load_state(s:dein_dir)
 
   " NERDTree
   call dein#add('scrooloose/nerdtree')
+
+  " JS系
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('leafgarland/typescript-vim')
+  call dein#add('maxmellon/vim-jsx-pretty',{
+        \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
+        \ })
 
   " 設定終了
   call dein#end()
