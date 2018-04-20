@@ -90,6 +90,9 @@ if dein#load_state(s:dein_dir)
         \   ]
         \ }})
 
+  " NERDTree
+  call dein#add('scrooloose/nerdtree')
+
   " 設定終了
   call dein#end()
   call dein#save_state()
@@ -295,6 +298,7 @@ command Eg Emigration
 command Es Eschema
 command Er Einitializer
 command Gadd Gwrite
+command Nt NERDTree
 
 " normalキーマッピング
 noremap <C-f> :call CodeFormat()<CR>
