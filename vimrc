@@ -297,6 +297,8 @@ command Uv Unite rails/view
 command Ur Unite rails/route
 command Uh Unite rails/helper
 command Ud Unite rails/db
+command Uj Unite rails/job
+command Ug Unite rails/bundled_gem
 command Ucd Unite codic
 command Em Emodel
 command Ec Econtroller
