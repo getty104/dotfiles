@@ -298,9 +298,9 @@ command Eg Emigration
 command Es Eschema
 command Er Einitializer
 command Gadd Gwrite
-command Nt NERDTree
 
 " normalキーマッピング
 noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
+noremap <C-e> :NERDTree<CR>
