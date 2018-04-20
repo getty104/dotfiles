@@ -159,6 +159,8 @@ let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:indentLine_color_term = 111
 let g:indentLine_color_gui = '#708090'
 
+" NERDTree用の設定
+let g:NERDTreeShowHidden = 1
 
 " *******************ライブラリに依存しない設定*******************
 
