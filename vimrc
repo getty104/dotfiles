@@ -260,6 +260,12 @@ set clipboard=unnamed
 " 削除キーの有効化
 set backspace=indent,eol,start
 
+" swapファイルを作成しない
+set noswapfile
+
+" backupファイルを作成しない
+set nobackup
+
 " カラースキーム
 colorscheme molokai
 syntax on
