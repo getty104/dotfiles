@@ -310,4 +310,4 @@ command Gadd Gwrite
 noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
-noremap <C-e> :NERDTree<CR>
+noremap <C-e> :NERDTreeToggle<CR>
