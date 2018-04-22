@@ -23,6 +23,10 @@ if ! type brew >/dev/null 2>&1; then
   sudo apt update && sudo apt upgrade -y
   sudo apt-get -y install build-essential curl git python-setuptools ruby
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+  test -d ~/.linuxbrew && PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
+  test -d /home/linuxbrew/.linuxbrew && PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+  test -r ~/.bash_profile && echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.bash_profile
+  echo "export PATH='$(brew --prefix)/bin:$(brew --prefix)/sbin'":'"$PATH"' >>~/.profile
 fi
 
 echo "----------------------------------------------------------------------------"
@@ -30,6 +34,7 @@ echo "installing oh-my-zsh..."
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
 ln -sf ~/dotfiles/ubuntu/zshrc ~/.zshrc
 ln -sf ~/dotfiles/ubuntu/vimrc ~/.vimrc
+mkdir ~/.vim
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
 mkdir ~/.zsh
 cd ~/.zsh
