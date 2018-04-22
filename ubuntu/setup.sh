@@ -22,8 +22,7 @@ if ! type brew >/dev/null 2>&1; then
   echo "installing brew..."
   sudo apt update && sudo apt upgrade -y
   sudo apt-get -y install build-essential curl git python-setuptools ruby
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/linuxbrew/go/install)"
-  brew tap athrunsun/binaries
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 fi
 
 echo "----------------------------------------------------------------------------"
