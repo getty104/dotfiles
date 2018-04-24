@@ -1,52 +1,5 @@
 #!/bin/bash -eu
 
-formulas=(
-git
-git-secrets
-zsh
-rbenv
-pyenv
-nodenv
-mysql
-postgresql
-redis
-gcc
-rmtrash
-openssl
-erlang
-elixir-build
-exenv
-goenv
-mas
-ctags
-vim
-)
-
-apps=(
-google-chrome
-iterm2
-sequel-pro
-psequel
-gitify
-appcleaner
-java
-xquartz
-karabiner-elements
-sqlitebrowser
-docker
-vagrant
-virtualbox
-sublime-text
-skype
-amazon-music
-)
-
-appleapps=(
-803453959 #Slack
-539883307 #Line
-497799835 #XCode
-)
-
 read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
 case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 
@@ -63,8 +16,8 @@ if ! type brew >/dev/null 2>&1; then
 fi
 
 echo "----------------------------------------------------------------------------"
-echo "installing brew formula..."
-brew install ${formulas[@]}
+echo "brew bundle..."
+brew bundle
 brew services start mysql
 brew services start postgresql
 brew services start redis
@@ -103,23 +56,9 @@ pyenv rehash
 pip install neovim
 
 echo "----------------------------------------------------------------------------"
-echo "set up vim"
-pyenv install anaconda3-5.1.0
-pyenv global anaconda3-5.1.0
-pyenv rehash
-pip3 install neovim
-
-echo "----------------------------------------------------------------------------"
-echo "installing apps..."
-brew cask install ${apps[@]}
-
-echo "----------------------------------------------------------------------------"
-echo "cleanup brew cask..."
+echo "cleanup brew..."
+brew cleanup
 brew cask cleanup
-
-echo "----------------------------------------------------------------------------"
-echo "install aplle store apps..."
-mas install ${appleapps[@]}
 
 echo "----------------------------------------------------------------------------"
 echo "symbolic link of sublime text..."

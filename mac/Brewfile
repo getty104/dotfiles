@@ -1,0 +1,57 @@
+tap "beeftornado/rmtree"
+tap "caskroom/cask"
+tap "caskroom/versions"
+tap "ethereum/ethereum"
+tap "heroku/brew"
+tap "homebrew/bundle"
+tap "homebrew/core"
+tap "homebrew/science"
+tap "homebrew/services"
+tap "universal-ctags/universal-ctags"
+cask "java"
+cask "xquartz"
+brew "boost"
+brew "cmake"
+brew "ctags"
+brew "gcc"
+brew "git"
+brew "git-secrets"
+brew "heroku"
+brew "mas"
+brew "mysql", restart_service: true
+brew "nodenv"
+brew "postgresql", restart_service: true
+brew "pyenv"
+brew "python"
+brew "rbenv"
+brew "redis", restart_service: true
+brew "rmtrash"
+brew "vim"
+brew "zsh"
+brew "ethereum/ethereum/ethereum"
+brew "ethereum/ethereum/solidity"
+cask "adobe-acrobat-reader"
+cask "amazon-music"
+cask "box-sync"
+cask "docker"
+cask "evernote"
+cask "gitify"
+cask "google-chrome"
+cask "gyazo"
+cask "iterm2"
+cask "karabiner-elements"
+cask "psequel"
+cask "sequel-pro"
+cask "skype"
+cask "sqlitebrowser"
+cask "sublime-text"
+cask "unity"
+cask "vagrant"
+cask "virtualbox"
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "LINE", id: 539883307
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Slack", id: 803453959
+mas "Xcode", id: 497799835
