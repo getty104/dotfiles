@@ -292,6 +292,10 @@ hi LineNr guifg=Gray70
 " インデント設定
 filetype plugin indent on
 
+" ビープ音の停止
+set noerrorbells
+set vb t_vb=
+
 " エイリアス
 command T  tabnew
 command Uf Unite file
