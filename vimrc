@@ -162,8 +162,20 @@ let g:indentLine_color_gui = '#708090'
 " NERDTree用の設定
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeShowBookmarks=1
+let NERDTreeWinSize=24
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" カラースキーム
+syntax on
+colorscheme monokai
+set t_Co=256
+set termguicolors
+hi SpecialKey guibg=NONE guifg=Gray40
+hi LineNr guibg=NONE guifg=Gray70
+hi Normal guibg=NONE
 
 
 " *******************ライブラリに依存しない設定*******************
@@ -282,21 +294,12 @@ set noswapfile
 " backupファイルを作成しない
 set nobackup
 
-" カラースキーム
-syntax on
-colorscheme monokai
-set t_Co=256
-set termguicolors
-hi SpecialKey guibg=NONE guifg=Gray40
-hi LineNr guibg=NONE guifg=Gray70
-hi Normal guibg=NONE
-
-" インデント設定
-filetype plugin indent on
-
 " ビープ音の停止
 set noerrorbells
 set vb t_vb=
+
+" インデント設定
+filetype plugin indent on
 
 " エイリアス
 command T  tabnew
