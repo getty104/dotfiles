@@ -46,7 +46,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('thinca/vim-zenspace')
 
   " カラーテーマ
-  call dein#add('tomasr/molokai')
+  call dein#add('crusoexia/vim-monokai')
 
   " Git系
   call dein#add('tpope/vim-fugitive')
@@ -283,12 +283,13 @@ set noswapfile
 set nobackup
 
 " カラースキーム
-colorscheme molokai
 syntax on
+colorscheme monokai
 set t_Co=256
-set termguicolors
 hi SpecialKey guibg=NONE guifg=Gray40
 hi LineNr guifg=Gray70
+let g:monokai_term_italic = 1
+let g:monokai_gui_italic = 1
 
 " インデント設定
 filetype plugin indent on
