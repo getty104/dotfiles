@@ -161,6 +161,7 @@ let g:indentLine_color_gui = '#708090'
 
 " NERDTree用の設定
 let g:NERDTreeShowHidden = 1
+let g:NERDTreeShowBookmarks=1
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -316,6 +317,7 @@ command Eg Emigration
 command Es Eschema
 command Er Einitializer
 command Gadd Gwrite
+command B Bookmark
 
 " normalキーマッピング
 noremap <C-f> :call CodeFormat()<CR>
