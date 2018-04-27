@@ -286,10 +286,10 @@ set nobackup
 syntax on
 colorscheme monokai
 set t_Co=256
+set termguicolors
 hi SpecialKey guibg=NONE guifg=Gray40
-hi LineNr guifg=Gray70
-let g:monokai_term_italic = 1
-let g:monokai_gui_italic = 1
+hi LineNr guibg=NONE guifg=Gray70
+hi Normal guibg=NONE
 
 " インデント設定
 filetype plugin indent on
