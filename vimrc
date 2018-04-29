@@ -100,6 +100,9 @@ if dein#load_state(s:dein_dir)
         \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
         \ })
 
+  " Solidity
+  call dein#add('tomlion/vim-solidity')
+
   " 設定終了
   call dein#end()
   call dein#save_state()
