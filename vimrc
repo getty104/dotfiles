@@ -198,14 +198,7 @@ let g:Tex_BibtexFlavor = 'upbibtex'
 let g:Tex_MakeIndexFlavor = 'upmendex $*.idx'
 let g:Tex_UseEditorSettingInDVIViewer = 1
 let g:Tex_ViewRule_pdf = 'Skim'
-"let g:Tex_ViewRule_pdf = 'open -a Skim'
-"let g:Tex_ViewRule_pdf = 'open -a Preview'
-"let g:Tex_ViewRule_pdf = 'open -a TeXShop'
-"let g:Tex_ViewRule_pdf = '/Applications/TeXworks.app/Contents/MacOS/TeXworks'
-"let g:Tex_ViewRule_pdf = '/Applications/texstudio.app/Contents/MacOS/texstudio --pdf-viewer-only'
-"let g:Tex_ViewRule_pdf = 'open -a Firefox'
-"let g:Tex_ViewRule_pdf = 'open -a "Adobe Acrobat Reader DC"'
-"let g:Tex_ViewRule_pdf = 'open'
+let g:Tex_AutoFolding = 0
 
 " カラースキーム
 syntax on
