@@ -191,7 +191,7 @@ let g:Tex_BibtexFlavor = 'upbibtex'
 let g:Tex_MakeIndexFlavor = 'upmendex $*.idx'
 let g:Tex_UseEditorSettingInDVIViewer = 1
 let g:Tex_ViewRule_pdf = 'Skim'
-let g:Tex_AutoFolding = 0
+let g:Tex_AutoFolding = 1
 let g:Imap_FreezeImap = 1
 
 " カラースキーム
