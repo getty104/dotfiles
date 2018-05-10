@@ -198,11 +198,10 @@ let g:Imap_FreezeImap = 1
 syntax on
 colorscheme monokai
 set t_Co=256
-set termguicolors
-hi SpecialKey guibg=NONE guifg=Gray40
-hi LineNr guibg=NONE guifg=Gray70
-hi Normal guibg=NONE
 
+hi SpecialKey ctermbg=NONE ctermfg=240
+hi LineNr ctermbg=NONE ctermfg=248
+hi Normal ctermbg=NONE
 
 " *******************ライブラリに依存しない設定*******************
 
