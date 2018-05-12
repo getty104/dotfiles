@@ -1,17 +1,20 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
+
+# エディタ設定
+export EDITOR=vim
+
 #oh-my-zshのテーマ設定
 ZSH_THEME="mh"
 #プラグインの設定
 plugins=(rails)
 
 # User configuration
-
 #local用のPATH
 export PATH="/usr/local/bin:$PATH"
 
 #TexLive用のPATH
-export PATH="$PATH:/usr/local/texlive/2017/bin/x86_64-darwin"
+export PATH="$PATH:/usr/local/texlive/2018/bin/x86_64-darwin"
 
 #openssl用のPATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
@@ -45,9 +48,6 @@ typeset -U path cdpath fpath manpath
 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
-
-# cdなしでディレクトリ移動
-setopt auto_cd
 
 # ビープ音の停止
 setopt no_beep
@@ -85,12 +85,16 @@ bindkey -e
 # コマンド自動補正
 setopt correct
 
+# 起動時にDownload自動削除
+eval "rm ~/Downloads/*"
+
 #auto-fu.zshの設定
 source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
 function zle-line-init(){
     auto-fu-init
 }
 zle -N zle-line-init
+
 # 「-azfu-」を表示させないための記述
 zstyle ':auto-fu:var' postdisplay $''
 
