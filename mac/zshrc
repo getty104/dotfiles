@@ -86,7 +86,7 @@ bindkey -e
 setopt correct
 
 # 起動時にDownload自動削除
-eval "rm ~/Downloads/*"
+eval "rmtrash ~/Downloads/*"
 
 #auto-fu.zshの設定
 source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
