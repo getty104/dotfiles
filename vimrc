@@ -320,6 +320,9 @@ set noswapfile
 " backupファイルを作成しない
 set nobackup
 
+" ファイルを自動リロード
+set autoread
+
 " ビープ音の停止
 set noerrorbells
 set vb t_vb=
