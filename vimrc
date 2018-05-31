@@ -172,10 +172,13 @@ let g:NERDTreeShowBookmarks=1
 let NERDTreeWinSize=24
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+augroup nerd-tree
+  autocmd!
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+augroup END
 " Latex用の設定
 set shellslash
 set grepprg=grep\ -nH\ $*
@@ -237,16 +240,16 @@ function! s:recovery_position()
   endif
 endfunction
 
-if has("autocmd")
-  augroup vimrc-checktime
-    autocmd!
-    autocmd WinEnter * checktime
-  augroup END
+augroup vimrc-checktime
+  autocmd!
+  autocmd WinEnter * checktime
+augroup END
 
+augroup handler
+  autocmd!
   autocmd BufReadPost * call <SID>recovery_position()
   autocmd BufWritePre * call <SID>save_handler()
-endif
-
+augroup END
 
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
