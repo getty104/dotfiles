@@ -238,9 +238,15 @@ function! s:recovery_position()
 endfunction
 
 if has("autocmd")
+  augroup vimrc-checktime
+    autocmd!
+    autocmd WinEnter * checktime
+  augroup END
+
   autocmd BufReadPost * call <SID>recovery_position()
   autocmd BufWritePre * call <SID>save_handler()
 endif
+
 
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
