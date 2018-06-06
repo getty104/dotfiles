@@ -67,6 +67,7 @@ ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local
 
 echo "----------------------------------------------------------------------------"
 echo "please set up iTerm2"
+echo "please set up git( ssh-key, name, email )"
 echo "please set up sublime text and lisence key"
 echo "setup karabiner-elements (caps-lock-to-ctrl and vim-mode)"
 echo "setup chrome(vimium React Developer Tool)"
