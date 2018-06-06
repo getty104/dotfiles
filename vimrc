@@ -251,6 +251,9 @@ augroup handler
   autocmd BufWritePre * call <SID>save_handler()
 augroup END
 
+" grepするとquickfix-windowを自動でだす
+autocmd QuickFixCmdPost *grep* cwindow
+
 " コマンドラインに使われる画面上の行数
 set cmdheight=1
 
