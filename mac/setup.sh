@@ -36,6 +36,7 @@ cd auto-fu.zsh
 git checkout -b pu origin/pu
 source ~/.zshrc
 git secrets --register-aws --global
+git config --global credential.helper osxkeychain
 cd ~
 
 echo "----------------------------------------------------------------------------"
