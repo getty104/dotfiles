@@ -169,7 +169,6 @@ let g:indentLine_color_gui = '#708090'
 " NERDTree用の設定
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeShowBookmarks=1
-let NERDTreeWinSize=24
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
