@@ -99,6 +99,9 @@ if dein#load_state(s:dein_dir)
   call dein#add('maxmellon/vim-jsx-pretty',{
         \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
         \ })
+  call dein#add('peitalin/vim-jsx-typescript',{
+        \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
+        \ })
 
   " Solidity
   call dein#add('tomlion/vim-solidity')
