@@ -76,6 +76,7 @@ if dein#load_state(s:dein_dir)
 
   " Ruby, Rails系
   call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby'] }})
+  call dein#add('slim-template/vim-slim')
 
   call dein#add('basyura/unite-rails', {
         \ 'depends' : ['Shougo/unite.vim'],
@@ -102,6 +103,8 @@ if dein#load_state(s:dein_dir)
   call dein#add('peitalin/vim-jsx-typescript',{
         \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
         \ })
+
+  call den#add('jparise/vim-graphql')
 
   " Solidity
   call dein#add('tomlion/vim-solidity')
