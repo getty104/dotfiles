@@ -104,7 +104,7 @@ if dein#load_state(s:dein_dir)
         \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
         \ })
 
-  call den#add('jparise/vim-graphql')
+  call dein#add('jparise/vim-graphql')
 
   " Solidity
   call dein#add('tomlion/vim-solidity')
