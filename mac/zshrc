@@ -19,6 +19,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
+zplug "plugins/git", from:oh-my-zsh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -60,6 +61,13 @@ typeset -U path cdpath fpath manpath
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+
+# 補完候補を一覧表示する
+setopt auto_list
+
+# 補完のタブ移動を可能にする
+setopt auto_menu
+zstyle ':completion:*:default' menu select=1
 
 #URLをちゃんと認識させる
 setopt nonomatch
