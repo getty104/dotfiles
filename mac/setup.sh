@@ -31,6 +31,9 @@ mkdir ~/.vim
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
 mkdir ~/.zsh
 cd ~/.zsh
+git clone git://github.com/hchbaw/auto-fu.zsh.git
+cd auto-fu.zsh
+git checkout -b pu origin/pu
 source ~/.zshrc
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain

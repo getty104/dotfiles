@@ -16,10 +16,10 @@ zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 
 # タイプ補完
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "chrissicool/zsh-256color"
-zplug "plugins/git", from:oh-my-zsh
+#zplug "zsh-users/zsh-autosuggestions"
+#zplug "zsh-users/zsh-completions"
+#zplug "chrissicool/zsh-256color"
+#zplug "plugins/git", from:oh-my-zsh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -108,6 +108,16 @@ setopt correct
 
 # 起動時にDownload自動削除
 eval "rmtrash ~/Downloads/*"
+
+#auto-fu.zshの設定
+source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
+function zle-line-init(){
+    auto-fu-init
+}
+zle -N zle-line-init
+
+# 「-azfu-」を表示させないための記述
+zstyle ':auto-fu:var' postdisplay $''
 
 #alias
 alias dc="docker-compose"
