@@ -23,17 +23,14 @@ brew services start postgresql
 brew services start redis
 
 echo "----------------------------------------------------------------------------"
-echo "installing oh-my-zsh..."
-curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+echo "installing zplug..."
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 mkdir ~/.vim
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
 mkdir ~/.zsh
 cd ~/.zsh
-git clone git://github.com/hchbaw/auto-fu.zsh.git
-cd auto-fu.zsh
-git checkout -b pu origin/pu
 source ~/.zshrc
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain

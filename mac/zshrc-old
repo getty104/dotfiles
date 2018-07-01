@@ -1,38 +1,13 @@
-# zplug
-source ~/.zplug/init.zsh
-
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-# theme
-zplug "sindresorhus/pure", use:pure.zsh, from:github
-
-# タスクを非同期で行う
-zplug "mafredri/zsh-async"
-
-# 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
-zplug "zsh-users/zsh-syntax-highlighting"
-
-# history関係
-zplug "zsh-users/zsh-history-substring-search"
-
-# タイプ補完
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "chrissicool/zsh-256color"
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
 
 # エディタ設定
 export EDITOR=vim
+
+#oh-my-zshのテーマ設定
+ZSH_THEME="mh"
+#プラグインの設定
+plugins=(rails)
 
 # User configuration
 #local用のPATH
@@ -53,16 +28,23 @@ eval "$(nodenv init -)"
 #Python用のPATH
 eval "$(pyenv init -)"
 
-## 重複パスを登録しない
-typeset -U path cdpath fpath manpath
+#Elixir用のPATH
+eval "$(exenv init -)"
 
-# ヒストリ(履歴)を保存、数を増やす
-HISTFILE=~/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
+#Go用のPATH
+export GOPATH=$HOME/.goenv/gohome
+export GOENV_ROOT=$HOME/.goenv
+export PATH=bin:$GOENV_ROOT/bin:$GOPATH/bin:$PATH
+eval "$(goenv init -)"
+
 
 #URLをちゃんと認識させる
 setopt nonomatch
+
+source $ZSH/oh-my-zsh.sh
+
+## 重複パスを登録しない
+typeset -U path cdpath fpath manpath
 
 # 日本語ファイル名を表示可能にする
 setopt print_eight_bit
@@ -75,6 +57,11 @@ setopt nolistbeep
 
 # cd -<tab>で以前移動したディレクトリを表示
 setopt auto_pushd
+
+# ヒストリ(履歴)を保存、数を増やす
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
 
 # 同時に起動したzshの間でヒストリを共有する
 setopt share_history
@@ -100,6 +87,16 @@ setopt correct
 
 # 起動時にDownload自動削除
 eval "rmtrash ~/Downloads/*"
+
+#auto-fu.zshの設定
+source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
+function zle-line-init(){
+    auto-fu-init
+}
+zle -N zle-line-init
+
+# 「-azfu-」を表示させないための記述
+zstyle ':auto-fu:var' postdisplay $''
 
 #alias
 alias dc="docker-compose"

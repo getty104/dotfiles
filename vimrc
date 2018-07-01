@@ -21,6 +21,8 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/vimproc', { 'build': 'make' })
 
+  call dein#add('cjrh/vim-conda')
+
   " 自動補完機能
   if ((has('nvim')  || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
     call dein#add('Shougo/deoplete.nvim')
