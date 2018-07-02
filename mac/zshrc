@@ -12,20 +12,14 @@ zplug "lib/directories", from:"oh-my-zsh"
 # ファイルのタイプによって色をつける
 zplug "lib/theme-and-appearance", from:"oh-my-zsh"
 
-# タスクを非同期で行う
-zplug "mafredri/zsh-async"
-
-# 構文のハイライト(https://github.com/zsh-users/zsh-syntax-highlighting)
-zplug "zsh-users/zsh-syntax-highlighting"
-
-# history関係
-zplug "zsh-users/zsh-history-substring-search"
+# railsコマンド補完
+zplug "plugins/rails", from:"oh-my-zsh"
+zplug "plugins/rake-fast", from:"oh-my-zsh"
 
 # タイプ補完
-#zplug "zsh-users/zsh-autosuggestions"
-#zplug "zsh-users/zsh-completions"
-#zplug "chrissicool/zsh-256color"
-#zplug "plugins/git", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "chrissicool/zsh-256color"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
