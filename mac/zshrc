@@ -4,7 +4,13 @@ source ~/.zplug/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # theme
-zplug "sindresorhus/pure", use:pure.zsh, from:github
+zplug "themes/mh", from:"oh-my-zsh", as:"theme"
+
+# ディレクトリのエイリアス
+zplug "lib/directories", from:"oh-my-zsh"
+
+# ファイルのタイプによって色をつける
+zplug "lib/theme-and-appearance", from:"oh-my-zsh"
 
 # タスクを非同期で行う
 zplug "mafredri/zsh-async"

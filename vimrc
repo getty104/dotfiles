@@ -1,4 +1,6 @@
 set encoding=utf-8
+set fileformats=unix,dos,mac
+set fileencoding=utf-8
 scriptencoding utf-8
 
 let s:dein_dir = expand('~/.vim/dein')
@@ -161,11 +163,13 @@ function! LightlineFilename()
   return filename
 endfunction
 
-" auto-ctag用の設定
-set tags+=.git/tags
+" auto-ctags用の設定
+set tags=.git/tags
 let g:auto_ctags = 1
+let g:auto_ctags_filetype_mode = 1
 let g:auto_ctags_directory_list = ['.git']
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags_search_recursively = 1
 
 " indentLine用の設定
 let g:indentLine_color_term = 111
@@ -181,8 +185,8 @@ augroup nerd-tree
   autocmd!
   autocmd StdinReadPre * let s:std_in=1
   autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 augroup END
+
 " Latex用の設定
 set shellslash
 set grepprg=grep\ -nH\ $*
