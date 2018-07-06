@@ -5,6 +5,9 @@ scriptencoding utf-8
 
 " 起動したら必ず走らせるスクリプト
 call  system("git branch -d $(git branch --merged | grep -v master | grep -v '*')")
+if has('python3')
+  silent! python3 1
+endif
 
 let s:dein_dir = expand('~/.vim/dein')
 
