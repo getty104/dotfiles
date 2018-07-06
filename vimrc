@@ -3,6 +3,9 @@ set fileformats=unix,dos,mac
 set fileencoding=utf-8
 scriptencoding utf-8
 
+" 起動したら必ず走らせるスクリプト
+call  system("git branch -d $(git branch --merged | grep -v master | grep -v '*')")
+
 let s:dein_dir = expand('~/.vim/dein')
 
 " dein.vim 本体
