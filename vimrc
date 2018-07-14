@@ -349,6 +349,9 @@ set nobackup
 " ファイルを自動リロード
 set autoread
 
+" 更新の時間
+set updatetime=1000
+
 " ビープ音の停止
 set noerrorbells
 set vb t_vb=
