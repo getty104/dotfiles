@@ -350,7 +350,7 @@ set nobackup
 set autoread
 
 " 更新の時間
-set updatetime=1000
+set updatetime=6000
 
 " ビープ音の停止
 set noerrorbells
