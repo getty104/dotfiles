@@ -27,6 +27,7 @@ echo "installing zplug..."
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
+git clone https://github.com/riywo/anyenv ~/.anyenv
 mkdir ~/.vim
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
 mkdir ~/.zsh
@@ -38,6 +39,12 @@ source ~/.zshrc
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain
 cd ~
+
+echo "----------------------------------------------------------------------------"
+echo "set up env..."
+anyenv install rbenv
+anyenv install pyenv
+source ~/.zshrc
 
 echo "----------------------------------------------------------------------------"
 echo "set up rbenv..."

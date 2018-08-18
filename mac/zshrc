@@ -39,20 +39,15 @@ export EDITOR=vim
 #local用のPATH
 export PATH="/usr/local/bin:$PATH"
 
+# anyenv用の設定
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
 #TexLive用のPATH
 export PATH="$PATH:/usr/local/texlive/2018/bin/x86_64-darwin"
 
 #openssl用のPATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
-
-#Ruby用のPATH
-eval "$(rbenv init -)"
-
-#Node用のPATH
-eval "$(nodenv init -)"
-
-#Python用のPATH
-eval "$(pyenv init -)"
 
 ## 重複パスを登録しない
 typeset -U path cdpath fpath manpath
