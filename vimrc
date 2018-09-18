@@ -101,16 +101,13 @@ if dein#load_state(s:dein_dir)
   " NERDTree
   call dein#add('scrooloose/nerdtree')
 
-  " JS系
+  " Java Script系
   call dein#add('pangloss/vim-javascript')
   call dein#add('leafgarland/typescript-vim')
-  call dein#add('maxmellon/vim-jsx-pretty',{
-        \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
-        \ })
-  call dein#add('peitalin/vim-jsx-typescript',{
-        \ 'depends' : ['pangloss/vim-javascript', 'leafgarland/typescript-vim']
-        \ })
+  call dein#add('mxw/vim-jsx')
+  call dein#add('peitalin/vim-jsx-typescript')
 
+  " GraphQL
   call dein#add('jparise/vim-graphql')
 
   " Solidity
@@ -118,6 +115,9 @@ if dein#load_state(s:dein_dir)
 
   " Latex
   call dein#add('vim-latex/vim-latex')
+
+  " Elixir
+  call dein#add('elixir-editors/vim-elixir')
 
 
   " 設定終了
