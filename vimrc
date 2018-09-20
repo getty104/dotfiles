@@ -94,7 +94,7 @@ if dein#load_state(s:dein_dir)
   call dein#add('elixir-editors/vim-elixir')
 
   " Fzf
-  call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
+  call dein#add('/usr/local/opt/fzf')
   call dein#add('junegunn/fzf.vim')
 
   " 設定終了
