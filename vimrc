@@ -63,40 +63,14 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
 
-  " Unite系
-  call dein#add('Shougo/unite.vim')
-
   " Codic系
   call dein#add('koron/codic-vim')
-  call dein#add('rhysd/unite-codic.vim', {
-        \ 'depends' : ['Shougo/unite.vim']
-        \ })
-
-  " Tag系
-  call dein#add('tsukkee/unite-tag', {
-        \ 'depends' : ['Shougo/unite.vim'],
-        \ 'autoload' : {
-        \   'unite_sources' : ['tag', 'tag/file', 'tag/include']
-        \ }})
 
   call dein#add('soramugi/auto-ctags.vim')
 
   " Ruby, Rails系
-  call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby'] }})
+  call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby', 'slim'] }})
   call dein#add('slim-template/vim-slim')
-
-  call dein#add('basyura/unite-rails', {
-        \ 'depends' : ['Shougo/unite.vim'],
-        \ 'autoload' : {
-        \   'unite_sources' : [
-        \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
-        \     'rails/controller', 'rails/db', 'rails/destroy', 'rails/features',
-        \     'rails/gem', 'rails/gemfile', 'rails/generate', 'rails/git', 'rails/helper',
-        \     'rails/heroku', 'rails/initializer', 'rails/javascript', 'rails/lib', 'rails/log',
-        \     'rails/mailer', 'rails/model', 'rails/rake', 'rails/route', 'rails/schema', 'rails/spec',
-        \     'rails/stylesheet', 'rails/view'
-        \   ]
-        \ }})
 
   " NERDTree
   call dein#add('scrooloose/nerdtree')
@@ -119,6 +93,9 @@ if dein#load_state(s:dein_dir)
   " Elixir
   call dein#add('elixir-editors/vim-elixir')
 
+  " Fzf
+  call dein#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
+  call dein#add('junegunn/fzf.vim')
 
   " 設定終了
   call dein#end()
@@ -170,7 +147,7 @@ function! LightlineFilename()
 endfunction
 
 " auto-ctags用の設定
-let g:auto_ctags = 1
+" let g:auto_ctags = 1
 let g:auto_ctags_filetype_mode = 1
 let g:auto_ctags_directory_list = ['.git', '.vim']
 let g:auto_ctags_tags_name = 'tags'
@@ -347,10 +324,10 @@ set noswapfile
 set nobackup
 
 " ファイルを自動リロード
-set autoread
+" set autoread
 
 " 更新の時間
-set updatetime=6000
+" set updatetime=6000
 
 " ビープ音の停止
 set noerrorbells
@@ -361,17 +338,6 @@ filetype plugin indent on
 
 " エイリアス
 command T  tabnew
-command Uf Unite file
-command Ut Unite tag
-command Um Unite rails/model
-command Uc Unite rails/controller
-command Uv Unite rails/view
-command Ur Unite rails/route
-command Uh Unite rails/helper
-command Ud Unite rails/db
-command Uj Unite rails/job
-command Ug Unite rails/bundled_gem
-command Ucd Unite codic
 command Em Emodel
 command Ec Econtroller
 command Ev Eview
@@ -386,3 +352,4 @@ noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
 noremap <C-e> :NERDTreeToggle<CR>
+noremap <C-p> :FZF<CR>
