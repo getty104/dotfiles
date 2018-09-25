@@ -148,7 +148,7 @@ endfunction
 
 " auto-ctags用の設定
 " let g:auto_ctags = 1
-let g:auto_ctags_filetype_mode = 1
+" let g:auto_ctags_filetype_mode = 1
 let g:auto_ctags_directory_list = ['.git', '.vim']
 let g:auto_ctags_tags_name = 'tags'
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
@@ -347,3 +347,4 @@ noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
 noremap <C-e> :NERDTreeToggle<CR>
 noremap <C-p> :FZF<CR>
+noremap r :e!<CR>
