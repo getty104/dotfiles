@@ -4,7 +4,9 @@ set fileencoding=utf-8
 scriptencoding utf-8
 
 " 起動したら必ず走らせるスクリプト
-call  system("git branch -d $(git branch --merged | grep -v master | grep -v '*')")
+call system("git branch -d $(git branch --merged | grep -v master | grep -v '*')")
+call system("rm ./.git/*.tags.lock > /dev/null 2>&1")
+
 if has('python3')
   silent! python3 1
 endif
@@ -147,11 +149,11 @@ function! LightlineFilename()
 endfunction
 
 " auto-ctags用の設定
-" let g:auto_ctags = 1
-" let g:auto_ctags_filetype_mode = 1
-" let g:auto_ctags_directory_list = ['.git', '.vim']
-let g:auto_ctags_tags_name = 'tags'
-let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags = 1
+let g:auto_ctags_filetype_mode = 1
+let g:auto_ctags_directory_list = ['.git', '.vim']
+" let g:auto_ctags_tags_name = 'tags'
+let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recurse=yes', '--sort=no', '--append=yes']
 let g:auto_ctags_search_recursively = 1
 
 " indentLine用の設定
