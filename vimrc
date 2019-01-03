@@ -184,6 +184,16 @@ let g:Tex_UseEditorSettingInDVIViewer = 1
 let g:Tex_ViewRule_pdf = 'Skim'
 let g:Tex_AutoFolding = 1
 let g:Imap_FreezeImap = 1
+let g:Tex_IgnoredWarnings =
+      \"Underfull\n".
+      \"Overfull\n".
+      \"specifier changed to\n".
+      \"You have requested\n".
+      \"Missing number, treated as zero.\n".
+      \"There were undefined references\n".
+      \"Citation %.%# undefined\n".
+      \"LaTeX Font Warning:"
+let g:Tex_IgnoreLevel = 8
 
 " カラースキーム
 syntax on
