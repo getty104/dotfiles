@@ -65,9 +65,6 @@ if dein#load_state(s:dein_dir)
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
 
-  " Codic系
-  call dein#add('koron/codic-vim')
-
   call dein#add('soramugi/auto-ctags.vim')
 
   " Ruby, Rails系
@@ -85,12 +82,6 @@ if dein#load_state(s:dein_dir)
 
   " GraphQL
   call dein#add('jparise/vim-graphql')
-
-  " Solidity
-  call dein#add('tomlion/vim-solidity')
-
-  " Latex
-  call dein#add('vim-latex/vim-latex')
 
   " Elixir
   call dein#add('elixir-editors/vim-elixir')
@@ -165,35 +156,6 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeShowBookmarks = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
-
-" Latex用の設定
-set shellslash
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
-let g:Imap_UsePlaceHolders = 1
-let g:Imap_DeleteEmptyPlaceHolders = 1
-let g:Imap_StickyPlaceHolders = 0
-let g:Tex_DefaultTargetFormat = 'pdf'
-let g:Tex_MultipleCompileFormats='dvi,pdf'
-let g:Tex_FormatDependency_pdf = 'dvi,pdf'
-let g:Tex_CompileRule_pdf = 'ptex2pdf -u -l -ot "-synctex=1 -interaction=nonstopmode -file-line-error-style" $*'
-let g:Tex_CompileRule_dvi = 'uplatex -synctex=1 -interaction=nonstopmode -file-line-error-style $*'
-let g:Tex_BibtexFlavor = 'upbibtex'
-let g:Tex_MakeIndexFlavor = 'upmendex $*.idx'
-let g:Tex_UseEditorSettingInDVIViewer = 1
-let g:Tex_ViewRule_pdf = 'Skim'
-let g:Tex_AutoFolding = 1
-let g:Imap_FreezeImap = 1
-let g:Tex_IgnoredWarnings =
-      \"Underfull\n".
-      \"Overfull\n".
-      \"specifier changed to\n".
-      \"You have requested\n".
-      \"Missing number, treated as zero.\n".
-      \"There were undefined references\n".
-      \"Citation %.%# undefined\n".
-      \"LaTeX Font Warning:"
-let g:Tex_IgnoreLevel = 8
 
 " カラースキーム
 syntax on
