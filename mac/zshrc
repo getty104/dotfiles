@@ -126,11 +126,4 @@ alias g++="g++-8 -std=c++14"
 alias ga="git add -p"
 alias gc="git commit -v"
 alias gp="git push"
-
-parallel () {
-  if [ $# -lt 2 ]; then
-    echo -e "Usage:\n  parallel <N> <command>"
-    return 1
-  fi
-  seq $1 | xargs -I{} -P $@
-}
+alias be="bundle exec"
