@@ -98,11 +98,11 @@ on_ft = 'toml'
 # FZF
 [[plugins]]
 repo = '/usr/local/opt/fzf'
-on_map = ['<C-p>']
-hook_source = '''
-noremap <C-p> :FZF<CR>
-'''
+on_source = ['fzf.vim']
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 on_map = ['<C-p>']
+hook_source = '''
+noremap <C-p> :FZF<CR>
+'''
