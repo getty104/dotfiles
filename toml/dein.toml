@@ -43,20 +43,6 @@ let g:indentLine_color_gui = '#708090'
 [[plugins]]
 repo = 'thinca/vim-zenspace'
 
-# カラーテーマ
-[[plugins]]
-repo = 'crusoexia/vim-monokai'
-hook_add = '''
-syntax on
-colorscheme monokai
-set t_Co=256
-
-hi SpecialKey ctermbg=NONE ctermfg=240
-hi LineNr ctermbg=NONE ctermfg=248
-hi Comment ctermbg=NONE ctermfg=244
-hi Normal ctermbg=NONE
-'''
-
 # Git
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -66,13 +52,3 @@ command Gadd Gwrite
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
-
-[[plugins]]
-repo = 'soramugi/auto-ctags.vim'
-hook_add = '''
-let g:auto_ctags = 1
-let g:auto_ctags_filetype_mode = 1
-let g:auto_ctags_directory_list = ['.git', '.vim']
-let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recurse=yes', '--sort=no', '--append=yes']
-let g:auto_ctags_search_recursively = 1
-'''
