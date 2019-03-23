@@ -103,14 +103,14 @@ endif
 " 補完系の設定
 if dein#tap('deoplete.nvim')
   let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 50
+  let g:deoplete#auto_complete_delay = 10
   let g:deoplete#auto_complete_start_length = 2
   let g:deoplete#enable_camel_case = 0
   let g:deoplete#enable_ignore_case = 0
   let g:deoplete#enable_refresh_always = 1
   let g:deoplete#enable_smart_case = 1
   let g:deoplete#file#enable_buffer_path = 1
-  let g:deoplete#max_list = 5
+  let g:deoplete#max_list = 10
   inoremap <expr><tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
   imap <C-c>     <Plug>(neosnippet_expand_or_jump)
   smap <C-c>     <Plug>(neosnippet_expand_or_jump)
