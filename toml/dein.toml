@@ -1,0 +1,78 @@
+# 本体の設定
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+[[plugins]]
+repo = 'cjrh/vim-conda'
+
+# ステータスラインの表示内容強化
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'fugitive#head',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
+
+function! LightlineFilename()
+  let filename = expand('%:P') !=# '' ? expand('%:P') : '[No Name]'
+  return filename
+endfunction
+'''
+
+# インデント可視化
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+let g:indentLine_color_term = 111
+let g:indentLine_color_gui = '#708090'
+'''
+
+# 全角スペースの可視化
+[[plugins]]
+repo = 'thinca/vim-zenspace'
+
+# カラーテーマ
+[[plugins]]
+repo = 'crusoexia/vim-monokai'
+hook_add = '''
+syntax on
+colorscheme monokai
+set t_Co=256
+
+hi SpecialKey ctermbg=NONE ctermfg=240
+hi LineNr ctermbg=NONE ctermfg=248
+hi Comment ctermbg=NONE ctermfg=244
+hi Normal ctermbg=NONE
+'''
+
+# Git
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+hook_add = '''
+command Gadd Gwrite
+'''
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+hook_add = '''
+let g:auto_ctags = 1
+let g:auto_ctags_filetype_mode = 1
+let g:auto_ctags_directory_list = ['.git', '.vim']
+let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recurse=yes', '--sort=no', '--append=yes']
+let g:auto_ctags_search_recursively = 1
+'''

@@ -12,6 +12,8 @@ if has('python3')
 endif
 
 let s:dein_dir = expand('~/.vim/dein')
+let s:toml_dir = s:dein_dir . '/toml/dein.toml'
+let s:lazy_toml_dir = s:dein_dir . '/toml/dein_lazy.toml'
 
 " dein.vim 本体
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -26,68 +28,8 @@ endif
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-
-  " 本体の設定
-  call dein#add('Shougo/dein.vim')
-  call dein#add('Shougo/vimproc', { 'build': 'make' })
-
-  call dein#add('cjrh/vim-conda')
-
-  " 自動補完機能
-  if ((has('nvim')  || has('timers')) && has('python3')) && system('pip3 show neovim') !=# ''
-    call dein#add('Shougo/deoplete.nvim')
-    if !has('nvim')
-      call dein#add('roxma/nvim-yarp')
-      call dein#add('roxma/vim-hug-neovim-rpc')
-    endif
-  endif
-
-  " 括弧補完
-  call dein#add('cohama/lexima.vim')
-
-  " ステータスラインの表示内容強化
-  call dein#add('itchyny/lightline.vim')
-
-  " インデント可視化
-  call dein#add('Yggdroot/indentLine')
-
-  " 全角スペースの可視化
-  call dein#add('thinca/vim-zenspace')
-
-  " カラーテーマ
-  call dein#add('crusoexia/vim-monokai')
-
-  " Git系
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('airblade/vim-gitgutter')
-
-  " スニペット
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
-
-  call dein#add('soramugi/auto-ctags.vim')
-
-  " Ruby, Rails系
-  call dein#add('tpope/vim-rails', { 'autoload' : {'filetypes' : ['haml', 'ruby', 'eruby', 'slim'] }})
-  call dein#add('slim-template/vim-slim')
-
-  " NERDTree
-  call dein#add('scrooloose/nerdtree')
-
-  " JavaScript系
-  call dein#add('othree/yajs.vim')
-  call dein#add('HerringtonDarkholme/yats.vim')
-  call dein#add('maxmellon/vim-jsx-pretty')
-
-  " GraphQL
-  call dein#add('jparise/vim-graphql')
-
-  " Elixir
-  call dein#add('elixir-editors/vim-elixir')
-
-  " Fzf
-  call dein#add('/usr/local/opt/fzf')
-  call dein#add('junegunn/fzf.vim')
+   call dein#load_toml(s:toml_dir,      {'lazy': 0})
+   call dein#load_toml(s:lazy_toml_dir, {'lazy': 1})
 
   " 設定終了
   call dein#end()
@@ -98,73 +40,6 @@ endif
 if dein#check_install()
   call dein#install()
 endif
-
-" 補完系の設定
-if dein#tap('deoplete.nvim')
-  let g:deoplete#enable_at_startup = 1
-  let g:deoplete#auto_complete_delay = 10
-  let g:deoplete#auto_complete_start_length = 2
-  let g:deoplete#enable_camel_case = 0
-  let g:deoplete#enable_ignore_case = 0
-  let g:deoplete#enable_refresh_always = 1
-  let g:deoplete#enable_smart_case = 1
-  let g:deoplete#file#enable_buffer_path = 1
-  let g:deoplete#max_list = 10
-  inoremap <expr><tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-  imap <C-c>     <Plug>(neosnippet_expand_or_jump)
-  smap <C-c>     <Plug>(neosnippet_expand_or_jump)
-  xmap <C-c>     <Plug>(neosnippet_expand_target)
-  imap <C-c>     <Plug>(neosnippet_expand_or_jump)
-
-  " 自分用 snippet ファイルの場所
-  let g:neosnippet#snippets_directory = '~/.vim/snippets/'
-endif
-
-" lightline用の設定
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'fugitive': 'fugitive#head',
-      \   'filename': 'LightlineFilename'
-      \ },
-      \ }
-
-function! LightlineFilename()
-  let filename = expand('%:P') !=# '' ? expand('%:P') : '[No Name]'
-  return filename
-endfunction
-
-" auto-ctags用の設定
-let g:auto_ctags = 1
-let g:auto_ctags_filetype_mode = 1
-let g:auto_ctags_directory_list = ['.git', '.vim']
-" let g:auto_ctags_tags_name = 'tags'
-let g:auto_ctags_tags_args = ['--tag-relative=yes', '--recurse=yes', '--sort=no', '--append=yes']
-let g:auto_ctags_search_recursively = 1
-
-" indentLine用の設定
-let g:indentLine_color_term = 111
-let g:indentLine_color_gui = '#708090'
-
-" NERDTree用の設定
-let g:NERDTreeShowHidden = 1
-let g:NERDTreeShowBookmarks = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-
-" カラースキーム
-syntax on
-colorscheme monokai
-set t_Co=256
-
-hi SpecialKey ctermbg=NONE ctermfg=240
-hi LineNr ctermbg=NONE ctermfg=248
-hi Comment ctermbg=NONE ctermfg=244
-hi Normal ctermbg=NONE
 
 " *******************ライブラリに依存しない設定*******************
 
@@ -309,19 +184,9 @@ filetype plugin indent on
 
 " エイリアス
 command T  tabnew
-command Em Emodel
-command Ec Econtroller
-command Ev Eview
-command Eg Emigration
-command Es Eschema
-command Er Einitializer
-command Gadd Gwrite
-command B Bookmark
 
 " normalキーマッピング
 noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
-noremap <C-e> :NERDTreeToggle<CR>
-noremap <C-p> :FZF<CR>
 noremap r :e!<CR>
