@@ -18,9 +18,6 @@ fi
 echo "----------------------------------------------------------------------------"
 echo "brew bundle..."
 brew bundle
-brew services start mysql
-brew services start postgresql
-brew services start redis
 
 echo "----------------------------------------------------------------------------"
 echo "installing zplug..."
@@ -29,7 +26,9 @@ ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 git clone https://github.com/riywo/anyenv ~/.anyenv
 mkdir ~/.vim
+mkdir ~/.vim/dein
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
+ln -sf ~/dotfiles/toml ~/.vim/dein/toml
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
@@ -66,7 +65,6 @@ pip install neovim
 echo "----------------------------------------------------------------------------"
 echo "cleanup brew..."
 brew cleanup
-brew cask cleanup
 
 echo "----------------------------------------------------------------------------"
 echo "symbolic link of sublime text..."
@@ -77,7 +75,7 @@ echo "please set up iTerm2"
 echo "please set up git( ssh-key, name, email ) http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github"
 echo "please set up sublime text and lisence key"
 echo "setup karabiner-elements (caps-lock-to-ctrl and vim-mode)"
-echo "setup chrome(vimium React Developer Tool)"
+echo "setup chrome (vimium React Developer Tool)"
 
 echo "----------------------------------------------------------------------------"
 echo "Success!"

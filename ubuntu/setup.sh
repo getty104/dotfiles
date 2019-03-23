@@ -35,7 +35,9 @@ curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | 
 ln -sf ~/dotfiles/ubuntu/zshrc ~/.zshrc
 ln -sf ~/dotfiles/ubuntu/vimrc ~/.vimrc
 mkdir ~/.vim
+mkdir ~/.vim/dein
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
+ln -sf ~/dotfiles/toml ~/.vim/dein/toml
 mkdir ~/.zsh
 cd ~/.zsh
 git clone git://github.com/hchbaw/auto-fu.zsh.git
