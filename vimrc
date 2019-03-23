@@ -74,11 +74,10 @@ if dein#load_state(s:dein_dir)
   " NERDTree
   call dein#add('scrooloose/nerdtree')
 
-  " Java Script系
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('leafgarland/typescript-vim')
-  call dein#add('mxw/vim-jsx')
-  call dein#add('peitalin/vim-jsx-typescript')
+  " JavaScript系
+  call dein#add('othree/yajs.vim')
+  call dein#add('HerringtonDarkholme/yats.vim')
+  call dein#add('maxmellon/vim-jsx-pretty')
 
   " GraphQL
   call dein#add('jparise/vim-graphql')
