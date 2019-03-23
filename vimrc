@@ -28,8 +28,8 @@ endif
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
-   call dein#load_toml(s:toml_dir,      {'lazy': 0})
-   call dein#load_toml(s:lazy_toml_dir, {'lazy': 1})
+  call dein#load_toml(s:toml_dir,      {'lazy': 0})
+  call dein#load_toml(s:lazy_toml_dir, {'lazy': 1})
 
   " 設定終了
   call dein#end()

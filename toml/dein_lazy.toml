@@ -1,6 +1,32 @@
 # 自動補完機能
 [[plugins]]
+repo = 'roxma/nvim-yarp'
+on_i = 1
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+on_i = 1
+hook_source = '''
+inoremap <expr><tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+imap <C-c>     <Plug>(neosnippet_expand_or_jump)
+smap <C-c>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-c>     <Plug>(neosnippet_expand_target)
+imap <C-c>     <Plug>(neosnippet_expand_or_jump)
+
+let g:neosnippet#snippets_directory = '~/.vim/snippets/'
+'''
+
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
+on_i = 1
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 10
@@ -11,23 +37,7 @@ let g:deoplete#enable_refresh_always = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10
-inoremap <expr><tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-imap <C-c>     <Plug>(neosnippet_expand_or_jump)
-smap <C-c>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-c>     <Plug>(neosnippet_expand_target)
-imap <C-c>     <Plug>(neosnippet_expand_or_jump)
-
-let g:neosnippet#snippets_directory = '~/.vim/snippets/'
 '''
-on_i = 1
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-on_source = ['deoplete.nvim']
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-on_source = ['deoplete.nvim']
 
 # 括弧補完
 [[plugins]]
