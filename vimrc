@@ -171,8 +171,11 @@ hi Normal ctermbg=NONE
 
 
 function! RemoveDust()
-  " 保存時に行末の空白を除去する
-  %s/\s\+$//ge
+  if (&ft!='markdown')
+    " 保存時に行末の空白を除去する
+    %s/\s\+$//ge
+  endif
+
   " 保存時にtabを2スペースに変換する
   %s/\t/  /ge
 endfunction
