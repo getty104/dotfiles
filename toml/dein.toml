@@ -9,6 +9,10 @@ build = 'make'
 [[plugins]]
 repo = 'cjrh/vim-conda'
 
+# カラーテーマ
+[[plugins]]
+repo = 'crusoexia/vim-monokai'
+
 # ステータスラインの表示内容強化
 [[plugins]]
 repo = 'itchyny/lightline.vim'

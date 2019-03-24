@@ -76,21 +76,6 @@ command B Bookmark
 noremap <C-e> :NERDTreeToggle<CR>
 '''
 
-# カラーテーマ
-[[plugins]]
-repo = 'crusoexia/vim-monokai'
-on_event = 'VimEnter'
-hook_post_source = '''
-syntax on
-colorscheme monokai
-set t_Co=256
-
-hi SpecialKey ctermbg=NONE ctermfg=240
-hi LineNr ctermbg=NONE ctermfg=248
-hi Comment ctermbg=NONE ctermfg=244
-hi Normal ctermbg=NONE
-'''
-
 # JavaScript
 [[plugins]]
 repo = 'othree/yajs.vim'

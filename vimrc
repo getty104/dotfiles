@@ -41,6 +41,16 @@ if dein#check_install()
   call dein#install()
 endif
 
+syntax on
+colorscheme monokai
+set t_Co=256
+
+hi SpecialKey ctermbg=NONE ctermfg=240
+hi LineNr ctermbg=NONE ctermfg=248
+hi Comment ctermbg=NONE ctermfg=244
+hi Normal ctermbg=NONE
+
+
 " *******************ライブラリに依存しない設定*******************
 
 
