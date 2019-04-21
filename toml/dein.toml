@@ -56,3 +56,14 @@ command Gadd Gwrite
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+
+# Neovim のライブラリを使う際の設定
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+# シンタックスハイライト
+[[plugins]]
+repo = 'sheerun/vim-polyglot'

@@ -1,13 +1,5 @@
 # 自動補完機能
 [[plugins]]
-repo = 'roxma/nvim-yarp'
-on_event = 'VimEnter'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-on_event = 'VimEnter'
-
-[[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 on_event = 'InsertCharPre'
 
@@ -41,7 +33,7 @@ let g:deoplete#max_list = 10
 
 # 括弧補完
 [[plugins]]
-repo = 'cohama/lexima.vim'
+repo = 'jiangmiao/auto-pairs'
 on_event = 'InsertCharPre'
 
 # Ruby, Rails
@@ -57,9 +49,22 @@ command Es Eschema
 command Er Einitializer
 '''
 
+# GraphQL
 [[plugins]]
-repo = 'slim-template/vim-slim'
-on_ft = ['haml', 'ruby', 'eruby', 'slim']
+repo = 'jparise/vim-graphql'
+on_ft = ['graphql']
+
+# FZF
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+on_map = ['<C-p>']
+hook_source = '''
+noremap <C-p> :FZF<CR>
+'''
+
+[[plugins]]
+repo = '/usr/local/opt/fzf'
+on_source = ['fzf.vim']
 
 # NerdTree
 [[plugins]]
@@ -76,43 +81,7 @@ command B Bookmark
 noremap <C-e> :NERDTreeToggle<CR>
 '''
 
-# JavaScript
+# コメントアウトライブラリ
 [[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript', 'javascript.jsx']
-
-[[plugins]]
-repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript', 'javascript.jsx']
-
-# TypeScript
-[[plugins]]
-repo = 'HerringtonDarkholme/yats.vim'
-on_ft = ['typescript', 'typescript.tsx']
-
-# GraphQL
-[[plugins]]
-repo = 'jparise/vim-graphql'
-on_ft = ['graphql']
-
-# Elixir
-[[plugins]]
-repo = 'elixir-editors/vim-elixir'
-on_ft = ['elixir']
-
-# TOML
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = 'toml'
-
-# FZF
-[[plugins]]
-repo = 'junegunn/fzf.vim'
-on_map = ['<C-p>']
-hook_source = '''
-noremap <C-p> :FZF<CR>
-'''
-
-[[plugins]]
-repo = '/usr/local/opt/fzf'
-on_source = ['fzf.vim']
+repo = 'tpope/vim-commentary'
+on_event = 'CursorMoved'
