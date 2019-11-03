@@ -24,6 +24,7 @@ echo "installing zplug..."
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
+ln -sf ~/dotfiles/ideavimrc ~/.ideavimrc
 git clone https://github.com/riywo/anyenv ~/.anyenv
 mkdir ~/.vim
 mkdir ~/.vim/dein
