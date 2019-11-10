@@ -1,0 +1,14 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "C_Cpp.clang_format_style": "google",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "html.format.indentHandlebars": true,
+    "editor.formatOnSave": true
+}
