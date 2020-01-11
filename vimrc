@@ -183,7 +183,6 @@ set nobackup
 
 " 更新の時間
 " set updatetime=6000
-
 " ビープ音の停止
 set noerrorbells
 set vb t_vb=

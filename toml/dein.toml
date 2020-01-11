@@ -57,3 +57,40 @@ repo = 'airblade/vim-gitgutter'
 # シンタックスハイライト
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+
+# language server
+# ----------
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_settings = {'typescript-language-server':{'whitelist': ['typescript', 'typescript.tsx']}}
+
+noremap lss :LspStatus<CR>
+noremap lsh :LspHover<CR>
+noremap lsf :LspHover<CR>
+noremap lsgd :LspDefinition<CR>
+noremap lspd :LspPeekDefinition<CR>
+noremap lsdf :LspDocumentFormat<CR>
+noremap lsgdc :LspDeclaration<CR>
+noremap lspdc :LspPeekDeclaration<CR>
+'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = '''
+set completeopt+=preview
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+# ----------
