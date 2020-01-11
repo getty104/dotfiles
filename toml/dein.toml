@@ -6,9 +6,6 @@ repo = 'Shougo/dein.vim'
 repo = 'Shougo/vimproc'
 build = 'make'
 
-[[plugins]]
-repo = 'cjrh/vim-conda'
-
 # カラーテーマ
 [[plugins]]
 repo = 'crusoexia/vim-monokai'
@@ -57,43 +54,6 @@ command Gadd Gwrite
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
-# Neovim のライブラリを使う際の設定
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
 # シンタックスハイライト
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
-
-# 自動補完機能
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-hook_add = '''
-inoremap <expr><tab> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-imap <C-c>     <Plug>(neosnippet_expand_or_jump)
-smap <C-c>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-c>     <Plug>(neosnippet_expand_target)
-imap <C-c>     <Plug>(neosnippet_expand_or_jump)
-
-let g:neosnippet#snippets_directory = '~/.vim/snippets/'
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 100
-let g:deoplete#auto_complete_start_length = 2
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 10
-'''

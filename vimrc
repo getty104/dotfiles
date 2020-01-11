@@ -5,7 +5,6 @@ scriptencoding utf-8
 
 " 起動したら必ず走らせるスクリプト
 call system("git branch -d $(git branch --merged | grep -v master | grep -v '*')")
-call system("rm ./.git/*.tags.lock > /dev/null 2>&1")
 
 if has('python3')
   silent! python3 1
