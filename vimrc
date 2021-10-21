@@ -198,3 +198,4 @@ noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
 noremap r :e!<CR>
+vnoremap p "0p
