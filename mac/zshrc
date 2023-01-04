@@ -106,9 +106,15 @@ bindkey -e
 # コマンド自動補正
 setopt correct
 
-# 起動時にDownload自動削除
-eval "rmtrash ~/Downloads/* > /dev/null 2>&1"
-eval "rmtrash ~/Desktop/* > /dev/null 2>&1"
+# trashがインストールされている場合のみ実行
+if type trash > /dev/null 2>&1; then
+  # 起動時にDownload自動削除
+  eval "trash -F ~/Downloads/* > /dev/null 2>&1"
+  eval "trash -F ~/Desktop/* > /dev/null 2>&1"
+
+  #alias
+  alias rm="trash -F"
+fi
 
 #alias
 alias dc="docker-compose"
@@ -116,7 +122,6 @@ alias dw="docker-compose run --rm web"
 alias oa="open -a"
 alias og="oa Google\ Chrome"
 alias oh="open https://github.com"
-alias rm="rmtrash"
 alias g++="g++-8 -std=c++14"
 alias ga="git add -p"
 alias gc="git commit -v --no-verify"
