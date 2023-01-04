@@ -12,7 +12,7 @@ case "$yn2" in [yY]*) ;; *) echo "abort." ; exit ;; esac
 if ! type brew >/dev/null 2>&1; then
   echo "----------------------------------------------------------------------------"
   echo "installing brew..."
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 echo "----------------------------------------------------------------------------"
