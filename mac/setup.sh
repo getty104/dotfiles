@@ -1,13 +1,4 @@
-#!/bin/bash -eu
-
-read -p "dotfilesは~/に置かれていますか？ (y/N): " yn0
-case "$yn0" in [yY]*) ;; *) echo "abort." ; exit ;; esac
-
-read -p "ICloudにはログインしていますか？ (y/N): " yn1
-case "$yn1" in [yY]*) ;; *) echo "abort." ; exit ;; esac
-
-read -p "App Storeの無料アプリのパスワードを不要にしましたか？ (y/N): " yn2
-case "$yn2" in [yY]*) ;; *) echo "abort." ; exit ;; esac
+#!/bin/zsh -eu
 
 if ! type brew >/dev/null 2>&1; then
   echo "----------------------------------------------------------------------------"
@@ -33,7 +24,6 @@ mkdir ~/.vim
 mkdir ~/.vim/dein
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
 ln -sf ~/dotfiles/toml ~/.vim/dein/toml
-source ~/.zshrc
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain
 cd ~
