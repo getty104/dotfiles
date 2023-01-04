@@ -57,6 +57,9 @@ repo = 'airblade/vim-gitgutter'
 # シンタックスハイライト
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
+hook_add = '''
+let g:vim_markdown_conceal = 0
+'''
 
 # language server
 # ----------
@@ -75,12 +78,13 @@ let g:lsp_settings = {
 
 noremap gss :LspStatus<CR>
 noremap gsh :LspHover<CR>
-noremap glsf :LspHover<CR>
+noremap gsf :LspHover<CR>
 noremap gsgd :LspDefinition<CR>
 noremap gspd :LspPeekDefinition<CR>
 noremap gsdf :LspDocumentFormat<CR>
 noremap gsgdc :LspDeclaration<CR>
 noremap gspdc :LspPeekDeclaration<CR>
+noremap gsdd :LspDocumentDiagnostics<CR>
 '''
 
 [[plugins]]
@@ -95,5 +99,3 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
-# ----------

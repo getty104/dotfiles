@@ -4,7 +4,7 @@ set fileencoding=utf-8
 scriptencoding utf-8
 
 " 起動したら必ず走らせるスクリプト
-call system("git branch -d $(git branch --merged | grep -v master | grep -v '*')")
+call system("git branch -d $(git branch --merged | grep -v main | grep -v master | grep -v '*')")
 
 if has('python3')
   silent! python3 1
@@ -198,4 +198,4 @@ noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
 noremap r :e!<CR>
-vnoremap p "0p
+vnoremap<C-p> "0p
