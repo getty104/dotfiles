@@ -32,6 +32,11 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
+# auto-suggestionsの設定
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+bindkey '^e' autosuggest-execute
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#55c500,underline"
+
 # エディタ設定
 export EDITOR=vim
 
@@ -105,16 +110,6 @@ setopt correct
 eval "rmtrash ~/Downloads/* > /dev/null 2>&1"
 eval "rmtrash ~/Desktop/* > /dev/null 2>&1"
 
-#auto-fu.zshの設定
-source $HOME/.zsh/auto-fu.zsh/auto-fu.zsh
-function zle-line-init(){
-    auto-fu-init
-}
-zle -N zle-line-init
-
-# 「-azfu-」を表示させないための記述
-zstyle ':auto-fu:var' postdisplay $''
-
 #alias
 alias dc="docker-compose"
 alias dw="docker-compose run --rm web"
@@ -124,6 +119,8 @@ alias oh="open https://github.com"
 alias rm="rmtrash"
 alias g++="g++-8 -std=c++14"
 alias ga="git add -p"
-alias gc="git commit -v"
+alias gc="git commit -v --no-verify"
 alias gp="git push"
 alias be="bundle exec"
+
+yes | docker image prune > /dev/null

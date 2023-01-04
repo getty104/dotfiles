@@ -68,14 +68,9 @@ echo "cleanup brew..."
 brew cleanup
 
 echo "----------------------------------------------------------------------------"
-echo "symbolic link of sublime text..."
-ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
-
-echo "----------------------------------------------------------------------------"
 echo "please set up iTerm2"
 echo "please set up git( ssh-key, name, email ) http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github"
-echo "please set up sublime text and lisence key"
-echo "setup karabiner-elements (caps-lock-to-ctrl and vim-mode)"
+echo "setup karabiner-elements (caps-lock-to-ctrl)"
 echo "setup chrome (vimium React Developer Tool)"
 
 echo "----------------------------------------------------------------------------"
