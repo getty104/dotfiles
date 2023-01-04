@@ -21,20 +21,18 @@ brew bundle
 
 echo "----------------------------------------------------------------------------"
 echo "installing zplug..."
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+brew install zplug
+
+echo "----------------------------------------------------------------------------"
+echo "Setup tools..."
+
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 ln -sf ~/dotfiles/ideavimrc ~/.ideavimrc
-git clone https://github.com/riywo/anyenv ~/.anyenv
 mkdir ~/.vim
 mkdir ~/.vim/dein
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
 ln -sf ~/dotfiles/toml ~/.vim/dein/toml
-mkdir ~/.zsh
-cd ~/.zsh
-git clone git://github.com/hchbaw/auto-fu.zsh.git
-cd auto-fu.zsh
-git checkout -b pu origin/pu
 source ~/.zshrc
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain
@@ -42,8 +40,9 @@ cd ~
 
 echo "----------------------------------------------------------------------------"
 echo "set up env..."
+brew install anyenv
+anyenv init
 anyenv install rbenv
-anyenv install pyenv
 source ~/.zshrc
 
 echo "----------------------------------------------------------------------------"
@@ -55,13 +54,6 @@ rbenv plug rbenv-gem-rehash
 rbenv plug rbenv-communal-gems
 rbenv communize --all
 rbenv rehash
-
-echo "----------------------------------------------------------------------------"
-echo "set up pyenv"
-pyenv install anaconda3-5.1.0
-pyenv global anaconda3-5.1.0
-pyenv rehash
-pip install neovim
 
 echo "----------------------------------------------------------------------------"
 echo "cleanup brew..."
