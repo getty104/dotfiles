@@ -30,7 +30,7 @@ noremap <C-p> :FZF<CR>
 '''
 
 [[plugins]]
-repo = '/usr/local/opt/fzf'
+repo = 'junegunn/fzf'
 on_source = ['fzf.vim']
 
 # NerdTree
