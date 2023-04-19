@@ -58,7 +58,7 @@ repo = 'airblade/vim-gitgutter'
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 hook_add = '''
-let g:vim_markdown_conceal = 0
+let g:polyglot_disabled = ['markdown']
 '''
 
 # language server
