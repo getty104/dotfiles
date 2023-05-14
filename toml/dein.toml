@@ -61,6 +61,9 @@ hook_add = '''
 let g:polyglot_disabled = ['markdown']
 '''
 
+[[plugins]]
+repo = 'prisma/vim-prisma'
+
 # language server
 # ----------
 [[plugins]]
