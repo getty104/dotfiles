@@ -118,8 +118,8 @@ if type trash > /dev/null 2>&1; then
 fi
 
 #alias
-alias dc="docker-compose"
-alias dw="docker-compose run --rm web"
+alias dc="docker compose"
+alias dw="docker compose run --rm web"
 alias oa="open -a"
 alias og="oa Google\ Chrome"
 alias oh="open https://github.com"
