@@ -1,21 +1,3 @@
-# 括弧補完
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
-on_event = 'InsertCharPre'
-
-# Ruby, Rails
-[[plugins]]
-repo = 'tpope/vim-rails'
-on_ft = ['haml', 'ruby', 'eruby', 'slim']
-hook_source = '''
-command Em Emodel
-command Ec Econtroller
-command Ev Eview
-command Eg Emigration
-command Es Eschema
-command Er Einitializer
-'''
-
 # GraphQL
 [[plugins]]
 repo = 'jparise/vim-graphql'
@@ -47,8 +29,3 @@ hook_source = '''
 command B Bookmark
 noremap <C-e> :NERDTreeToggle<CR>
 '''
-
-# コメントアウトライブラリ
-[[plugins]]
-repo = 'tpope/vim-commentary'
-on_event = 'CursorMoved'

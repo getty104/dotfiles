@@ -44,13 +44,6 @@ let g:indentLine_color_gui = '#708090'
 [[plugins]]
 repo = 'thinca/vim-zenspace'
 
-# Git
-[[plugins]]
-repo = 'tpope/vim-fugitive'
-hook_add = '''
-command Gadd Gwrite
-'''
-
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
@@ -102,3 +95,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+# Copilot
+[[plugins]]
+repo = 'github/copilot.vim'
