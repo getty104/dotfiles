@@ -99,3 +99,9 @@ repo = 'prabirshrestha/asyncomplete-lsp.vim'
 # Copilot
 [[plugins]]
 repo = 'github/copilot.vim'
+hook_add = '''
+let g:copilot_filetypes = {
+\   'markdown': v:true,
+\   'gitcommit': v:true
+\ }
+'''
