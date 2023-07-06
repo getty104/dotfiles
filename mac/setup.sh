@@ -50,6 +50,11 @@ echo "cleanup brew..."
 brew cleanup
 
 echo "----------------------------------------------------------------------------"
+echo "Update macOS settings..."
+defaults write -g InitialKeyRepeat -int 11
+defaults write -g KeyRepeat -int 1
+
+echo "----------------------------------------------------------------------------"
 echo "please set up iTerm2"
 echo "please set up git( ssh-key, name, email ) http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github"
 echo "setup karabiner-elements (caps-lock-to-ctrl)"
