@@ -1,5 +1,10 @@
 #!/bin/zsh -eu
 
+echo "----------------------------------------------------------------------------"
+echo "Accept xcode license..."
+sudo xcodebuild -license accept
+echo "----------------------------------------------------------------------------"
+
 if ! type brew >/dev/null 2>&1; then
   echo "----------------------------------------------------------------------------"
   echo "installing brew..."
@@ -11,15 +16,10 @@ echo "brew bundle..."
 brew bundle
 
 echo "----------------------------------------------------------------------------"
-echo "installing zplug..."
-brew install zplug
 
-echo "----------------------------------------------------------------------------"
 echo "Setup tools..."
-
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 ln -sf ~/dotfiles/vimrc ~/.vimrc
-ln -sf ~/dotfiles/ideavimrc ~/.ideavimrc
 mkdir ~/.vim
 mkdir ~/.vim/dein
 ln -sf ~/dotfiles/snippets ~/.vim/snippets
@@ -30,7 +30,6 @@ cd ~
 
 echo "----------------------------------------------------------------------------"
 echo "set up env..."
-brew install anyenv
 anyenv init
 anyenv install rbenv
 source ~/.zshrc
@@ -57,8 +56,7 @@ defaults write -g KeyRepeat -int 1
 echo "----------------------------------------------------------------------------"
 echo "please set up iTerm2"
 echo "please set up git( ssh-key, name, email ) http://monsat.hatenablog.com/entry/generating-ssh-keys-for-github"
-echo "setup karabiner-elements (caps-lock-to-ctrl)"
-echo "setup chrome (vimium React Developer Tool)"
+echo "setup chrome (vimium, React Developer Tool)"
 
 echo "----------------------------------------------------------------------------"
 echo "Success!"
