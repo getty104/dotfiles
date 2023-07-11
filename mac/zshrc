@@ -49,9 +49,6 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
-#TexLive用のPATH
-export PATH="$PATH:/usr/local/texlive/2018/bin/x86_64-darwin"
-
 #openssl用のPATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
