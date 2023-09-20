@@ -192,7 +192,8 @@ filetype plugin indent on
 
 " エイリアス
 command T  tabnew
-command! -nargs=1 TE vert term ++close <args>
+command! -nargs=1 TE vert term <args>
+command! -nargs=1 TEC vert term ++close <args>
 
 " normalキーマッピング
 noremap <C-f> :call CodeFormat()<CR>
