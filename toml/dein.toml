@@ -60,9 +60,6 @@ repo = 'prisma/vim-prisma'
 # language server
 # ----------
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
 let g:lsp_signs_enabled = 1
