@@ -1,0 +1,104 @@
+# 本体の設定
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc'
+build = 'make'
+
+# カラーテーマ
+[[plugins]]
+repo = 'crusoexia/vim-monokai'
+
+# ステータスラインの表示内容強化
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'fugitive#head',
+      \   'filename': 'LightlineFilename'
+      \ },
+      \ }
+
+function! LightlineFilename()
+  let filename = expand('%:P') !=# '' ? expand('%:P') : '[No Name]'
+  return filename
+endfunction
+'''
+
+# インデント可視化
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+let g:indentLine_color_term = 111
+let g:indentLine_color_gui = '#708090'
+'''
+
+# 全角スペースの可視化
+[[plugins]]
+repo = 'thinca/vim-zenspace'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+# シンタックスハイライト
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+hook_add = '''
+let g:polyglot_disabled = ['markdown']
+'''
+
+[[plugins]]
+repo = 'prisma/vim-prisma'
+
+# language server
+# ----------
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+hook_add = '''
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_settings = {
+\  'typescript-language-server': { 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'] },
+\  'elixir-ls': { 'whitelist': ['exs', 'ex'] },
+\ }
+
+noremap gss :LspStatus<CR>
+noremap gsh :LspHover<CR>
+noremap gsf :LspHover<CR>
+noremap gsgd :LspDefinition<CR>
+noremap gspd :LspPeekDefinition<CR>
+noremap gsdf :LspDocumentFormat<CR>
+noremap gsgdc :LspDeclaration<CR>
+noremap gspdc :LspPeekDeclaration<CR>
+noremap gsdd :LspDocumentDiagnostics<CR>
+'''
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = '''
+set completeopt+=preview
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+'''
+
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+# Copilot
+[[plugins]]
+repo = 'github/copilot.vim'
+hook_add = '''
+let g:copilot_filetypes = {
+\   'markdown': v:true,
+\   'gitcommit': v:true
+\ }
+'''

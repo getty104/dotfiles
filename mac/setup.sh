@@ -19,11 +19,17 @@ echo "--------------------------------------------------------------------------
 
 echo "Setup tools..."
 ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
+
 ln -sf ~/dotfiles/vimrc ~/.vimrc
-mkdir ~/.vim
-mkdir ~/.vim/dein
-ln -sf ~/dotfiles/snippets ~/.vim/snippets
-ln -sf ~/dotfiles/toml ~/.vim/dein/toml
+mkdir -p ~/.vim/dein
+ln -sf ~/dotfiles/toml_vim ~/.vim/dein/toml
+
+mkdir -p ~/.config/nvim
+ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
+
+mkdir -p ~/.nvim/dein
+ln -sf ~/dotfiles/toml_nvim ~/.nvim/dein/toml
+
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain
 cd ~
