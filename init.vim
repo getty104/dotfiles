@@ -178,11 +178,6 @@ set noswapfile
 " backupファイルを作成しない
 set nobackup
 
-" ファイルを自動リロード
-" set autoread
-
-" 更新の時間
-" set updatetime=6000
 " ビープ音の停止
 set noerrorbells
 set vb t_vb=
@@ -199,7 +194,17 @@ noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
 noremap r :e!<CR>
-noremap t :ToggleTermToggleAll<CR>
+noremap tm :TM 1<CR>
+noremap t2 :TM 2<CR>
+noremap t3 :TM 3<CR>
+noremap t4 :TM 4<CR>
+noremap t5 :TM 5<CR>
+noremap t6 :TM 6<CR>
+noremap t7 :TM 7<CR>
+noremap t8 :TM 8<CR>
+noremap t9 :TM 9<CR>
+noremap t10 :TM 10<CR>
+noremap ta :ToggleTermToggleAll<CR>
 
 " visualキーマッピング
 vnoremap<C-p> "0p
