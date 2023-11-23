@@ -10,7 +10,7 @@ if has('python3')
   silent! python3 1
 endif
 
-let s:dein_dir = expand('~/.vim/dein')
+let s:dein_dir = expand('~/.nvim/dein')
 let s:toml_dir = s:dein_dir . '/toml/dein.toml'
 let s:lazy_toml_dir = s:dein_dir . '/toml/dein_lazy.toml'
 

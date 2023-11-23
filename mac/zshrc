@@ -125,5 +125,6 @@ alias ga="git add -p"
 alias gc="git commit -v --no-verify"
 alias gp="git push"
 alias be="bundle exec"
+alias vim="nvim"
 
 yes | docker image prune > /dev/null
