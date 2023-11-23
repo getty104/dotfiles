@@ -102,3 +102,10 @@ let g:copilot_filetypes = {
 \   'gitcommit': v:true
 \ }
 '''
+
+# ターミナル設定
+[[plugins]]
+repo =  'akinsho/toggleterm.nvim'
+hook_add = '''
+lua require("toggleterm").setup()
+'''

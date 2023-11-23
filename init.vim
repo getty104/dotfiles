@@ -191,13 +191,18 @@ set vb t_vb=
 filetype plugin indent on
 
 " エイリアス
-command T  tabnew
-command! -nargs=1 TE vert term <args>
-command! -nargs=1 TEC vert term ++close <args>
+command T tabnew
+command -nargs=1 TM <args>ToggleTerm size=50
 
 " normalキーマッピング
 noremap <C-f> :call CodeFormat()<CR>
 noremap <C-y> :%y<CR>
 noremap <ESC><ESC> :noh<CR>
 noremap r :e!<CR>
+noremap t :ToggleTermToggleAll<CR>
+
+" visualキーマッピング
 vnoremap<C-p> "0p
+
+" terminalキーマッピング
+tnoremap <Esc> <C-\><C-n>
