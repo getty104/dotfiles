@@ -210,4 +210,4 @@ noremap ta :ToggleTermToggleAll<CR>
 vnoremap<C-p> "0p
 
 " terminalキーマッピング
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc><Esc> <C-\><C-n>
