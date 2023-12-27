@@ -22,13 +22,10 @@ ln -sf ~/dotfiles/mac/zshrc ~/.zshrc
 
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 mkdir -p ~/.vim/dein
-ln -sf ~/dotfiles/toml_vim ~/.vim/dein/toml
+ln -sf ~/dotfiles/nvim/toml ~/.vim/dein/toml
 
-mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/init.vim ~/.config/nvim/init.vim
-
-mkdir -p ~/.nvim/dein
-ln -sf ~/dotfiles/toml_nvim ~/.nvim/dein/toml
+mkdir -p ~/.config
+ln -sf ~/dotfiles/nvim ~/.config/nvim
 
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain
