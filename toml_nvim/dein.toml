@@ -54,9 +54,6 @@ hook_add = '''
 let g:polyglot_disabled = ['markdown']
 '''
 
-[[plugins]]
-repo = 'prisma/vim-prisma'
-
 # language server
 # ----------
 [[plugins]]
@@ -99,7 +96,8 @@ repo = 'github/copilot.vim'
 hook_add = '''
 let g:copilot_filetypes = {
 \   'markdown': v:true,
-\   'gitcommit': v:true
+\   'gitcommit': v:true,
+\   'yaml': v:true
 \ }
 '''
 

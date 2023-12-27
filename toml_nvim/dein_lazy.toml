@@ -3,6 +3,11 @@
 repo = 'jparise/vim-graphql'
 on_ft = ['graphql']
 
+# Prisma
+[[plugins]]
+repo = 'prisma/vim-prisma'
+on_ft = ['prisma']
+
 # FZF
 [[plugins]]
 repo = 'junegunn/fzf.vim'
