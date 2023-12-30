@@ -36,7 +36,7 @@ zplug load
 # auto-suggestionsの設定
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^e' autosuggest-execute
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#55c500,underline"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=046,underline"
 
 # エディタ設定
 export EDITOR=vim
