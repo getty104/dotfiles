@@ -47,14 +47,6 @@ function RecoveryPosition()
   end
 end
 
--- Autocommand group for checking modified files
-vim.api.nvim_create_augroup("vimrc_checktime", { clear = true })
-vim.api.nvim_create_autocmd("CursorHold", {
-  group = "vimrc_checktime",
-  pattern = "*",
-  command = "checktime",
-})
-
 -- Autocommands for recovery_position and save_handler
 vim.api.nvim_create_augroup("handler", { clear = true })
 vim.api.nvim_create_autocmd("BufReadPost", {
