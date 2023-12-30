@@ -9,9 +9,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup()
-    end,
   },
   {
     "neoclide/coc.nvim",
@@ -30,35 +27,34 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
+    lazy = true,
+    keys = {
+      { "tm", "<Cmd>TM 1<CR>" },
+      { "t2", "<Cmd>TM 2<CR>" },
+      { "t3", "<Cmd>TM 3<CR>" },
+      { "t4", "<Cmd>TM 4<CR>" },
+      { "t5", "<Cmd>TM 5<CR>" },
+      { "t6", "<Cmd>TM 6<CR>" },
+      { "t7", "<Cmd>TM 7<CR>" },
+      { "t8", "<Cmd>TM 8<CR>" },
+      { "t9", "<Cmd>TM 9<CR>" },
+      { "t10", "<Cmd>TM 10<CR>" },
+      { "ta", "<Cmd>ToggleTermToggleAll<CR>" },
+    },
     config = function()
-      require("toggleterm").setup({})
       vim.api.nvim_create_user_command("TM", "<args>ToggleTerm size=40", { nargs = 1 })
-      vim.api.nvim_set_keymap("n", "tm", "<Cmd>TM 1<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t2", "<Cmd>TM 2<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t3", "<Cmd>TM 3<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t4", "<Cmd>TM 4<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t5", "<Cmd>TM 5<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t6", "<Cmd>TM 6<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t7", "<Cmd>TM 7<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t8", "<Cmd>TM 8<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t9", "<Cmd>TM 9<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "t10", "<Cmd>TM 10<CR>", { noremap = true })
-      vim.api.nvim_set_keymap("n", "ta", "<Cmd>ToggleTermToggleAll<CR>", { noremap = true })
     end,
   },
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("fzf-lua").setup({})
-      vim.api.nvim_set_keymap("n", "<C-p>", "<Cmd>FzfLua git_files<CR>", { noremap = true })
-    end,
+    lazy = true,
+    keys = { { "<C-p>", "<Cmd>FzfLua git_files<CR>" } },
   },
   {
     "scrooloose/nerdtree",
-    config = function()
-      vim.api.nvim_set_keymap("n", "<C-e>", "<Cmd>NERDTreeToggle<CR>", { noremap = true })
-    end,
+    keys = { { "<C-e>", "<Cmd>NERDTreeToggle<CR>" } },
+    lazy = true,
   },
   {
     "github/copilot.vim",
@@ -73,10 +69,8 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    config = function()
-      require("ibl").setup({
-        indent = { char = "|" },
-      })
-    end,
+    opts = {
+      indent = { char = "|" },
+    },
   },
 }
