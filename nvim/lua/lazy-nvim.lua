@@ -1,4 +1,4 @@
-return {
+local plugins = {
   {
     "crusoexia/vim-monokai",
     config = function()
@@ -33,7 +33,6 @@ return {
   },
   {
     "akinsho/toggleterm.nvim",
-    lazy = true,
     keys = {
       { "tm", "<Cmd>TM 1<CR>" },
       { "t2", "<Cmd>TM 2<CR>" },
@@ -55,13 +54,11 @@ return {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    lazy = true,
     keys = { { "<C-p>", "<Cmd>FzfLua git_files<CR>" } },
   },
   {
     "scrooloose/nerdtree",
     keys = { { "<C-e>", "<Cmd>NERDTreeToggle<CR>" } },
-    lazy = true,
   },
   {
     "github/copilot.vim",
@@ -91,4 +88,23 @@ return {
       require("socks-copypath").setup()
     end,
   },
+}
+
+return {
+  setup = function()
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not vim.loop.fs_stat(lazypath) then
+      vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable",
+        lazypath,
+      })
+    end
+    vim.opt.rtp:prepend(lazypath)
+
+    require("lazy").setup(plugins)
+  end,
 }
