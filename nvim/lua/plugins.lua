@@ -9,7 +9,6 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    lazy = false,
     config = function()
       require("lualine").setup()
     end,
@@ -46,6 +45,7 @@ return {
       { "ta", "<Cmd>ToggleTermToggleAll<CR>" },
     },
     config = function()
+      require("toggleterm").setup()
       vim.api.nvim_create_user_command("TM", "<args>ToggleTerm size=40", { nargs = 1 })
     end,
   },
