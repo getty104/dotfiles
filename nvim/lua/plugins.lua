@@ -15,11 +15,14 @@ return {
   },
   {
     "neoclide/coc.nvim",
+    lazy = false,
     branch = "release",
+    keys = {
+      { "gsh", "<Cmd>call CocActionAsync('definitionHover')<CR>" },
+      { "gsd", "<Plug>(coc-definition)" },
+      { "gsr", "<Plug>(coc-references)" },
+    },
     config = function()
-      vim.api.nvim_set_keymap("n", "gsd", "<Plug>(coc-definition)", { noremap = true })
-      vim.api.nvim_set_keymap("n", "gsr", "<Plug>(coc-references)", { noremap = true })
-      vim.api.nvim_set_keymap("n", "gsh", "<Cmd>call CocActionAsync('definitionHover')<CR>", { noremap = true })
       vim.g.coc_global_extensions = {
         "coc-json",
         "coc-tsserver",
@@ -76,5 +79,16 @@ return {
     opts = {
       indent = { char = "|" },
     },
+  },
+  {
+    "ohakutsu/socks-copypath.nvim",
+    keys = {
+      { "cf", "<Cmd>CopyFileName<CR>" },
+      { "cp", "<Cmd>CopyPath<CR>" },
+      { "crp", "<Cmd>CopyRelativePath<CR>" },
+    },
+    config = function()
+      require("socks-copypath").setup()
+    end,
   },
 }
