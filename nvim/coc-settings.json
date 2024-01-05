@@ -1,4 +1,5 @@
 {
   "coc.preferences.extensionUpdateCheck": "daily",
-  "git.addGBlameToVirtualText": true
+  "git.addGBlameToVirtualText": true,
+  "solargraph.shell": "zsh"
 }
