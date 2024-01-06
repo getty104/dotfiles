@@ -59,6 +59,9 @@ local plugins = {
   {
     "scrooloose/nerdtree",
     keys = { { "<C-e>", "<Cmd>NERDTreeToggle<CR>" } },
+    config = function()
+      vim.g.NERDTreeShowHidden = 1
+    end,
   },
   {
     "github/copilot.vim",
