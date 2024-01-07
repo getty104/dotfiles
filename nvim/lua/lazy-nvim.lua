@@ -65,7 +65,7 @@ local plugins = {
   },
   {
     "github/copilot.vim",
-    cofig = function()
+    config = function()
       vim.g.copilot_filetypes = {
         markdown = true,
         gitcommit = true,
