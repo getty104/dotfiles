@@ -91,6 +91,9 @@ local plugins = {
       require("socks-copypath").setup()
     end,
   },
+  {
+    "slim-template/vim-slim",
+  },
 }
 
 return {
