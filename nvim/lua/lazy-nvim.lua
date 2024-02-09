@@ -28,6 +28,7 @@ local plugins = {
         "coc-tsserver",
         "coc-solargraph",
         "coc-git",
+        "coc-pyright",
       }
     end,
   },
