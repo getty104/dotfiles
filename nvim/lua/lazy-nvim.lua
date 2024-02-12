@@ -95,6 +95,12 @@ local plugins = {
   {
     "slim-template/vim-slim",
   },
+  {
+    "getty104/air-duster.nvim",
+    config = function()
+      require("air-duster").setup()
+    end,
+  },
 }
 
 return {

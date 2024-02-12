@@ -1,8 +1,8 @@
 local function RemoveDust()
   if vim.bo.filetype ~= "markdown" then
-    vim.api.nvim_exec("%s/\\s\\+$//ge", false)
+    vim.api.nvim_exec("RemoveWhiteSpaces", false)
   end
-  vim.api.nvim_exec("%s/\\t/  /ge", false)
+  vim.api.nvim_exec("RemoveTabs", false)
 end
 
 local function RemoveMergedBranches()
