@@ -22,7 +22,6 @@ vim.o.swapfile = false
 vim.o.backup = false
 vim.o.errorbells = false
 vim.o.visualbell = true
-vim.o.t_vb = ""
 vim.api.nvim_create_user_command("T", "tabnew", {})
 vim.api.nvim_set_keymap("n", "<C-y>", "<Cmd>%y<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<ESC><ESC>", "<Cmd>noh<CR>", { noremap = true })
