@@ -75,6 +75,26 @@ local plugins = {
     end,
   },
   {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      "github/copilot.vim",
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      debug = true,
+    },
+    keys = {
+      {
+        "ccp",
+        function()
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+        end,
+        desc = "CopilotChat - Prompt actions",
+      },
+    },
+  },
+  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {
