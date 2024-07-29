@@ -80,9 +80,48 @@ local plugins = {
       "github/copilot.vim",
       "nvim-lua/plenary.nvim",
     },
-    opts = {
-      debug = true,
-    },
+    config = function()
+      local select = require("CopilotChat.select")
+      require("CopilotChat").setup({
+        debug = true,
+        prompts = {
+          Explain = {
+            prompt = "/COPILOT_EXPLAIN 選択された部分の説明を段落で書いてください。",
+          },
+          Review = {
+            prompt = "/COPILOT_REVIEW 選択されたコードをレビューしてください。",
+            callback = function(response, source)
+            end,
+          },
+          Fix = {
+            prompt = "/COPILOT_GENERATE このコードには問題があります。バグを修正してコードを書き直してください。",
+          },
+          Optimize = {
+            prompt = "/COPILOT_GENERATE 選択されたコードを最適化して、パフォーマンスと読みやすさを向上させてください。",
+          },
+          Docs = {
+            prompt = "/COPILOT_GENERATE 選択された部分にドキュメントコメントを追加してください。",
+          },
+          Tests = {
+            prompt = "/COPILOT_GENERATE コードのテストを生成してください。",
+          },
+          FixDiagnostic = {
+            prompt = "ファイル内の次の診断問題の対処を支援してください:",
+            selection = select.diagnostics,
+          },
+          Commit = {
+            prompt = "変更に対するコミットメッセージを書いてください。commitizenの規約に従い、タイトルは最大50文字にし、メッセージは72文字で折り返してください。メッセージ全体をgitcommitの言語でコードブロックに包んでください。",
+            selection = select.gitdiff,
+          },
+          CommitStaged = {
+            prompt = "変更に対するコミットメッセージを書いてください。commitizenの規約に従い、タイトルは最大50文字にし、メッセージは72文字で折り返してください。メッセージ全体をgitcommitの言語でコードブロックに包んでください。",
+            selection = function(source)
+              return select.gitdiff(source, true)
+            end,
+          },
+        },
+      })
+    end,
     keys = {
       {
         "ccp",
