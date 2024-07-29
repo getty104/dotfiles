@@ -15,7 +15,6 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.smarttab = true
 vim.o.list = true
-vim.o.ambiwidth = "double"
 vim.o.clipboard = "unnamed"
 vim.o.backspace = "indent,eol,start"
 vim.o.swapfile = false
