@@ -140,6 +140,7 @@ local plugins = {
         end,
         desc = "CopilotChat - Quick chat",
       },
+      { "<C-n>", "<Cmd>CopilotChatToggle<CR>" },
     },
   },
   {
