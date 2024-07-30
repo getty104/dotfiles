@@ -90,8 +90,7 @@ local plugins = {
           },
           Review = {
             prompt = "/COPILOT_REVIEW 選択されたコードをレビューしてください。",
-            callback = function(response, source)
-            end,
+            callback = function(response, source) end,
           },
           Fix = {
             prompt = "/COPILOT_GENERATE このコードには問題があります。バグを修正してコードを書き直してください。",
@@ -130,6 +129,16 @@ local plugins = {
           require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
         end,
         desc = "CopilotChat - Prompt actions",
+      },
+      {
+        "ccq",
+        function()
+          local input = vim.fn.input("Quick Chat: ")
+          if input ~= "" then
+            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+          end
+        end,
+        desc = "CopilotChat - Quick chat",
       },
     },
   },
