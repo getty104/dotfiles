@@ -29,8 +29,13 @@ local plugins = {
         "coc-solargraph",
         "coc-git",
         "coc-pyright",
+        "coc-prisma",
       }
     end,
+  },
+  {
+    "prisma/vim-prisma",
+    ft = { "prisma" },
   },
   {
     "akinsho/toggleterm.nvim",
@@ -84,6 +89,7 @@ local plugins = {
       local select = require("CopilotChat.select")
       require("CopilotChat").setup({
         debug = true,
+        context = "buffers",
         prompts = {
           Explain = {
             prompt = "/COPILOT_EXPLAIN 選択された部分の説明を段落で書いてください。",
@@ -117,6 +123,12 @@ local plugins = {
             selection = function(source)
               return select.gitdiff(source, true)
             end,
+          },
+        },
+        mappings = {
+          complete = {
+            detail = "Use @<C-e> or /<C-e> for options.",
+            insert = "<C-e>",
           },
         },
       })
