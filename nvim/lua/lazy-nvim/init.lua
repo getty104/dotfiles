@@ -32,7 +32,10 @@ return {
       checker = { enabled = true },
       default = {
         lazy = true,
-      }
+      },
+      rocks = {
+        enabled = false,
+      },
     })
   end
 }
