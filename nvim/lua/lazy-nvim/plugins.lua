@@ -175,6 +175,7 @@ return {
   },
   {
     "slim-template/vim-slim",
+    ft = { "slim" },
   },
   {
     "getty104/air-duster.nvim",
