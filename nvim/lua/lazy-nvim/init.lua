@@ -30,9 +30,6 @@ return {
       },
       -- automatically check for plugin updates
       checker = { enabled = true },
-      default = {
-        lazy = true,
-      },
       rocks = {
         enabled = false,
       },

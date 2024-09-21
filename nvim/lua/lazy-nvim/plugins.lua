@@ -7,12 +7,17 @@ return {
     end,
   },
   {
+    "ibhagwan/fzf-lua",
+    keys = { { "<C-p>", "<Cmd>FzfLua git_files<CR>" } },
+  },
+  {
     "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup()
     end,
   },
+   -- dependencies for "ibhagwan/fzf-lua", "nvim-lualine/lualine.nvim"
+  { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "neoclide/coc.nvim",
     lazy = false,
@@ -58,11 +63,6 @@ return {
     end,
   },
   {
-    "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    keys = { { "<C-p>", "<Cmd>FzfLua git_files<CR>" } },
-  },
-  {
     "scrooloose/nerdtree",
     keys = { { "<C-e>", "<Cmd>NERDTreeToggle<CR>" } },
     config = function()
@@ -81,10 +81,6 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      "github/copilot.vim",
-      "nvim-lua/plenary.nvim",
-    },
     config = function()
       local select = require("CopilotChat.select")
       require("CopilotChat").setup({
@@ -155,6 +151,8 @@ return {
       { "<C-n>", "<Cmd>CopilotChatToggle<CR>" },
     },
   },
+  -- dependencies for "CopilotC-Nvim/CopilotChat.nvim"
+  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
