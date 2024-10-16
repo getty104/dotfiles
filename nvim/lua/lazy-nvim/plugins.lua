@@ -43,6 +43,13 @@ return {
     ft = { "prisma" },
   },
   {
+    'wuelnerdotexe/vim-astro',
+    ft = { 'astro' },
+    config = function()
+      vim.g.astro_typescript = 'enable'
+    end,
+  },
+  {
     "akinsho/toggleterm.nvim",
     keys = {
       { "tm", "<Cmd>TM 1<CR>" },
