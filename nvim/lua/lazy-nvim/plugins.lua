@@ -16,7 +16,7 @@ return {
       require("lualine").setup()
     end,
   },
-   -- dependencies for "ibhagwan/fzf-lua", "nvim-lualine/lualine.nvim"
+  -- dependencies for "ibhagwan/fzf-lua", "nvim-lualine/lualine.nvim"
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "neoclide/coc.nvim",
@@ -43,11 +43,15 @@ return {
     ft = { "prisma" },
   },
   {
-    'wuelnerdotexe/vim-astro',
-    ft = { 'astro' },
+    "wuelnerdotexe/vim-astro",
+    ft = { "astro" },
     config = function()
-      vim.g.astro_typescript = 'enable'
+      vim.g.astro_typescript = "enable"
     end,
+  },
+  {
+    "google/vim-jsonnet",
+    ft = { "jsonnet" },
   },
   {
     "akinsho/toggleterm.nvim",

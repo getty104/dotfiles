@@ -34,5 +34,5 @@ return {
         enabled = false,
       },
     })
-  end
+  end,
 }

@@ -1,2 +1,2 @@
 stylua init.lua
-stylua lua/*.lua
+stylua lua/**/*.lua
