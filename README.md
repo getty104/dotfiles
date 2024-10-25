@@ -1,2 +1,1 @@
-# setting-files
-設定ファイルを入れておく。適宜おくディレクトリは調べる
+# dotfiles
