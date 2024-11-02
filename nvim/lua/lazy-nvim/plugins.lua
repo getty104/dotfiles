@@ -20,7 +20,6 @@ return {
   { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "neoclide/coc.nvim",
-    lazy = false,
     branch = "release",
     keys = {
       { "gsh", "<Cmd>call CocActionAsync('definitionHover')<CR>" },
@@ -39,19 +38,18 @@ return {
     end,
   },
   {
-    "prisma/vim-prisma",
-    ft = { "prisma" },
-  },
-  {
-    "wuelnerdotexe/vim-astro",
-    ft = { "astro" },
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
     config = function()
-      vim.g.astro_typescript = "enable"
+      local configs = require("nvim-treesitter.configs")
+
+      configs.setup({
+        ensure_installed = "all",
+        sync_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+      })
     end,
-  },
-  {
-    "google/vim-jsonnet",
-    ft = { "jsonnet" },
   },
   {
     "akinsho/toggleterm.nvim",
