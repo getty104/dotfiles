@@ -95,6 +95,7 @@ return {
       require("CopilotChat").setup({
         debug = true,
         context = "buffers",
+        model = "claude-3.5-sonnet",
         prompts = {
           Explain = {
             prompt = "/COPILOT_EXPLAIN 選択された部分の説明を段落で書いてください。",
