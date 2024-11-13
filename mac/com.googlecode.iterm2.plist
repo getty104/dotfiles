@@ -4,6 +4,8 @@
 <dict>
 	<key>ActiveUpdateCadence</key>
 	<real>60</real>
+	<key>AllowClipboardAccess</key>
+	<true/>
 	<key>AnimateGraphStatusBarComponents</key>
 	<true/>
 	<key>AppleAntiAliasingThreshold</key>
@@ -16,6 +18,8 @@
 	<integer>1</integer>
 	<key>AppleWindowTabbingMode</key>
 	<string>manual</string>
+	<key>CopyLastNewline</key>
+	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>0EF7EA4F-9EE8-45B1-B179-C50919DFF4B8</string>
 	<key>DisableAdaptiveFrameRateInInteractiveApps</key>
