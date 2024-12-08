@@ -90,6 +90,7 @@ return {
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "main",
     config = function()
       local select = require("CopilotChat.select")
       require("CopilotChat").setup({
