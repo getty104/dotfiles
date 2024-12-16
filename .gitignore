@@ -1,3 +1,4 @@
 mac/Brewfile
 mac/Brewfile.lock.json
 nvim/lazy-lock.json
+nvim/.stylua.toml
