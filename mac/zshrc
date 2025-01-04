@@ -116,6 +116,7 @@ fi
 #alias
 alias dc="docker compose"
 alias dcr="docker compose run --rm"
+alias dcrs="docker compose run --rm --service-ports"
 alias oa="open -a"
 alias og="oa Google\ Chrome"
 alias oh="open https://github.com"
