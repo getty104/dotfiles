@@ -21,6 +21,7 @@ return {
   {
     "neoclide/coc.nvim",
     branch = "release",
+    lazy = false,
     keys = {
       { "gsh", "<Cmd>call CocActionAsync('definitionHover')<CR>" },
       { "gsd", "<Plug>(coc-definition)" },
