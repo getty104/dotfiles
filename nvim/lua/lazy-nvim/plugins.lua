@@ -92,11 +92,12 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     branch = "main",
+    build = "make tiktoken",
     config = function()
       local select = require("CopilotChat.select")
       require("CopilotChat").setup({
         debug = true,
-        model = "o1",
+        model = "o3-mini",
         mappings = {
           complete = {
             detail = "Use @<C-e> or /<C-e> for options.",
