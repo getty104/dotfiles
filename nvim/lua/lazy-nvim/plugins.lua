@@ -9,15 +9,19 @@ return {
   {
     "ibhagwan/fzf-lua",
     keys = { { "<C-p>", "<Cmd>FzfLua git_files<CR>" } },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
   },
   {
     "nvim-lualine/lualine.nvim",
     config = function()
       require("lualine").setup()
     end,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
   },
-  -- dependencies for "ibhagwan/fzf-lua", "nvim-lualine/lualine.nvim"
-  { "nvim-tree/nvim-web-devicons", lazy = true },
   {
     "neoclide/coc.nvim",
     branch = "release",
@@ -127,9 +131,10 @@ return {
       },
       { "<C-n>", "<Cmd>CopilotChatToggle<CR>" },
     },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
   },
-  -- dependencies for "CopilotC-Nvim/CopilotChat.nvim"
-  { "nvim-lua/plenary.nvim", lazy = true },
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
