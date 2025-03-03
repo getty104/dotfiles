@@ -94,43 +94,31 @@ return {
     end,
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    build = "make tiktoken",
+    "olimorris/codecompanion.nvim",
+    lazy = false,
+    keys = {
+      { "<C-n>", "<Cmd>CodeCompanionChat Toggle<CR>" },
+      { "<C-a>", "<Cmd>CodeCompanionActions<CR>" },
+    },
     config = function()
-      local select = require("CopilotChat.select")
-      require("CopilotChat").setup({
-        debug = true,
-        model = "o3-mini",
-        mappings = {
-          complete = {
-            detail = "Use @<C-e> or /<C-e> for options.",
-            insert = "<C-e>",
+      require("codecompanion").setup({
+        strategies = {
+          chat = {
+            adapter = "copilot",
           },
+          inline = {
+            adapter = "copilot",
+          },
+          agent = {
+            adapter = "copilot",
+          },
+        },
+        opts = {
+          language = "Japanese",
+          log_level = "INFO",
         },
       })
     end,
-    keys = {
-      {
-        "ccp",
-        function()
-          local actions = require("CopilotChat.actions")
-          require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
-        end,
-        desc = "CopilotChat - Prompt actions",
-      },
-      {
-        "ccq",
-        function()
-          local input = vim.fn.input("Quick Chat: ")
-          if input ~= "" then
-            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-          end
-        end,
-        desc = "CopilotChat - Quick chat",
-      },
-      { "<C-n>", "<Cmd>CopilotChatToggle<CR>" },
-    },
     dependencies = {
       "nvim-lua/plenary.nvim",
     },
