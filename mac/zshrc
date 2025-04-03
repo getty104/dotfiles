@@ -127,4 +127,6 @@ alias gp="git push"
 alias be="bundle exec"
 alias vim="nvim"
 
-yes | docker image prune > /dev/null
+yes | docker system prune > /dev/null
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
