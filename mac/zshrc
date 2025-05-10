@@ -127,6 +127,10 @@ alias gp="git push"
 alias be="bundle exec"
 alias vim="nvim"
 
-yes | docker system prune > /dev/null
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(~/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
 
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+yes | docker system prune > /dev/null
