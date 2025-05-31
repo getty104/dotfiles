@@ -6,7 +6,7 @@ local function RemoveDust()
 end
 
 local function RemoveMergedBranches()
-  vim.fn.system({ "git", "branch", "-d", "$(git branch --merged | grep -v main | grep -v master | grep -v '*')" })
+  vim.fn.system("git dm")
 end
 
 local function BeforeSaveHandler()

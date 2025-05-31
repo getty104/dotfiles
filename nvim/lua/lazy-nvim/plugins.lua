@@ -122,22 +122,27 @@ return {
     end,
   },
   {
-    "greggh/claude-code.nvim",
-    keys = { { "<C-n>", "<Cmd>ClaudeCode<CR>" } },
+    "coder/claudecode.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for git operations
+      "folke/snacks.nvim", -- Optional dependency for enhanced terminal
     },
-    config = function()
-      require("claude-code").setup({
-        command = "claude --dangerously-skip-permissions",
-        window = {
-          split_ratio = 0.3, -- Percentage of screen for the terminal window (height for horizontal, width for vertical splits)
-          position = "vertical", -- Position of the window: "botright", "topleft", "vertical", "rightbelow vsplit", etc.
-          enter_insert = true, -- Whether to enter insert mode when opening Claude Code
-          hide_numbers = true, -- Hide line numbers in the terminal window
-          hide_signcolumn = true, -- Hide the sign column in the terminal window
-        },
-      })
-    end,
+    opts = {
+      -- Configuration for claudecode main
+      terminal_cmd = "claude --dangerously-skip-permissions",
+
+      -- Configuration for the interactive terminal:
+      terminal = {
+        split_side = "right", -- "left" or "right"
+        split_width_percentage = 0.3, -- 0.0 to 1.0
+        provider = "snacks", -- "snacks" or "native"
+        show_native_term_exit_tip = true, -- Show tip for Ctrl-\\ Ctrl-N
+      },
+    },
+    -- The plugin will call require("claudecode").setup(opts)
+    config = true,
+    keys = {
+      { "<C-n>", "<Cmd>ClaudeCode<CR>" },
+      { "<leader>ak", "<Cmd>ClaudeCodeSend<CR>", mode = { "v" }, desc = "Send to Claude Code" },
+    },
   },
 }
