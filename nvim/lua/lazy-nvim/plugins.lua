@@ -128,7 +128,7 @@ return {
     },
     opts = {
       -- Configuration for claudecode main
-      terminal_cmd = "claude --dangerously-skip-permissions",
+      terminal_cmd = "~/.claude/local/claude --dangerously-skip-permissions",
 
       -- Configuration for the interactive terminal:
       terminal = {

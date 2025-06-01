@@ -134,3 +134,5 @@ compinit
 # End of Docker CLI completions
 
 yes | docker system prune > /dev/null
+
+alias claude="~/.claude/local/claude"
