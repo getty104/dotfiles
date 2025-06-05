@@ -27,6 +27,10 @@ ln -sf ~/dotfiles/nvim/toml ~/.vim/dein/toml
 mkdir -p ~/.config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 
+mkdir -p ~/.claude
+ln -sf ~/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md
+ln -sf ~/dotfiles/claude/commands ~/.claude/commands
+
 git secrets --register-aws --global
 git config --global credential.helper osxkeychain
 cd ~
