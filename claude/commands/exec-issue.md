@@ -7,4 +7,8 @@ gh issue view #$ARGUMENTS でGitHubのIssueの内容を確認し、タスクの�
 4. Issueの内容を実現するために必要なタスクをTDD（テスト駆動開発）に基づいて遂行する
 6. テストとLintを実行し、すべてのテストが通ることを確認する
 7. コミットを適切な粒度で作成する
-8. PRを作成する。なお、PRのdescriptionには`Closes #$ARGUMENTS`と冒頭に記載すること
+8. 以下のルールに従ってPRを作成する
+    - PRのdescriptionのテンプレートは @.github/PULL_REQUEST_TEMPLATE.md を参照し、それに従うこと
+    - PRのdescriptionのテンプレート内でコメントアウトされている箇所は必ず削除すること
+    - PRのdescriptionには`Closes #$ARGUMENTS`と記載すること
+9. `afplay /System/Library/Sounds/Funk.aiff` を実行してタスク完了を通知する
