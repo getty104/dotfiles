@@ -26,6 +26,22 @@
 	<false/>
 	<key>ForceAntialiasingOnRetina</key>
 	<false/>
+	<key>GlobalKeyMap</key>
+	<dict>
+		<key>0xd-0x20000-0x24</key>
+		<dict>
+			<key>Action</key>
+			<integer>12</integer>
+			<key>Keycode</key>
+			<integer>13</integer>
+			<key>Modifiers</key>
+			<integer>131072</integer>
+			<key>Text</key>
+			<string>\n</string>
+			<key>Version</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
 	<key>Hotkey</key>
@@ -597,7 +613,7 @@
 			<key>Rows</key>
 			<integer>30</integer>
 			<key>Screen</key>
-			<integer>-2</integer>
+			<integer>1</integer>
 			<key>Scrollback Lines</key>
 			<integer>0</integer>
 			<key>Scrollback in Alternate Screen</key>
@@ -622,6 +638,12 @@
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
+			<key>Send Idle Alert</key>
+			<false/>
+			<key>Send New Output Alert</key>
+			<false/>
+			<key>Send Terminal Generated Alerts</key>
+			<true/>
 			<key>Shortcut</key>
 			<string></string>
 			<key>Show Status Bar</key>
@@ -629,7 +651,7 @@
 			<key>Silence Bell</key>
 			<true/>
 			<key>Space</key>
-			<integer>-1</integer>
+			<integer>0</integer>
 			<key>Status Bar Layout</key>
 			<dict>
 				<key>advanced configuration</key>
