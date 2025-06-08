@@ -31,3 +31,6 @@
         - `npm run test:unit`
         - `docker compose run --rm app npm run test:e2e`
     - エラーが出なくなるまでコードを修正してください。
+
+## タスク完了後の通知
+- タスク完了後、待機状態に戻る前に `afplay /System/Library/Sounds/Funk.aiff` を実行してください
