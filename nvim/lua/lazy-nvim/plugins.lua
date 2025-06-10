@@ -135,7 +135,6 @@ return {
         split_side = "right", -- "left" or "right"
         split_width_percentage = 0.3, -- 0.0 to 1.0
         provider = "snacks", -- "snacks" or "native"
-        show_native_term_exit_tip = true, -- Show tip for Ctrl-\\ Ctrl-N
       },
     },
     -- The plugin will call require("claudecode").setup(opts)
