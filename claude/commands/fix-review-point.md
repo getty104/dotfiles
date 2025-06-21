@@ -7,7 +7,7 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 3. 指摘内容を実現するために必要なタスクをTDD（テスト駆動開発）に基づいて遂行する
 4. テストとLintを実行し、すべてのテストが通ることを確認する
 5. コミットを適切な粒度で作成する
-6. 修正内容をすでに作成している適切なコミットにsquashする
+6. 修正内容をすでに作成している適切なコミットにsquashし、pushする
 7. PRのdescriptionを更新する
 8. `afplay /System/Library/Sounds/Funk.aiff` を実行してタスク完了を通知する
 
@@ -15,10 +15,15 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 以下のコマンドでResolveしていないレビューコメントを取得できます。
 
 ```bash
-gh api graphql -f query='
-query FetchReviewComments($owner: String!, $repo: String!, $number: Int!) {
-  repository(owner: $owner, name: $repo) {
-    pullRequest(number: $number) {
+OWNER_REPO=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
+OWNER=$(echo $OWNER_REPO | cut -d'/' -f1)
+REPO=$(echo $OWNER_REPO | cut -d'/' -f2)
+PR_NUMBER=$(gh pr view --json number --jq '.number')
+
+gh api graphql -f query="
+query {
+  repository(owner: \"${OWNER}\", name: \"${REPO}\") {
+    pullRequest(number: ${PR_NUMBER}) {
       number
       title
       url
@@ -57,11 +62,7 @@ query FetchReviewComments($owner: String!, $repo: String!, $number: Int!) {
       }
     }
   }
-}' \
--f owner="OWNER" \
--f repo="REPO" \
--F number="PR_NUMBER" \
---jq '
+}" --jq '
   .data.repository.pullRequest as $pr |
   {
     pr_number: $pr.number,
@@ -91,8 +92,3 @@ query FetchReviewComments($owner: String!, $repo: String!, $number: Int!) {
   }
 '
 ```
-
-OWNER, REPO, PR_NUMBERは以下のコマンドで取得して下さい。
-
-OWNER/REPO: `gh repo view --json nameWithOwner --jq '.nameWithOwner'`
-PR_NUMBER: `gh pr view --json number --jq '.number'`
