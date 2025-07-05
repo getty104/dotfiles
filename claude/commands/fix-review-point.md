@@ -9,7 +9,6 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 5. コミットを適切な粒度で作成する
 6. 修正内容をすでに作成している適切なコミットにsquashし、pushする
 7. PRのdescriptionを更新する
-8. `afplay /System/Library/Sounds/Funk.aiff` を実行してタスク完了を通知する
 
 ## ghコマンド
 以下のコマンドでResolveしていないレビューコメントを取得できます。
@@ -31,7 +30,7 @@ query {
       author {
         login
       }
-      reviewRequests(first: 20) {
+      reviewRequests(first: 100) {
         nodes {
           requestedReviewer {
             ... on User {
@@ -40,14 +39,14 @@ query {
           }
         }
       }
-      reviewThreads(last: 20) {
+      reviewThreads(last: 100) {
         edges {
           node {
             isResolved
             isOutdated
             path
             line
-            comments(last: 20) {
+            comments(last: 100) {
               nodes {
                 author {
                   login
@@ -73,7 +72,7 @@ query {
     requested_reviewers: [.data.repository.pullRequest.reviewRequests.nodes[].requestedReviewer.login],
     unresolved_threads: [
       $pr.reviewThreads.edges[] |
-      select(.node.isResolved == false) |
+      select(.node.isResolved == false and .node.isOutdated == false) |
       {
         path: .node.path,
         line: .node.line,

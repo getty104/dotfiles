@@ -11,4 +11,3 @@ gh issue view $ARGUMENTS でGitHubのIssueの内容を確認し、タスクの�
     - PRのdescriptionのテンプレートは @.github/PULL_REQUEST_TEMPLATE.md を参照し、それに従うこと
     - PRのdescriptionのテンプレート内でコメントアウトされている箇所は必ず削除すること
     - PRのdescriptionには`Closes #$ARGUMENTS`と記載すること
-9. `afplay /System/Library/Sounds/Funk.aiff` を実行してタスク完了を通知する
