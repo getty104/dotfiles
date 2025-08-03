@@ -3,6 +3,7 @@ GitHubのIssueの内容を確認し、非同期でClaude Codeを実行する処�
 
 ## git-worktreeの準備
 以下のステップでgit-worktreeを準備してください。
+
 1. !`git checkout main`
 2. !`git pull origin main`
 3. !`mkdir -p .git/worktrees`
@@ -10,10 +11,10 @@ GitHubのIssueの内容を確認し、非同期でClaude Codeを実行する処�
 5. !`cp .env .git/worktrees/claude-issue-$ARGUMENTS/.env`
 
 ## Claude Codeの非同期実行
-以下のコマンドを実行して、Claude Codeを非同期で実行してください。
-!`cd .git/worktrees/claude-issue-$ARGUMENTS`
+以下の処理を実行して、Claude Codeを非同期で実行してください。
 
 !```
+cd .git/worktrees/claude-issue-$ARGUMENTS
 ( { claude --dangerously-skip-permissions -p "
 !`gh issue view $ARGUMENTS` でGitHubのIssueの内容を確認し、タスクの遂行を行なってください。
 タスクは以下の手順で進めてください。
