@@ -1,4 +1,4 @@
-gh issue view $ARGUMENTS でGitHubのIssueの内容を確認し、非同期でclaudeを実行する処理を行なってください。
+GitHubのIssueの内容を確認し、非同期でClaude Codeを実行する処理を行なってください。
 実行する処理のステップは以下のとおりです。
 
 ## git-worktreeの準備
@@ -9,12 +9,13 @@ gh issue view $ARGUMENTS でGitHubのIssueの内容を確認し、非同期でcl
 4. !`git worktree add .git/worktrees/claude-issue-$ARGUMENTS -b claude-issue-$ARGUMENTS`
 5. !`cp .env .git/worktrees/claude-issue-$ARGUMENTS/.env`
 
-## claudeの非同期実行
-以下のコマンドを実行して、claudeを非同期で実行してください。
+## Claude Codeの非同期実行
+以下のコマンドを実行して、Claude Codeを非同期で実行してください。
 !`cd .git/worktrees/claude-issue-$ARGUMENTS`
+
 !```
-claude -p "
-gh issue view $ARGUMENTS でGitHubのIssueの内容を確認し、タスクの遂行を行なってください。
+( { claude --dangerously-skip-permissions -p "
+!`gh issue view $ARGUMENTS` でGitHubのIssueの内容を確認し、タスクの遂行を行なってください。
 タスクは以下の手順で進めてください。
 
 1. Issueに記載されている内容を理解する
@@ -25,5 +26,5 @@ gh issue view $ARGUMENTS でGitHubのIssueの内容を確認し、タスクの�
     - PRのdescriptionのテンプレートは @.github/PULL_REQUEST_TEMPLATE.md を参照し、それに従うこと
     - PRのdescriptionのテンプレート内でコメントアウトされている箇所は必ず削除すること
     - PRのdescriptionには`Closes #$ARGUMENTS`と記載すること
-" &
+" } &; ) > /dev/null
 ```

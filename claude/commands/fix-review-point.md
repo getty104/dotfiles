@@ -13,7 +13,7 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 ## ghコマンド
 以下のコマンドでResolveしていないレビューコメントを取得できます。
 
-```bash
+!```
 OWNER_REPO=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
 OWNER=$(echo $OWNER_REPO | cut -d'/' -f1)
 REPO=$(echo $OWNER_REPO | cut -d'/' -f2)
