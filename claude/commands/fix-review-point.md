@@ -1,8 +1,23 @@
 Resolveしていないレビューコメントの指摘内容へ対応して下さい。
+実行する処理のステップは以下のとおりです。
 
-## 進め方の手順
+## git-worktreeの準備
+以下のステップでgit-worktreeを準備してください。
 
-1. 次項の記載のコマンドを用いて、Resolveしていないレビューコメントを確認する
+1. `git checkout main`
+2. `git pull origin main`
+3. `git fetch`
+4. `mkdir -p .git/worktrees`
+5. `WORKTREE_NAME=$(echo "$ARGUMENTS" | tr '/' '-')`でworktree名を準備する
+6. `git worktree list`で`$WORKTREE_NAME`という名前のworktreeが存在するかを確認する
+7. worktreeが存在しない場合は、`git worktree add .git/worktrees/$WORKTREE_NAME -b $ARGUMENTS` で新しいworktreeを作成する
+    - `.env`ファイルを作成したworktreeにコピーする
+8. `cd .git/worktrees/$WORKTREE_NAME`で作成したworktreeに移動する
+
+## レビューコメントの確認とタスクの遂行
+以下の手順でタスクを遂行してください。
+
+1. 「レビューコメントの確認方法」に記載のコマンドを用いて、Resolveしていないレビューコメントを確認する
 2. Resolveしていないレビューコメントの内容を理解する
 3. 指摘内容を実現するために必要なタスクをTDD（テスト駆動開発）に基づいて遂行する
 4. テストとLintを実行し、すべてのテストが通ることを確認する
@@ -10,10 +25,10 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 6. 修正内容をすでに作成している適切なコミットにsquashし、pushする
 7. PRのdescriptionを確認し、必要があればdescriptionを修正する
 
-## ghコマンド
+### レビューコメントの確認方法
 以下のコマンドでResolveしていないレビューコメントを取得できます。
 
-!```
+```
 OWNER_REPO=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
 OWNER=$(echo $OWNER_REPO | cut -d'/' -f1)
 REPO=$(echo $OWNER_REPO | cut -d'/' -f2)
