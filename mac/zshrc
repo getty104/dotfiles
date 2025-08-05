@@ -126,6 +126,8 @@ alias gc="git commit -v --no-verify"
 alias gp="git push"
 alias be="bundle exec"
 alias vim="nvim"
+alias claude="~/.claude/local/claude"
+alias cc="claude --dangerously-skip-permissions"
 
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(~/.docker/completions $fpath)
@@ -134,5 +136,3 @@ compinit
 # End of Docker CLI completions
 
 yes | docker system prune > /dev/null
-
-alias claude="~/.claude/local/claude"
