@@ -7,15 +7,19 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 1. `git checkout main`
 2. `git pull origin main`
 3. `git fetch`
-4. `mkdir -p .git/worktrees`
+4. `mkdir -p .git-worktrees`
 5. `WORKTREE_NAME=$(echo "$ARGUMENTS" | tr '/' '-')`でworktree名を準備する
 6. `git worktree list`で`$WORKTREE_NAME`という名前のworktreeが存在するかを確認する
-7. worktreeが存在しない場合は、`git worktree add .git/worktrees/$WORKTREE_NAME -b $ARGUMENTS` で新しいworktreeを作成する
+7. worktreeが存在しない場合は、`git worktree add .git-worktrees/$WORKTREE_NAME $ARGUMENTS` で新しいworktreeを作成する
     - `.env`ファイルを作成したworktreeにコピーする
-8. `cd .git/worktrees/$WORKTREE_NAME`で作成したworktreeに移動する
+8. 作成したworktreeに移動するために、`cd .git-worktrees/$WORKTREE_NAME`を実行する
+9. 環境ごとに必要なセットアップ(nodeであればnpm installなど)を実行して、必要なパッケージをインストールする
 
 ## レビューコメントの確認とタスクの遂行
 以下の手順でタスクを遂行してください。
+なお、タスクはすべて作成したworktree内で行います。
+作成したworktree以外の場所で作業を行わず、コードの変更も行わないでください。
+`cd`コマンドを利用する場合は`pwd`コマンドで現在のディレクトリを確認し、作成したworktree内であることを確認してください。
 
 1. 「レビューコメントの確認方法」に記載のコマンドを用いて、Resolveしていないレビューコメントを確認する
 2. Resolveしていないレビューコメントの内容を理解する
@@ -28,7 +32,7 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 ### レビューコメントの確認方法
 以下のコマンドでResolveしていないレビューコメントを取得できます。
 
-```
+!```
 OWNER_REPO=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
 OWNER=$(echo $OWNER_REPO | cut -d'/' -f1)
 REPO=$(echo $OWNER_REPO | cut -d'/' -f2)
