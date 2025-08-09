@@ -28,3 +28,4 @@ GitHubのIssueの内容を確認し、タスクを実行する処理を行なっ
     - PRのdescriptionのテンプレートは @.github/PULL_REQUEST_TEMPLATE.md を参照し、それに従うこと
     - PRのdescriptionのテンプレート内でコメントアウトされている箇所は必ず削除すること
     - PRのdescriptionには`Closes #$ARGUMENTS`と記載すること
+6. `docker compose down`を実行して、使用したコンテナを停止する
