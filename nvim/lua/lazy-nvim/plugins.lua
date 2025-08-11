@@ -8,7 +8,7 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
-    keys = { { "<C-p>", "<Cmd>FzfLua files<CR>" } },
+    keys = { { "<C-p>", "<Cmd>FzfLua git_files<CR>" } },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
