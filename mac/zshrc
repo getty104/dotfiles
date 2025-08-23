@@ -137,7 +137,7 @@ function gw() {
     return 1
   fi
 
-  if git branch --list | grep -x -q "$branch_name"; then
+  if git branch --list | grep -x -q "  $branch_name"; then
     echo "Branch '$branch_name' exists."
     git worktree add .git-worktrees/$branch_name $branch_name
     return 0
