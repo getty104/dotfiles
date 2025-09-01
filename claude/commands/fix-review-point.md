@@ -13,9 +13,8 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 7. worktreeが存在しない場合は、`git worktree add .git-worktrees/$WORKTREE_NAME $ARGUMENTS` で新しいworktreeを作成する
     - `.env`ファイルを作成したworktreeにコピーする
 8. 作成したworktreeに移動するために、`cd .git-worktrees/$WORKTREE_NAME`を実行する
-9. 新規でworktreeを作成した場合は、以下の処理を行う
-    - 移動したworktree内でSerenaのオンボーディングを行い、インデックスを作成する
-    - 環境ごとに必要なセットアップ(nodeであればnpm installなど)を実行して、必要なパッケージをインストールする
+9. 移動したworktree内でSerenaのアクティベートとオンボーディングを実施する
+10. 環境ごとに必要なセットアップ(nodeであればnpm installなど)を実行して、必要なパッケージをインストールする
 
 ## レビューコメントの確認とタスクの遂行
 以下の手順でタスクを遂行してください。
