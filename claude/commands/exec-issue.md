@@ -12,7 +12,7 @@ GitHubのIssueの内容を確認し、タスクを実行する処理を行なっ
     - ブランチ名には`/`を含めないでください
 5. `.env`ファイルを作成したworktreeにコピーする
 6. `cd`コマンドで作成したworktreeに移動する
-7. 移動したworktree内でSerenaのアクティベートとオンボーディングを実施する
+7. 移動したworktree内でSerenaのアクティベートを行い、`cp -r ../../.serena/memories .serena/memories`を実行後、オンボーディングを実施する
 8. 環境ごとに必要なセットアップ(nodeであればnpm installなど)を実行して、必要なパッケージをインストールする
 
 ## Issueの内容確認とタスク遂行
