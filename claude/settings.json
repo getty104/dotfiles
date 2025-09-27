@@ -17,12 +17,12 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
   },
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); basename_dir=$(basename \"$current_dir\"); printf \"$(whoami)@$(hostname -s):$basename_dir\""
+  },
   "env": {
     "MAX_THINKING_TOKENS": "31999",
-    "CLAUDE_CODE_ENABLE_TELEMETRY": false,
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": true,
-    "DISABLE_ERROR_REPORTING": true,
-    "DISABLE_TELEMETRY": true,
-    "DISABLE_MICROCOMPACT": true
   }
 }
