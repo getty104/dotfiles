@@ -41,8 +41,15 @@ OWNER=$(echo $OWNER_REPO | cut -d'/' -f1)
 REPO=$(echo $OWNER_REPO | cut -d'/' -f2)
 PR_NUMBER=$(gh pr view --json number --jq '.number')
 
-gh api graphql -f query="
-query {
+fetch_all_review_threads() {
+  local cursor="null"
+  local has_next_page=true
+  local temp_dir=$(mktemp -d)
+  local page_num=0
+
+  while [ "$has_next_page" = "true" ]; do
+    gh api graphql -f query="
+query(\$cursor: String) {
   repository(owner: \"${OWNER}\", name: \"${REPO}\") {
     pullRequest(number: ${PR_NUMBER}) {
       number
@@ -61,7 +68,11 @@ query {
           }
         }
       }
-      reviewThreads(last: 100) {
+      reviewThreads(first: 100, after: \$cursor) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
         edges {
           node {
             isResolved
@@ -83,33 +94,45 @@ query {
       }
     }
   }
-}" --jq '
-  .data.repository.pullRequest as $pr |
-  {
-    pr_number: $pr.number,
-    title: $pr.title,
-    url: $pr.url,
-    state: $pr.state,
-    author: $pr.author.login,
-    requested_reviewers: [.data.repository.pullRequest.reviewRequests.nodes[].requestedReviewer.login],
-    unresolved_threads: [
-      $pr.reviewThreads.edges[] |
-      select(.node.isResolved == false and .node.isOutdated == false) |
-      {
-        path: .node.path,
-        line: .node.line,
-        is_outdated: .node.isOutdated,
-        comments: [
-          .node.comments.nodes[] |
-          {
-            author: .author.login,
-            body: .body,
-            url: .url,
-            created_at: .createdAt
-          }
-        ]
-      }
-    ]
-  }
-'
+}" -f cursor="$cursor" > "${temp_dir}/page_${page_num}.json"
+
+    has_next_page=$(jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.hasNextPage' "${temp_dir}/page_${page_num}.json")
+    cursor=$(jq -r '.data.repository.pullRequest.reviewThreads.pageInfo.endCursor' "${temp_dir}/page_${page_num}.json")
+    page_num=$((page_num + 1))
+  done
+
+  jq -s '
+    .[0].data.repository.pullRequest as $first_pr |
+    {
+      pr_number: $first_pr.number,
+      title: $first_pr.title,
+      url: $first_pr.url,
+      state: $first_pr.state,
+      author: $first_pr.author.login,
+      requested_reviewers: [$first_pr.reviewRequests.nodes[].requestedReviewer.login],
+      unresolved_threads: [
+        .[].data.repository.pullRequest.reviewThreads.edges[] |
+        select(.node.isResolved == false and .node.isOutdated == false) |
+        {
+          path: .node.path,
+          line: .node.line,
+          is_outdated: .node.isOutdated,
+          comments: [
+            .node.comments.nodes[] |
+            {
+              author: .author.login,
+              body: .body,
+              url: .url,
+              created_at: .createdAt
+            }
+          ]
+        }
+      ]
+    }
+  ' "${temp_dir}"/page_*.json
+
+  rm -rf "$temp_dir"
+}
+
+fetch_all_review_threads
 ```
