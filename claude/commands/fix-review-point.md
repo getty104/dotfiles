@@ -28,9 +28,10 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 4. テストとLintを実行し、すべてのテストが通ることを確認する
 5. コミットを適切な粒度で作成する
 6. 修正内容をすでに作成している適切なコミットにsquashし、pushする
-7. `/gemini review`というコメントをPRに追加して、再度レビューを依頼する
-8. PRのdescriptionを確認し、必要があればdescriptionを修正する
-9. `docker compose down`を実行して、使用したコンテナを停止する
+7. 対応したレビューコメントを「レビューコメントをResolveする方法」に記載のコマンドを用いてResolveする
+8. `/gemini review`というコメントをPRに追加して、再度レビューを依頼する
+9. PRのdescriptionを確認し、必要があればdescriptionを修正する
+10. `docker compose down`を実行して、使用したコンテナを停止する
 
 ### レビューコメントの確認方法
 以下のコマンドでResolveしていないレビューコメントを取得できます。
@@ -75,6 +76,7 @@ query(\$cursor: String) {
         }
         edges {
           node {
+            id
             isResolved
             isOutdated
             path
@@ -114,6 +116,7 @@ query(\$cursor: String) {
         .[].data.repository.pullRequest.reviewThreads.edges[] |
         select(.node.isResolved == false and .node.isOutdated == false) |
         {
+          thread_id: .node.id,
           path: .node.path,
           line: .node.line,
           is_outdated: .node.isOutdated,
@@ -135,4 +138,19 @@ query(\$cursor: String) {
 }
 
 fetch_all_review_threads
+```
+
+### レビューコメントをResolveする方法
+以下のコマンドでResolveしていないレビューコメントをResolveできます。
+`{thread_id}`の部分は、上記のコマンドで取得したレビューコメントの`thread_id`に置き換えてください。
+
+```
+gh api graphql -f query='
+mutation {
+    resolveReviewThread(input: {threadId: "{thread_id}"}) {
+    thread {
+        isResolved
+    }
+    }
+}'
 ```
