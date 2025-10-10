@@ -8,7 +8,7 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 2. `git pull origin main`
 3. `git fetch`
 4. `mkdir -p .git-worktrees`
-5. `WORKTREE_NAME=$(echo "$ARGUMENTS" | tr '/' '-')`でworktree名を準備する
+5. `WORKTREE_NAME="$(echo "$ARGUMENTS" | tr '/' '-')"`でworktree名を準備する
 6. `git worktree list`で`$WORKTREE_NAME`という名前のworktreeが存在するかを確認する
 7. worktreeが存在しない場合は、`git worktree add .git-worktrees/$WORKTREE_NAME $ARGUMENTS` で新しいworktreeを作成する
     - `.env`ファイルを作成したworktreeにコピーする
@@ -37,10 +37,10 @@ Resolveしていないレビューコメントの指摘内容へ対応して下�
 以下のコマンドでResolveしていないレビューコメントを取得できます。
 
 !```
-OWNER_REPO=$(gh repo view --json nameWithOwner --jq '.nameWithOwner')
-OWNER=$(echo $OWNER_REPO | cut -d'/' -f1)
-REPO=$(echo $OWNER_REPO | cut -d'/' -f2)
-PR_NUMBER=$(gh pr view --json number --jq '.number')
+OWNER_REPO="$(gh repo view --json nameWithOwner --jq '.nameWithOwner')"
+OWNER="$(echo $OWNER_REPO | cut -d'/' -f1)"
+REPO="$(echo $OWNER_REPO | cut -d'/' -f2)"
+PR_NUMBER="$(gh pr view --json number --jq '.number')"
 
 fetch_all_review_threads() {
   local cursor="null"
