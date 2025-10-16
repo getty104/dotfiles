@@ -155,3 +155,5 @@ compinit
 # End of Docker CLI completions
 
 yes | docker system prune > /dev/null
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
