@@ -8,6 +8,9 @@
     "type": "command",
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); basename_dir=$(basename \"$current_dir\"); printf \"$(whoami)@$(hostname -s):$basename_dir\""
   },
+  "enabledPlugins": {
+    "getty104@marketplace": true
+  },
   "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
