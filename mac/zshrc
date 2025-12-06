@@ -39,7 +39,7 @@ bindkey '^e' autosuggest-execute
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=046,underline"
 
 # エディタ設定
-export EDITOR=vim
+export EDITOR=neovim
 
 # User configuration
 #local用のPATH

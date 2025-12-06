@@ -333,6 +333,8 @@
 			</dict>
 			<key>Guid</key>
 			<string>0EF7EA4F-9EE8-45B1-B179-C50919DFF4B8</string>
+			<key>Hide After Opening</key>
+			<true/>
 			<key>Horizontal Spacing</key>
 			<real>1</real>
 			<key>Idle Code</key>
@@ -686,7 +688,7 @@
 			<key>Silence Bell</key>
 			<true/>
 			<key>Space</key>
-			<integer>0</integer>
+			<integer>-1</integer>
 			<key>Status Bar Layout</key>
 			<dict>
 				<key>advanced configuration</key>
@@ -807,6 +809,10 @@
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
+	<key>OpenArrangementAtStartup</key>
+	<false/>
+	<key>OpenNoWindowsAtStartup</key>
+	<false/>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>

@@ -72,8 +72,10 @@ return {
       { "ta", "<Cmd>ToggleTermToggleAll<CR>" },
     },
     config = function()
-      require("toggleterm").setup()
-      vim.api.nvim_create_user_command("TM", "<args>ToggleTerm size=40", { nargs = 1 })
+      require("toggleterm").setup({
+        size = vim.o.lines * 0.4,
+      })
+      vim.api.nvim_create_user_command("TM", "<args>ToggleTerm", { nargs = 1 })
     end,
   },
   {
