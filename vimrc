@@ -41,7 +41,6 @@ if dein#check_install()
 endif
 
 syntax on
-colorscheme monokai
 set t_Co=256
 
 hi SpecialKey ctermbg=NONE ctermfg=240
