@@ -3,12 +3,31 @@
   "env": {
     "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1"
   },
+  "permissions": {
+    "allow": [
+      "Bash(gh pr view:*)",
+      "Bash(git add:*)",
+      "Bash(docker compose run:*)",
+      "Bash(grep:*)",
+      "Bash(npm run test:unit:*)",
+      "Bash(npm run format:*)",
+      "Bash(npm run lint)",
+      "Bash(git commit:*)",
+      "Bash(gh issue view:*)",
+      "Read(//Users/getty104/**)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  },
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); basename_dir=$(basename \"$current_dir\"); printf \"$(whoami)@$(hostname -s):$basename_dir\""
   },
   "enabledPlugins": {
-    "getty104@marketplace": true
+    "getty104@marketplace": true,
+    "code-review@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "claude-mem@thedotmack": true
   },
   "alwaysThinkingEnabled": true,
   "feedbackSurveyState": {
