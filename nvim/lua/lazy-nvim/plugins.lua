@@ -38,7 +38,6 @@ return {
         "coc-solargraph",
         "coc-git",
         "coc-pyright",
-        "coc-prisma",
       }
     end,
   },
