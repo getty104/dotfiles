@@ -26,6 +26,10 @@ ln -sf ~/dotfiles/nvim/toml ~/.vim/dein/toml
 
 mkdir -p ~/.config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
+ln -sf ~/dotfiles/wezterm ~/.config/wezterm
+
+mkdir -p ~/.hammerspoon
+ln -sf ~/dotfiles/hammerspoon ~/.hammerspoon
 
 mkdir -p ~/.claude
 ln -sf ~/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md
