@@ -28,7 +28,6 @@ mkdir -p ~/.config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/wezterm ~/.config/wezterm
 
-mkdir -p ~/.hammerspoon
 ln -sf ~/dotfiles/hammerspoon ~/.hammerspoon
 
 mkdir -p ~/.claude
