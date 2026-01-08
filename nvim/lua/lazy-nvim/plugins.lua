@@ -1,9 +1,11 @@
 return {
   {
-    "crusoexia/vim-monokai",
+    'tanvirtin/monokai.nvim',
     config = function()
       vim.cmd("syntax on")
-      vim.cmd("colorscheme monokai")
+      require("monokai").setup({
+        palette = require("monokai").classic
+      })
     end,
   },
   {
