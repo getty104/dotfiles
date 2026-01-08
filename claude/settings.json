@@ -30,8 +30,9 @@
     "claude-mem@thedotmack": true,
     "frontend-design@claude-plugins-official": true
   },
+  "language": "Japanese",
+  "alwaysThinkingEnabled": false,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
-  },
-  "alwaysThinkingEnabled": false
+  }
 }

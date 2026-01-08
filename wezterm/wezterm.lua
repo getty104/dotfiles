@@ -11,7 +11,11 @@ config.automatically_reload_config = true
 config.scrollback_lines = 10000
 config.use_ime = true
 config.window_background_opacity = 0.6
-config.font = wezterm.font("Hack Nerd Font Mono", { weight = "Bold", stretch = "Normal", style = "Normal" })
+config.font = wezterm.font_with_fallback({
+	{ family = "Hack Nerd Font Mono", weight = "Bold" },
+	{ family = "Hiragino Sans", weight = "Bold" },
+})
+
 config.adjust_window_size_when_changing_font_size = true
 config.check_for_updates = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
