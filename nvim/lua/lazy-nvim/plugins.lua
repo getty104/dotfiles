@@ -159,7 +159,7 @@ return {
     },
     opts = {
       -- Configuration for claudecode main
-      terminal_cmd = "ENABLE_TOOL_SEARCH=true ~/.claude/local/claude --dangerously-skip-permissions",
+      terminal_cmd = "claude --dangerously-skip-permissions",
 
       -- Configuration for the interactive terminal:
       terminal = {

@@ -128,7 +128,7 @@ alias gc="git commit -v --no-verify"
 alias gp="git push"
 alias be="bundle exec"
 alias vim="nvim"
-alias cc="ENABLE_TOOL_SEARCH=true claude --dangerously-skip-permissions"
+alias cc="claude --dangerously-skip-permissions"
 
 function gw() {
   branch_name=$1
