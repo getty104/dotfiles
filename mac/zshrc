@@ -158,3 +158,5 @@ compinit
 yes | docker system prune > /dev/null
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+alias claude-mem='bun "/Users/getty104/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
