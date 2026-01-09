@@ -16,6 +16,14 @@ config.font = wezterm.font_with_fallback({
   { family = "Hiragino Sans", weight = "DemiBold" },
 })
 
+config.keys = {
+  {
+    key = "f",
+    mods = "CTRL|CMD",
+    action = wezterm.action.ToggleFullScreen,
+  },
+}
+
 config.adjust_window_size_when_changing_font_size = true
 config.check_for_updates = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
