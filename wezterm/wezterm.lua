@@ -24,7 +24,7 @@ config.keys = {
   },
 }
 
-config.adjust_window_size_when_changing_font_size = true
+config.adjust_window_size_when_changing_font_size = false
 config.check_for_updates = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
