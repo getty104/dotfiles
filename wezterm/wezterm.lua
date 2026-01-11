@@ -10,7 +10,7 @@ config.color_scheme = "Monokai Remastered"
 config.automatically_reload_config = true
 config.scrollback_lines = 10000
 config.use_ime = true
-config.window_background_opacity = 0.6
+config.window_background_opacity = 0.85
 config.font = wezterm.font_with_fallback({
   { family = "Hack Nerd Font Mono", weight = "Bold" },
   { family = "Hiragino Sans", weight = "DemiBold" },
