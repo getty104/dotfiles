@@ -54,6 +54,8 @@ export PATH=/usr/local/opt/openssl/bin:$PATH
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
 ## 重複パスを登録しない
 typeset -U path cdpath fpath manpath
 
@@ -157,4 +159,3 @@ compinit
 
 yes | docker system prune > /dev/null
 
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
