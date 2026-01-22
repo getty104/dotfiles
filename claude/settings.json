@@ -1,7 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "1",
     "ENABLE_TOOL_SEARCH": "1",
     "ENABLE_LSP_TOOL": "1"
   },
@@ -37,7 +36,7 @@
   },
   "language": "Japanese",
   "alwaysThinkingEnabled": false,
-  "autoUpdatesChannel": "stable",
+  "autoUpdatesChannel": "latest",
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
   }
