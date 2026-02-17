@@ -12,6 +12,7 @@ config.scrollback_lines = 10000
 config.use_ime = true
 config.window_background_opacity = 0.85
 config.hide_tab_bar_if_only_one_tab = true
+config.enable_kitty_keyboard = true
 
 config.font = wezterm.font_with_fallback({
   { family = "Hack Nerd Font Mono", weight = "Bold" },

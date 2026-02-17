@@ -32,7 +32,6 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
-
 # auto-suggestionsの設定
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^e' autosuggest-execute
