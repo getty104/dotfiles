@@ -28,3 +28,6 @@ vim.api.nvim_set_keymap("n", "<ESC><ESC>", "<Cmd>noh<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "r", "<Cmd>e!<CR>", { noremap = true })
 vim.api.nvim_set_keymap("v", "<C-p>", '"0p', { noremap = true })
 vim.api.nvim_set_keymap("t", "<C-\\>", "<C-\\><C-n>", { noremap = true })
+if vim.env.ZELLIJ ~= nil then
+  vim.fn.system({ "zellij", "action", "switch-mode", "locked" })
+end

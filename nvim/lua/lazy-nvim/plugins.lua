@@ -106,6 +106,9 @@ return {
       view_options = {
         show_hidden = true,
       },
+      win_options = {
+        winbar = "%#@attribute.builtin#%{substitute(v:lua.require('oil').get_current_dir(), '^' . $HOME, '~', '')}",
+      },
     },
     -- Optional dependencies
     dependencies = { { "echasnovski/mini.icons", opts = {} } },
