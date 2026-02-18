@@ -23,6 +23,7 @@
     ],
     "defaultMode": "default"
   },
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "input=$(cat); current_dir=$(echo \"$input\" | jq -r '.workspace.current_dir'); basename_dir=$(basename \"$current_dir\"); printf \"$(whoami)@$(hostname -s):$basename_dir\""
@@ -36,7 +37,6 @@
     "sentry@claude-plugins-official": true
   },
   "language": "Japanese",
-  "alwaysThinkingEnabled": false,
   "autoUpdatesChannel": "latest",
   "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
