@@ -6,16 +6,11 @@
   },
   "permissions": {
     "allow": [
-      "Bash(gh pr view:*)",
-      "Bash(git add:*)",
       "Bash(docker compose run:*)",
       "Bash(grep:*)",
-      "Bash(npm run test:unit:*)",
-      "Bash(npm run format:*)",
-      "Bash(npm run lint)",
-      "Bash(git commit:*)",
-      "Bash(gh issue view:*)",
-      "Read(//Users/getty104/**)",
+      "Bash(npm run:*)",
+      "Bash(git:*)",
+      "Bash(gh:*)",
       "mcp__pencil"
     ],
     "deny": [
