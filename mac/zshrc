@@ -129,7 +129,7 @@ alias gc="git commit -v --no-verify"
 alias gp="git push"
 alias be="bundle exec"
 alias vim="nvim"
-alias cc="claude --dangerously-skip-permissions"
+alias clc="claude --dangerously-skip-permissions"
 
 function gw() {
   branch_name=$1
