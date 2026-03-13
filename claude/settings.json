@@ -29,15 +29,14 @@
     "commit-commands@claude-plugins-official": true,
     "base-tools@getty104": true,
     "typescript-lsp@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
+    "sentry@claude-plugins-official": true
   },
   "language": "Japanese",
   "autoUpdatesChannel": "latest",
   "autoMemoryEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
-  },
-  "skipAutoPermissionPrompt": true
+  }
 }
