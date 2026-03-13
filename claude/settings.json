@@ -17,7 +17,7 @@
     "deny": [
       "NotebookEdit"
     ],
-    "defaultMode": "auto"
+    "defaultMode": "bypassPermissions"
   },
   "statusLine": {
     "type": "command",
