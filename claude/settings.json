@@ -17,7 +17,7 @@
     "deny": [
       "NotebookEdit"
     ],
-    "defaultMode": "default"
+    "defaultMode": "auto"
   },
   "statusLine": {
     "type": "command",
@@ -38,5 +38,6 @@
   "skipDangerousModePermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }
