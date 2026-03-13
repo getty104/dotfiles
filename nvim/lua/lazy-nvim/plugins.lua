@@ -161,9 +161,6 @@ return {
       "folke/snacks.nvim", -- Optional dependency for enhanced terminal
     },
     opts = {
-      -- Configuration for claudecode main
-      terminal_cmd = "claude --dangerously-skip-permissions",
-
       -- Configuration for the interactive terminal:
       terminal = {
         split_side = "right", -- "left" or "right"
