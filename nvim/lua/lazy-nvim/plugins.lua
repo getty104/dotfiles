@@ -118,16 +118,6 @@ return {
     keys = { { "<C-e>", "<Cmd>Oil<CR>" } },
   },
   {
-    "github/copilot.vim",
-    config = function()
-      vim.g.copilot_filetypes = {
-        markdown = true,
-        gitcommit = true,
-        yaml = true,
-      }
-    end,
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
     opts = {
