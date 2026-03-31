@@ -113,7 +113,7 @@ if type trash > /dev/null 2>&1; then
   eval "trash -F ~/Desktop/* > /dev/null 2>&1"
 
   #alias
-  alias rm="trash -F"
+  alias rmt="trash -F"
 fi
 
 #alias
