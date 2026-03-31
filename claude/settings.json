@@ -32,8 +32,10 @@
     "sentry@claude-plugins-official": true
   },
   "language": "Japanese",
+  "effortLevel": "medium",
   "autoUpdatesChannel": "latest",
   "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
   "skipDangerousModePermissionPrompt": true,
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
