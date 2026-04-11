@@ -19,6 +19,7 @@
     ],
     "defaultMode": "bypassPermissions"
   },
+  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
@@ -41,5 +42,5 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
   },
-  "model": "sonnet"
+  "advisorModel": "opus"
 }
