@@ -17,9 +17,8 @@
     "deny": [
       "NotebookEdit"
     ],
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "auto"
   },
-  "model": "sonnet",
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
@@ -34,6 +33,7 @@
   },
   "language": "Japanese",
   "effortLevel": "medium",
+  "advisorModel": "opus",
   "autoUpdatesChannel": "latest",
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
@@ -41,6 +41,5 @@
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
-  },
-  "advisorModel": "opus"
+  }
 }
