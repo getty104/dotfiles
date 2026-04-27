@@ -2,8 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "env": {
     "ENABLE_TOOL_SEARCH": "true",
-    "ENABLE_LSP_TOOL": "true",
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "true"
+    "ENABLE_LSP_TOOL": "true"
   },
   "permissions": {
     "allow": [
@@ -32,12 +31,16 @@
     "sentry@claude-plugins-official": true
   },
   "language": "Japanese",
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "advisorModel": "opus",
   "autoUpdatesChannel": "latest",
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "preferredNotifChannel": "notifications_disabled",
+  "teammateMode": "auto",
+  "remoteControlAtStartup": true,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
