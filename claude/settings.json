@@ -18,6 +18,10 @@
     ],
     "defaultMode": "auto"
   },
+  "worktree": {
+    "baseRef": "fresh"
+  },
+  "outputStyle": "Proactive",
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
@@ -37,9 +41,10 @@
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
   "skipDangerousModePermissionPrompt": true,
+  "editorMode": "normal",
   "preferredNotifChannel": "notifications_disabled",
   "teammateMode": "auto",
-  "remoteControlAtStartup": true,
+  "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
