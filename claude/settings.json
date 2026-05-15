@@ -35,7 +35,7 @@
     "sentry@claude-plugins-official": true
   },
   "language": "Japanese",
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "advisorModel": "opus",
   "autoUpdatesChannel": "latest",
   "autoMemoryEnabled": true,
