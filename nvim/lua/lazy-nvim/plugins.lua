@@ -44,18 +44,13 @@ return {
     end,
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {}, -- tree-sitter CLI must be installed system-wide
     config = function()
-      local configs = require("nvim-treesitter.configs")
-
-      configs.setup({
-        ensure_installed = "all",
-        sync_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
+      require("tree-sitter-manager").setup({
+        ensure_installed = "all"
       })
-    end,
+    end
   },
   {
     "akinsho/toggleterm.nvim",
