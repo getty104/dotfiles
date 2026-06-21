@@ -21,7 +21,6 @@
   "worktree": {
     "baseRef": "fresh"
   },
-  "outputStyle": "Proactive",
   "statusLine": {
     "type": "command",
     "command": "python3 ~/.claude/statusline.py"
@@ -32,11 +31,14 @@
     "commit-commands@claude-plugins-official": true,
     "base-tools@getty104": true,
     "typescript-lsp@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true
+    "sentry@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true
   },
+  "outputStyle": "Proactive",
   "language": "Japanese",
   "effortLevel": "xhigh",
-  "advisorModel": "opus",
+  "advisorModel": "claude-opus-4-7",
   "autoUpdatesChannel": "latest",
   "autoMemoryEnabled": true,
   "autoDreamEnabled": true,
@@ -49,5 +51,6 @@
   "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
-  }
+  },
+  "model": "claude-opus-4-7[1m]"
 }
