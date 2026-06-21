@@ -31,7 +31,6 @@ ln -sf ~/dotfiles/wezterm ~/.config/wezterm
 ln -sf ~/dotfiles/hammerspoon ~/.hammerspoon
 
 mkdir -p ~/.claude
-ln -sf ~/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md
 ln -sf ~/dotfiles/claude/settings.json ~/.claude/settings.json
 ln -sf ~/dotfiles/claude/statusline.py ~/.claude/statusline.py
 
