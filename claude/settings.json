@@ -1,9 +1,54 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "env": {
-    "ENABLE_TOOL_SEARCH": "true",
-    "ENABLE_LSP_TOOL": "true"
+  "agentPushNotifEnabled": true,
+  "autoDreamEnabled": true,
+  "autoMemoryEnabled": true,
+  "autoUpdatesChannel": "latest",
+  "editorMode": "normal",
+  "effortLevel": "xhigh",
+  "enableWorkflows": false,
+  "enabledPlugins": {
+    "claude-task-worker@claude-task-worker": true,
+    "commit-commands@claude-plugins-official": true,
+    "document-skills@anthropic-agent-skills": true,
+    "frontend-design@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true,
+    "sentry@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   },
+  "env": {
+    "ENABLE_LSP_TOOL": "true",
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "extraKnownMarketplaces": {
+    "claude-task-worker": {
+      "source": {
+        "repo": "getty104/claude-task-worker",
+        "source": "github"
+      }
+    }
+  },
+  "feedbackSurveyState": {
+    "lastShownTime": 1754056697854
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "command": "bash '~/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10,
+            "type": "command"
+          }
+        ],
+        "matcher": "*"
+      }
+    ]
+  },
+  "inputNeededNotifEnabled": true,
+  "language": "Japanese",
+  "outputStyle": "Proactive",
   "permissions": {
     "allow": [
       "Bash(docker compose run:*)",
@@ -13,44 +58,22 @@
       "Bash(gh:*)",
       "mcp__pencil"
     ],
+    "defaultMode": "auto",
     "deny": [
       "NotebookEdit"
-    ],
-    "defaultMode": "auto"
+    ]
   },
+  "preferredNotifChannel": "notifications_disabled",
+  "remoteControlAtStartup": false,
+  "skipAutoPermissionPrompt": true,
+  "skipDangerousModePermissionPrompt": true,
+  "statusLine": {
+    "command": "python3 ~/.claude/statusline.py",
+    "type": "command"
+  },
+  "teammateMode": "auto",
+  "tui": "fullscreen",
   "worktree": {
     "baseRef": "fresh"
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "python3 ~/.claude/statusline.py"
-  },
-  "enabledPlugins": {
-    "document-skills@anthropic-agent-skills": true,
-    "frontend-design@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
-    "base-tools@getty104": true,
-    "typescript-lsp@claude-plugins-official": true,
-    "sentry@claude-plugins-official": true,
-    "ruby-lsp@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
-  },
-  "outputStyle": "Proactive",
-  "language": "Japanese",
-  "effortLevel": "xhigh",
-  "advisorModel": "claude-opus-4-7",
-  "autoUpdatesChannel": "latest",
-  "autoMemoryEnabled": true,
-  "autoDreamEnabled": true,
-  "skipDangerousModePermissionPrompt": true,
-  "editorMode": "normal",
-  "preferredNotifChannel": "notifications_disabled",
-  "teammateMode": "auto",
-  "remoteControlAtStartup": false,
-  "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "feedbackSurveyState": {
-    "lastShownTime": 1754056697854
-  },
-  "model": "claude-opus-4-7[1m]"
+  }
 }
