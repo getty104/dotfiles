@@ -27,6 +27,7 @@ ln -sf ~/dotfiles/nvim/toml ~/.vim/dein/toml
 mkdir -p ~/.config
 ln -sf ~/dotfiles/nvim ~/.config/nvim
 ln -sf ~/dotfiles/wezterm ~/.config/wezterm
+ln -sf ~/dotfiles/herdr/config.toml ~/.config/herdr/config.toml
 
 ln -sf ~/dotfiles/hammerspoon ~/.hammerspoon
 
