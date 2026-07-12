@@ -106,17 +106,8 @@ bindkey -v
 # コマンド自動補正
 setopt correct
 
-# trashがインストールされている場合のみ実行
-if type trash > /dev/null 2>&1; then
-  # 起動時にDownload自動削除
-  eval "trash -F ~/Downloads/* > /dev/null 2>&1"
-  eval "trash -F ~/Desktop/* > /dev/null 2>&1"
-
-  #alias
-  alias rmt="trash -F"
-fi
-
 #alias
+alias rmt="trash -F"
 alias dc="docker compose"
 alias dcr="docker compose run --rm"
 alias dcrs="docker compose run --rm --service-ports"

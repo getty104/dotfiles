@@ -1,12 +1,45 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "agentPushNotifEnabled": true,
-  "autoDreamEnabled": true,
-  "autoMemoryEnabled": true,
-  "autoUpdatesChannel": "latest",
-  "editorMode": "normal",
-  "effortLevel": "xhigh",
+  "env": {
+    "ENABLE_LSP_TOOL": "true",
+    "ENABLE_TOOL_SEARCH": "true"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(docker compose run:*)",
+      "Bash(grep:*)",
+      "Bash(npm run:*)",
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "mcp__pencil"
+    ],
+    "deny": [
+      "NotebookEdit"
+    ],
+    "defaultMode": "auto"
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "worktree": {
+    "baseRef": "fresh"
+  },
   "enableWorkflows": false,
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/statusline.py"
+  },
   "enabledPlugins": {
     "claude-task-worker@claude-task-worker": true,
     "commit-commands@claude-plugins-official": true,
@@ -17,63 +50,30 @@
     "skill-creator@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true
   },
-  "env": {
-    "ENABLE_LSP_TOOL": "true",
-    "ENABLE_TOOL_SEARCH": "true"
-  },
   "extraKnownMarketplaces": {
     "claude-task-worker": {
       "source": {
-        "repo": "getty104/claude-task-worker",
-        "source": "github"
+        "source": "github",
+        "repo": "getty104/claude-task-worker"
       }
     }
   },
+  "outputStyle": "Proactive",
+  "language": "Japanese",
+  "effortLevel": "xhigh",
+  "autoUpdatesChannel": "latest",
+  "tui": "fullscreen",
+  "autoMemoryEnabled": true,
+  "autoDreamEnabled": true,
+  "skipDangerousModePermissionPrompt": true,
+  "editorMode": "normal",
+  "preferredNotifChannel": "notifications_disabled",
+  "teammateMode": "auto",
+  "remoteControlAtStartup": false,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true,
   "feedbackSurveyState": {
     "lastShownTime": 1754056697854
-  },
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
-            "timeout": 10,
-            "type": "command"
-          }
-        ],
-        "matcher": "*"
-      }
-    ]
-  },
-  "inputNeededNotifEnabled": true,
-  "language": "Japanese",
-  "outputStyle": "Proactive",
-  "permissions": {
-    "allow": [
-      "Bash(docker compose run:*)",
-      "Bash(grep:*)",
-      "Bash(npm run:*)",
-      "Bash(git:*)",
-      "Bash(gh:*)",
-      "mcp__pencil"
-    ],
-    "defaultMode": "auto",
-    "deny": [
-      "NotebookEdit"
-    ]
-  },
-  "preferredNotifChannel": "notifications_disabled",
-  "remoteControlAtStartup": false,
-  "skipAutoPermissionPrompt": true,
-  "skipDangerousModePermissionPrompt": true,
-  "statusLine": {
-    "command": "python3 ~/.claude/statusline.py",
-    "type": "command"
-  },
-  "teammateMode": "auto",
-  "tui": "fullscreen",
-  "worktree": {
-    "baseRef": "fresh"
   }
 }
