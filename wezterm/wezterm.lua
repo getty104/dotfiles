@@ -11,7 +11,8 @@ config.automatically_reload_config = true
 config.scrollback_lines = 10000
 config.use_ime = true
 config.window_background_opacity = 0.85
-config.hide_tab_bar_if_only_one_tab = true
+config.enable_tab_bar = false
+config.window_decorations = "RESIZE"
 -- config.enable_kitty_keyboard = true
 
 config.font = wezterm.font_with_fallback({
@@ -31,12 +32,11 @@ config.adjust_window_size_when_changing_font_size = false
 config.check_for_updates = true
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
--- Start in fullscreen mode
+-- Start maximized (fullscreen would hide the macOS menu bar)
 local mux = wezterm.mux
-wezterm.on("gui-startup", function(window)
+wezterm.on("gui-startup", function(cmd)
   local tab, pane, window = mux.spawn_window(cmd or {})
-  local gui_window = window:gui_window()
-  gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+  window:gui_window():maximize()
 end)
 
 return config
