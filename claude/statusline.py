@@ -49,30 +49,62 @@ def braille_bar(pct, width=8):
             bar += BRAILLE[min(int(frac * 7), 7)]
     return bar
 
-def fmt(label, pct):
-    p = round(pct)
-    return f'{DIM}{label}{R} {gradient(pct)}{braille_bar(pct)}{R} {p}%'
+def reset_dt(ts):
+    """リセット時刻 (UNIX epoch 秒) をローカルの datetime にする。不正値は None。"""
+    if not isinstance(ts, (int, float)):
+        return None
+    try:
+        return datetime.fromtimestamp(ts).astimezone()
+    except (OSError, OverflowError, ValueError):
+        return None
 
-def metric(title, pct):
+def reset_stamp(ts):
+    """'HH:MM' 形式。日を跨ぐ場合は日付も付ける。"""
+    dt = reset_dt(ts)
+    if dt is None:
+        return ''
+    if dt.date() == datetime.now().astimezone().date():
+        return dt.strftime('%H:%M')
+    return dt.strftime('%m/%d %H:%M')
+
+def reset_hour(ts):
+    """'HH' のみ。バーのように幅が限られる用途向け。"""
+    dt = reset_dt(ts)
+    return dt.strftime('%H') if dt is not None else ''
+
+def fmt_reset(ts):
+    stamp = reset_stamp(ts)
+    return f' {DIM}↻{stamp}{R}' if stamp else ''
+
+def fmt(label, pct, resets_at=None):
+    p = round(pct)
+    return f'{DIM}{label}{R} {gradient(pct)}{braille_bar(pct)}{R} {p}%{fmt_reset(resets_at)}'
+
+def metric(title, pct, resets_at=None):
     if pct is None:
         return None
-    return {'title': title, 'formattedValue': f'{pct:g}%', 'normalizedValue': round(pct / 100, 4)}
+    stamp = reset_stamp(resets_at)
+    value = f'{pct:g}%' + (f' ↻{stamp}' if stamp else '')
+    return {'title': title, 'formattedValue': value, 'normalizedValue': round(pct / 100, 4)}
 
-def write_runcat(five, week):
+def write_runcat(five, five_reset, week, week_reset):
     snapshot = {
         'title': 'Claude Code',
         'symbol': 'staroflife',
         'metrics': [m for m in [
-            metric('5h', five),
-            metric('7d', week),
+            metric('5h', five, five_reset),
+            metric('7d', week, week_reset),
         ] if m is not None],
         'lastUpdatedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
     }
     if five is not None or week is not None:
-        snapshot['metricsBarValue'] = '{}/{}'.format(
-            f'{five:g}%' if five is not None else '-',
-            f'{week:g}%' if week is not None else '-',
+        # バーは狭いので % は省き、5h のリセットを時 (HH) だけ添える
+        bar = '{}/{}'.format(
+            f'{five:g}' if five is not None else '-',
+            f'{week:g}' if week is not None else '-',
         )
+        stamp = reset_hour(five_reset) if five is not None else ''
+        snapshot['metricsBarValue'] = f'{bar} ↻{stamp}' if stamp else bar
 
     RUNCAT_OUT.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(prefix='.runcat-', dir=str(RUNCAT_OUT.parent))
@@ -95,12 +127,15 @@ location = f'{user}@{hostname}:{basename_dir}'
 
 model = data.get('model', {}).get('display_name', '')
 ctx = data.get('context_window', {}).get('used_percentage')
-five = data.get('rate_limits', {}).get('five_hour', {}).get('used_percentage')
-week = data.get('rate_limits', {}).get('seven_day', {}).get('used_percentage')
+rate_limits = data.get('rate_limits', {})
+five = rate_limits.get('five_hour', {}).get('used_percentage')
+five_reset = rate_limits.get('five_hour', {}).get('resets_at')
+week = rate_limits.get('seven_day', {}).get('used_percentage')
+week_reset = rate_limits.get('seven_day', {}).get('resets_at')
 
 # RunCat 側の書き出しが失敗してもステータス行の表示は止めない
 try:
-    write_runcat(five, week)
+    write_runcat(five, five_reset, week, week_reset)
 except Exception:
     pass
 
@@ -110,8 +145,8 @@ if model:
 if ctx is not None:
     parts.append(fmt('ctx', ctx))
 if five is not None:
-    parts.append(fmt('5h', five))
+    parts.append(fmt('5h', five, five_reset))
 if week is not None:
-    parts.append(fmt('7d', week))
+    parts.append(fmt('7d', week, week_reset))
 
 print(f' {DIM}│{R} '.join(parts), end='')
