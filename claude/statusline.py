@@ -58,20 +58,21 @@ def metric(title, pct):
         return None
     return {'title': title, 'formattedValue': f'{pct:g}%', 'normalizedValue': round(pct / 100, 4)}
 
-def write_runcat(model, ctx, five, week):
+def write_runcat(five, week):
     snapshot = {
         'title': 'Claude Code',
         'symbol': 'staroflife',
         'metrics': [m for m in [
-            {'title': 'Model', 'formattedValue': model or 'Claude Code'},
-            metric('Context', ctx),
             metric('5h', five),
             metric('7d', week),
         ] if m is not None],
         'lastUpdatedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
     }
-    if ctx is not None:
-        snapshot['metricsBarValue'] = f'{ctx:g}%'
+    if five is not None or week is not None:
+        snapshot['metricsBarValue'] = '{}/{}'.format(
+            f'{five:g}%' if five is not None else '-',
+            f'{week:g}%' if week is not None else '-',
+        )
 
     RUNCAT_OUT.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(prefix='.runcat-', dir=str(RUNCAT_OUT.parent))
@@ -99,7 +100,7 @@ week = data.get('rate_limits', {}).get('seven_day', {}).get('used_percentage')
 
 # RunCat 側の書き出しが失敗してもステータス行の表示は止めない
 try:
-    write_runcat(model, ctx, five, week)
+    write_runcat(five, week)
 except Exception:
     pass
 
