@@ -1,10 +1,25 @@
 #!/usr/bin/env python3
+"""Claude Code statusLine.
+
+ターミナル向けのステータス行を出力しつつ、RunCat Neo 用に
+~/.claude/runcat-usage.json (RUNCAT_OUT_FILE で上書き可) を書き出す。
+"""
 import json
 import sys
 import os
 import socket
+import tempfile
+from datetime import datetime, timezone
+from pathlib import Path
 
-data = json.load(sys.stdin)
+RUNCAT_OUT = Path(os.environ.get('RUNCAT_OUT_FILE', str(Path.home() / '.claude' / 'runcat-usage.json')))
+
+try:
+    data = json.load(sys.stdin)
+    if not isinstance(data, dict):
+        data = {}
+except Exception:
+    data = {}
 
 R = '\033[0m'
 DIM = '\033[2m'
@@ -38,6 +53,39 @@ def fmt(label, pct):
     p = round(pct)
     return f'{DIM}{label}{R} {gradient(pct)}{braille_bar(pct)}{R} {p}%'
 
+def metric(title, pct):
+    if pct is None:
+        return None
+    return {'title': title, 'formattedValue': f'{pct:g}%', 'normalizedValue': round(pct / 100, 4)}
+
+def write_runcat(model, ctx, five, week):
+    snapshot = {
+        'title': 'Claude Code',
+        'symbol': 'staroflife',
+        'metrics': [m for m in [
+            {'title': 'Model', 'formattedValue': model or 'Claude Code'},
+            metric('Context', ctx),
+            metric('5h', five),
+            metric('7d', week),
+        ] if m is not None],
+        'lastUpdatedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+    }
+    if ctx is not None:
+        snapshot['metricsBarValue'] = f'{ctx:g}%'
+
+    RUNCAT_OUT.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix='.runcat-', dir=str(RUNCAT_OUT.parent))
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+            json.dump(snapshot, f, ensure_ascii=False)
+        os.replace(tmp, RUNCAT_OUT)
+    except Exception:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
 current_dir = data.get('workspace', {}).get('current_dir', '')
 basename_dir = os.path.basename(current_dir)
 user = os.getlogin()
@@ -45,19 +93,23 @@ hostname = socket.gethostname().split('.')[0]
 location = f'{user}@{hostname}:{basename_dir}'
 
 model = data.get('model', {}).get('display_name', '')
+ctx = data.get('context_window', {}).get('used_percentage')
+five = data.get('rate_limits', {}).get('five_hour', {}).get('used_percentage')
+week = data.get('rate_limits', {}).get('seven_day', {}).get('used_percentage')
+
+# RunCat 側の書き出しが失敗してもステータス行の表示は止めない
+try:
+    write_runcat(model, ctx, five, week)
+except Exception:
+    pass
+
 parts = [location]
 if model:
     parts.append(model)
-
-ctx = data.get('context_window', {}).get('used_percentage')
 if ctx is not None:
     parts.append(fmt('ctx', ctx))
-
-five = data.get('rate_limits', {}).get('five_hour', {}).get('used_percentage')
 if five is not None:
     parts.append(fmt('5h', five))
-
-week = data.get('rate_limits', {}).get('seven_day', {}).get('used_percentage')
 if week is not None:
     parts.append(fmt('7d', week))
 

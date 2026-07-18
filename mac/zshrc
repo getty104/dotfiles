@@ -130,4 +130,5 @@ compinit
 # End of Docker CLI completions
 
 yes | docker system prune > /dev/null
+colima ssh -- sudo fstrim -av > /dev/null
 
