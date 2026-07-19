@@ -44,13 +44,20 @@ return {
     end,
   },
   {
-    "romus204/tree-sitter-manager.nvim",
-    dependencies = {}, -- tree-sitter CLI must be installed system-wide
+    "nvim-treesitter/nvim-treesitter",
+    branch = "main",
+    lazy = false, -- this plugin does not support lazy-loading
+    build = ":TSUpdate",
     config = function()
-      require("tree-sitter-manager").setup({
-        ensure_installed = "all"
+      require("nvim-treesitter").setup()
+      require("nvim-treesitter").install(require("nvim-treesitter.config").get_available())
+
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function(args)
+          pcall(vim.treesitter.start, args.buf)
+        end,
       })
-    end
+    end,
   },
   {
     "akinsho/toggleterm.nvim",
