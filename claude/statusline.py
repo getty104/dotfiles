@@ -93,6 +93,9 @@ def metric(title, pct, resets_at=None):
     return {'title': title, 'formattedValue': value, 'normalizedValue': round(pct / 100, 4)}
 
 def write_runcat(five, five_reset, week, week_reset):
+    # 使用率がまだ取れていない起動直後などは、前回の内容を残す
+    if five is None and week is None:
+        return
     snapshot = {
         'title': 'Claude Code',
         'symbol': 'staroflife',
@@ -102,14 +105,13 @@ def write_runcat(five, five_reset, week, week_reset):
         ] if m is not None],
         'lastUpdatedDate': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
     }
-    if five is not None or week is not None:
-        # バーは狭いので % は省き、5h のリセットを時 (HH) だけ添える
-        bar = '{}/{}'.format(
-            f'{five:g}' if five is not None else '-',
-            f'{week:g}' if week is not None else '-',
-        )
-        stamp = reset_hour(five_reset) if five is not None else ''
-        snapshot['metricsBarValue'] = f'{bar} ↻{stamp}' if stamp else bar
+    # バーは狭いので % は省き、5h のリセットを時 (HH) だけ添える
+    bar = '{}/{}'.format(
+        f'{five:g}' if five is not None else '-',
+        f'{week:g}' if week is not None else '-',
+    )
+    stamp = reset_hour(five_reset) if five is not None else ''
+    snapshot['metricsBarValue'] = f'{bar} ↻{stamp}' if stamp else bar
 
     RUNCAT_OUT.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(prefix='.runcat-', dir=str(RUNCAT_OUT.parent))
