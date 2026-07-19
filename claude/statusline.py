@@ -5,6 +5,7 @@
 ~/.claude/runcat-usage.json (RUNCAT_OUT_FILE で上書き可) を書き出す。
 """
 import json
+import math
 import sys
 import os
 import socket
@@ -50,11 +51,15 @@ def braille_bar(pct, width=8):
     return bar
 
 def reset_dt(ts):
-    """リセット時刻 (UNIX epoch 秒) をローカルの datetime にする。不正値は None。"""
+    """リセット時刻 (UNIX epoch 秒) をローカルの datetime にする。不正値は None。
+
+    秒以下は切り上げて分境界に揃える (14:59:59 → 15:00)。
+    リセット時刻は :59 秒で返るため、そのまま切り捨て表示すると 1 分手前に見える。
+    """
     if not isinstance(ts, (int, float)):
         return None
     try:
-        return datetime.fromtimestamp(ts).astimezone()
+        return datetime.fromtimestamp(math.ceil(ts / 60) * 60).astimezone()
     except (OSError, OverflowError, ValueError):
         return None
 
