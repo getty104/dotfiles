@@ -11,7 +11,8 @@
       "Bash(npm run:*)",
       "Bash(git:*)",
       "Bash(gh:*)",
-      "mcp__pencil"
+      "mcp__pencil",
+      "mcp__codegraph__*"
     ],
     "deny": [
       "NotebookEdit"

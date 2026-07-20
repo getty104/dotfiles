@@ -217,8 +217,11 @@ agent_panel_sort = "spaces"
 # position = "bottom-center"
 
 # Play sounds when agents change state in background workspaces
+# Disabled: claude-task-worker runs many agents in parallel background tabs and
+# each completion fired a sound. Pane-level env (HERDR_DISABLE_SOUND) does not
+# help — herdr reads it from the server process env, so this is the only lever.
 [ui.sound]
-# enabled = true
+enabled = false
 # Optional custom mp3 sound files. Relative paths are resolved from this config file's directory.
 # path = "sounds/notification.mp3"   # one mp3 file for all sound notifications
 # done_path = "sounds/done.mp3"      # overrides only finished notifications
