@@ -52,8 +52,42 @@ return {
       require("nvim-treesitter").setup()
       require("nvim-treesitter").install(require("nvim-treesitter.config").get_available())
 
+      -- treesitter はファイルサイズの 10〜30 倍のメモリを確保し、
+      -- 一度確保した分はバッファを破棄しても OS に返らない。
+      -- 長期間動かしっぱなしのセッションで RSS が積み上がるため、
+      -- 巨大ファイル・minified ファイルではアタッチしない。
+      local MAX_FILESIZE = 512 * 1024
+      local MAX_LINE_LENGTH = 5000
+
+      local function should_attach(buf)
+        local name = vim.api.nvim_buf_get_name(buf)
+        local ok, stat = pcall((vim.uv or vim.loop).fs_stat, name)
+        if ok and stat and stat.size > MAX_FILESIZE then
+          return false
+        end
+
+        -- minified など 1 行が極端に長いファイルを弾く
+        local first = vim.api.nvim_buf_get_lines(buf, 0, 1, false)[1]
+        if first and #first > MAX_LINE_LENGTH then
+          return false
+        end
+
+        return true
+      end
+
       vim.api.nvim_create_autocmd("FileType", {
         callback = function(args)
+          if not should_attach(args.buf) then
+            -- runtime/ftplugin/markdown.lua など、コア側が無条件で
+            -- vim.treesitter.start() を呼ぶ filetype があるため、
+            -- ftplugin の実行後に明示的に停止させる
+            vim.schedule(function()
+              if vim.api.nvim_buf_is_valid(args.buf) then
+                pcall(vim.treesitter.stop, args.buf)
+              end
+            end)
+            return
+          end
           pcall(vim.treesitter.start, args.buf)
         end,
       })

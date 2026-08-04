@@ -11,8 +11,8 @@
       "Bash(npm run:*)",
       "Bash(git:*)",
       "Bash(gh:*)",
-      "mcp__pencil",
-      "mcp__codegraph__*"
+      "mcp__codegraph__*",
+      "mcp__pencil"
     ],
     "deny": [
       "NotebookEdit"
@@ -49,7 +49,9 @@
     "ruby-lsp@claude-plugins-official": true,
     "sentry@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": true
+    "typescript-lsp@claude-plugins-official": true,
+    "caveman@caveman": true,
+    "claude-security@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-task-worker": {
@@ -57,11 +59,17 @@
         "source": "github",
         "repo": "getty104/claude-task-worker"
       }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
     }
   },
   "outputStyle": "Proactive",
   "language": "Japanese",
-  "effortLevel": "xhigh",
+  "effortLevel": "high",
   "autoUpdatesChannel": "latest",
   "tui": "fullscreen",
   "autoMemoryEnabled": true,
