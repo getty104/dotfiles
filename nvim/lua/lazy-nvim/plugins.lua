@@ -182,6 +182,11 @@ return {
     end,
   },
   {
+    "jannis-baum/vivify.vim",
+    ft = { "markdown" },
+    cmd = { "Vivify" },
+  },
+  {
     "coder/claudecode.nvim",
     dependencies = {
       "folke/snacks.nvim", -- Optional dependency for enhanced terminal

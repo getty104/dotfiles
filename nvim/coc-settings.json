@@ -1,5 +1,8 @@
 {
   "extensions.updateCheck": "daily",
   "git.addGBlameToVirtualText": true,
-  "solargraph.shell": "/bin/zsh"
+  "solargraph.shell": "/bin/zsh",
+  "json.schemaDownload.trustedDomains": {
+    "https://www.schemastore.org": true
+  }
 }
