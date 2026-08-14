@@ -59,10 +59,34 @@ return {
       local MAX_FILESIZE = 512 * 1024
       local MAX_LINE_LENGTH = 5000
 
+      -- vim.treesitter.start を冪等にする。
+      -- アタッチ済みバッファに再度呼ぶと LanguageTree:register_cbs が
+      -- table.insert でコールバックを積み増し、TSHighlighter:destroy() は
+      -- それを解除しない（LanguageTree に unregister API が無い）ため、
+      -- 死んだ TSHighlighter が parser から参照され続けて GC されない。
+      --
+      -- ponytail: この wrapper が防げるのは「アタッチ済みへの再 start」だけ。
+      -- runtime/ftplugin/markdown.lua は b:undo_ftplugin 経由で
+      -- vim.treesitter.stop() してから start() し直すので ts_highlight が
+      -- 一旦クリアされ、stop/start の往復 1 回につき 5 個の
+      -- コールバックが漏れ続ける（neovim 本体のバグ）。
+      -- 実測で支配的だったのは下の should_attach 側なので、ここは
+      -- 本体が修正されるまで放置。再発したら upstream に報告する。
+      local ts_start = vim.treesitter.start
+      vim.treesitter.start = function(buf, lang)
+        buf = (buf == nil or buf == 0) and vim.api.nvim_get_current_buf() or buf
+        if vim.b[buf].ts_highlight then
+          return
+        end
+        return ts_start(buf, lang)
+      end
+
       local function should_attach(buf)
-        local name = vim.api.nvim_buf_get_name(buf)
-        local ok, stat = pcall((vim.uv or vim.loop).fs_stat, name)
-        if ok and stat and stat.size > MAX_FILESIZE then
+        -- ディスク上のファイルサイズではなくバッファの実バイト数で判定する。
+        -- fzf-lua のプレビューバッファなど無名バッファはファイルが無く、
+        -- fs_stat 判定だとサイズ無制限で素通りしてしまう。
+        local lines = vim.api.nvim_buf_line_count(buf)
+        if vim.api.nvim_buf_get_offset(buf, lines) > MAX_FILESIZE then
           return false
         end
 
