@@ -20,6 +20,14 @@ config.font = wezterm.font_with_fallback({
   { family = "Hiragino Sans", weight = "DemiBold" },
 })
 
+-- Disable default key bindings (keys are passed through to herdr)
+config.disable_default_key_bindings = true
+
+-- Launch herdr on startup.
+-- Absolute path: a GUI-launched WezTerm has no ~/.local/bin in PATH, and
+-- `zsh -lc` does not read .zshrc, so a bare "herdr" exits instantly.
+config.default_prog = { wezterm.home_dir .. "/.local/bin/herdr" }
+
 config.keys = {
   {
     key = "f",
