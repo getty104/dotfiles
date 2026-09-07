@@ -5,7 +5,7 @@ source $ZPLUG_HOME/init.zsh
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
 # theme
-zplug "themes/mh", from:"oh-my-zsh", as:"theme"
+zplug "themes/mh", from:"oh-my-zsh", as:"theme", defer:1
 
 # ディレクトリのエイリアス
 zplug "lib/directories", from:"oh-my-zsh"
@@ -13,14 +13,11 @@ zplug "lib/directories", from:"oh-my-zsh"
 # ファイルのタイプによって色をつける
 zplug "lib/theme-and-appearance", from:"oh-my-zsh"
 
-# railsコマンド補完
-zplug "plugins/rails", from:"oh-my-zsh"
-zplug "plugins/rake-fast", from:"oh-my-zsh"
-
 # タイプ補完
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
