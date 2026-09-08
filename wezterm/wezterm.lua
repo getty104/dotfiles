@@ -34,6 +34,16 @@ config.keys = {
     mods = "CTRL|CMD",
     action = wezterm.action.ToggleFullScreen,
   },
+  {
+    key = "c",
+    mods = "CMD",
+    action = wezterm.action.CopyTo("Clipboard"),
+  },
+  {
+    key = "v",
+    mods = "CMD",
+    action = wezterm.action.PasteFrom("Clipboard"),
+  },
 }
 
 config.adjust_window_size_when_changing_font_size = false
